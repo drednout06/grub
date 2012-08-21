@@ -10,7 +10,8 @@
       <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
-  <% end %>
+    | <%= link_to "add a restaurant", new_user_restaurant_path(user) %>
+  		<% end %>
     </li>
   <% end %>
 </ul>

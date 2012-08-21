@@ -24,6 +24,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/new
   # GET /restaurants/new.json
   def new
+    @user = User.find(params[:user_id])
     @restaurant = Restaurant.new
 
     respond_to do |format|
@@ -40,8 +41,9 @@ class RestaurantsController < ApplicationController
   # POST /restaurants
   # POST /restaurants.json
   def create
-    @restaurant = Restaurant.new(params[:restaurant])
-
+    @user = User.find(params[:user_id])
+    @restaurant = @user.restaurants.build(params[:restaurant])
+    #@restaurant = Restaurant.new(params[:restaurant])
     respond_to do |format|
       if @restaurant.save
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }

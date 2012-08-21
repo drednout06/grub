@@ -1,7 +1,9 @@
 Grub::Application.routes.draw do
-  resources :restaurants
-
-  resources :users
+  
+  resources :users do
+    resources :restaurants, shallow: true
+  end
+  resources :restaurants, only: [:index]
   resources :sessions, only: [:new, :create, :destroy]
 
   root to: 'static_pages#home'
