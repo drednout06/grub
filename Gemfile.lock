@@ -161,7 +161,7 @@ DEPENDENCIES
   capybara (= 1.1.2)
   coffee-rails (= 3.2.2)
   faker (= 1.0.1)
-  jquery-rails (= 2.0.0)
+  jquery-rails
   json
   paperclip (~> 3.0)
   pg
