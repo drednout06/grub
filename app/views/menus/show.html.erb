@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @menu.name %>
+</p>
+
+<p>
+  <b>Restaurant:</b>
+  <%= link_to @menu.restaurant.name, restaurant_path(@menu.restaurant) %>
+</p>
+
+
+<%= link_to 'Edit', edit_menu_path(@menu) %> |
+<%= link_to 'Back', menus_path %> |
+<%= link_to 'Add a dish', new_menu_dish_path(@menu) %> 

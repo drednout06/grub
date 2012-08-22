@@ -1,5 +1,6 @@
-<p id="notice"><%= notice %></p>
-
+<p>
+	<%= image_tag @restaurant.logo.url(:thumb) %>
+</p>
 <p>
   <b>Name:</b>
   <%= @restaurant.name %>
@@ -21,4 +22,6 @@
 
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+<%= link_to 'Back', restaurants_path %> |
+
+<%= link_to 'Add a menu section', new_restaurant_menu_path(@restaurant) %>

@@ -34,4 +34,7 @@ Grub::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Paperclip - ImageMagick
+  Paperclip.options[:command_path] = "/opt/local/bin/"
 end
