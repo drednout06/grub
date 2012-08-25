@@ -1,0 +1,19 @@
+<li class="span3">
+  <div class="thumbnail dish">
+    	<%= image_tag dish.picture.url(:thumb) %>
+    <div class="caption">
+	    <h4> <%= dish.name %> </h4>
+	    <p> <%= dish.description %></p>
+	    <h4> <%= dish.price %> tenge </h4>
+	    <%= button_to 'Add to Cart', line_items_path(dish_id: dish),
+	    		class: "btn btn-success btn-small pull-right", remote: true %>
+
+	  	<% if current_user.authorized?(dish) %>
+		  	<p>
+		  		<%= link_to 'Edit', edit_dish_path(dish) %> |
+		   		<%= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' } %>
+		   	</p>
+	 		<% end %>
+  	</div>
+  </div>
+</li>

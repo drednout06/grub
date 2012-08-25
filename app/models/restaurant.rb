@@ -8,9 +8,10 @@ class Restaurant < ActiveRecord::Base
 
   belongs_to :user
   has_many :menus, dependent: :destroy
+  has_many :dishes, through: :menus
 
   validates :user_id, presence: true
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :address, presence: true
   validates :minimum_order, presence: true
   validates_numericality_of :minimum_order, greater_than: -1, only_integer: true

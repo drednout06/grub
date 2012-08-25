@@ -2,7 +2,8 @@ class MenusController < ApplicationController
   # GET /menus
   # GET /menus.json
   def index
-    @menus = Menu.all
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @menus = @restaurant.menus
 
     respond_to do |format|
       format.html # index.html.erb
@@ -59,6 +60,7 @@ class MenusController < ApplicationController
   # PUT /menus/1.json
   def update
     @menu = Menu.find(params[:id])
+    @restaurant = @menu.restaurant
 
     respond_to do |format|
       if @menu.update_attributes(params[:menu])
@@ -75,6 +77,7 @@ class MenusController < ApplicationController
   # DELETE /menus/1.json
   def destroy
     @menu = Menu.find(params[:id])
+    @restaurant = @menu.restaurant
     @menu.destroy
 
     respond_to do |format|

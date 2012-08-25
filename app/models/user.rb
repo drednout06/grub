@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
   	first_name + " " + last_name
   end
 
+  def authorized?(dish)
+    self.admin? or dish.user_id == self.id
+  end
+
   private
 
     def create_remember_token

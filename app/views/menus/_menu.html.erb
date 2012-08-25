@@ -1,0 +1,16 @@
+<%= content_tag_for :section, menu do %>
+	<p>
+	  <h3><%= menu.name %></h3>
+	</p>
+
+	<%= link_to 'Edit', edit_menu_path(menu) %> |
+	<%= link_to 'Add a dish', new_menu_dish_path(menu) %> 
+
+	<p>
+		<div>
+	  <ul class="thumbnails">
+	  	<%= render menu.dishes %>
+	  </ul>
+	</div>
+	</p>
+<% end %>

@@ -1,27 +1,43 @@
-<p>
-	<%= image_tag @restaurant.logo.url(:thumb) %>
-</p>
-<p>
-  <b>Name:</b>
-  <%= @restaurant.name %>
-</p>
+<div class="row">
+	<!--
+-->
+	<div class="span9">
+		<div class="navbar affix-top" id="nav-menu" data-spy="affix" data-offset-top="50">
+			<div class="navbar-inner">
+		    <div class="container">
 
-<p>
-  <b>Address:</b>
-  <%= @restaurant.address %>
-</p>
+		    <a class="brand" href="#" style="font-family: garton;"><%= @restaurant.name %></a>
+				<ul class="nav">
+					<% @restaurant.menus.each do |menu| %>
+						<li>
+							<%= link_to "#menu_#{menu.id}" do %>
+								<%= menu.name %>
+							<% end %>
+						</li>
+					<% end %>
+				</ul>
+				
+		    </div>
+	    </div>
+		</div>
+		<div id="menus">
+			<%= render @restaurant.menus %>
+		</div>
+	</div>
+	<div class="span3">
+		<div class="menu affix-top" data-spy="affix" data-offset-top="50">
+		<div class="thumbnail">
+				<%= image_tag @restaurant.logo.url(:medium) %>
+			
+				<%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+					<%= render @cart %>
+				<% end %>
+			
+		</div>
+		<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+		<%= link_to 'Back', restaurants_path %> |
+		<%= link_to 'Add a menu section', new_restaurant_menu_path(@restaurant) %>
+	</div>
+	</div>
 
-<p>
-  <b>Minimum order:</b>
-  <%= @restaurant.minimum_order %>
-</p>
-
-<p>
-  <%= link_to 'Admin', user_path(@restaurant.user_id) %>
-</p>
-
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %> |
-
-<%= link_to 'Add a menu section', new_restaurant_menu_path(@restaurant) %>
+</div>

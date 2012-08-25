@@ -1,5 +1,14 @@
 Grub::Application.routes.draw do
   
+  resources :line_items do
+    member do
+      post 'decrement'
+      post 'increment'
+    end
+  end
+
+  resources :carts
+
   resources :dishes, only: [:index]
 
   resources :users do
