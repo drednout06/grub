@@ -1,9 +1,9 @@
 class Dish < ActiveRecord::Base
-  attr_accessible :description, :menu_id, :name, :price, :picture
+  attr_accessible :description, :name, :price, :picture
   belongs_to :menu
   has_one :restaurant, through: :menu
-  has_many :dishes
-  has_attached_file :picture, :styles => { :medium => "300x300>", :thumb => "150x150>" },
+  has_many :line_items
+  has_attached_file :picture, :styles => { :medium => "400x400>", :thumb => "300x200>" },
   								:url  => "/assets/dishes/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/dishes/:id/:style/:basename.:extension"
 
@@ -12,7 +12,7 @@ class Dish < ActiveRecord::Base
 	  size: { in: 0..5.megabytes }
 
 	validates :menu_id, presence: true
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :name, presence: true, uniqueness: { case_sensitive: false, scope: :menu_id }
   validates :description, presence: true
   validates :price, presence: true
   validates_numericality_of :price, presence: true, greater_than: -1, only_integer: true
@@ -30,3 +30,20 @@ class Dish < ActiveRecord::Base
       end
     end
 end
+# == Schema Information
+#
+# Table name: dishes
+#
+#  id                   :integer         not null, primary key
+#  name                 :string(255)
+#  menu_id              :integer
+#  description          :text
+#  price                :integer
+#  created_at           :datetime        not null
+#  updated_at           :datetime        not null
+#  picture_file_name    :string(255)
+#  picture_content_type :string(255)
+#  picture_file_size    :integer
+#  picture_updated_at   :datetime
+#
+

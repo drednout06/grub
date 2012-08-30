@@ -1,25 +1,35 @@
-<h3>Your order</h3>
+<h3>
+	<i class="icon-shopping-cart icon-large"></i>
+	<%= t('carts.headline') %>
+</h3>
 <table class="table">
 	<thead>
 		<tr>
-			<th>Qty</th>
-			<th>Item</th>
-			<th>Price</th>
+			<th><%= t('carts.qty') %></th>
+			<th><%= t('carts.item') %></th>
+			<th><%= t('carts.price') %></th>
 		</tr>
 	</thead>
 	<tbody>
 		<%= render @cart.line_items %>
 		
 		<tr>
-			<td colspan="2">Total</td>
-			<td><%= number_to_currency(@cart.total_price) %></td>
+			<td colspan="2"><b><%= t('carts.total') %></b></td>
+			<td><b><%= number_to_currency(@cart.total_price) %></b></td>
 		</tr>
 	</tbody>
 
 </table>
 
-<%= button_to "Empty cart", @cart, method: :delete,
-			confirm: "Are you sure?", remote: true, class: "btn btn-danger btn-small" %>
 
-<%= button_to "Check out", @cart, method: :delete,
-			confirm: "Are you sure?", remote: true, class: "btn btn-success btn-small" %>
+<%= link_to new_order_path, method: :get,
+			class: "btn btn-success" do %>
+			<i class="icon-ok icon-large"></i>
+			<%= t("carts.checkout") %>
+	<% end %>
+
+<%= link_to @cart, method: :delete,
+			confirm: t("carts.empty_confirm"), remote: true, class: "btn btn-danger" do %>
+			<i class="icon-trash icon-large"></i>
+			<%= t("carts.empty") %>
+	<% end %>

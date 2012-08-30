@@ -1,0 +1,30 @@
+<%= debug @user %>
+<%= debug @address %>
+<%= debug @order %>
+<%- model_class = Order -%>
+<div class="row">
+	<div class="span9">
+		<div class="page-header">
+		  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+		                                 :default => "New #{model_class.model_name.human}") %></h1>
+		</div>
+		<% if signed_in? %>
+		<p>
+			You are logged in as:
+			<%= "#{@user.name} (#{@user.email})" %>
+		</p>
+		<% end %>
+		<%= render :partial => 'form' %>
+	</div>
+	<div class="span3">
+		<div class="affix-top" data-spy="affix" data-offset-top="50">
+			<div class="">
+				
+					<%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+						<%= render @cart %>
+					<% end %>
+				
+			</div>
+		</div>
+	</div>
+</div>

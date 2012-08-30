@@ -3,8 +3,8 @@
 	  <h3><%= menu.name %></h3>
 	</p>
 
-	<%= link_to 'Edit', edit_menu_path(menu) %> |
-	<%= link_to 'Add a dish', new_menu_dish_path(menu) %> 
+	<%= link_to t("helpers.links.edit"), edit_menu_path(menu), class: "admin-links" %> |
+	<%= link_to t(".add_dish"), new_menu_dish_path(menu), class: "admin-links" %> 
 
 	<p>
 		<div>

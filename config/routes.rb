@@ -1,39 +1,61 @@
 Grub::Application.routes.draw do
-  
-  resources :line_items do
-    member do
-      post 'decrement'
-      post 'increment'
+
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
+  scope :path => "(:locale)", :shallow_path => "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+
+    resources :line_items do
+      member do
+        post 'decrement'
+        post 'increment'
+      end
     end
+
+    resources :cities do
+      resources :districts, shallow: true
+    end
+
+    resources :carts
+
+    resources :addresses, only: [:index]
+    resources :orders
+    resources :dishes, only: [:index]
+
+    resources :users do
+      resources :restaurants, shallow: true
+      resources :addresses, shallow: true
+      resources :orders, shallow: true
+    end
+
+    resources :restaurants do
+      resources :menus, shallow: true
+      resources :orders, shallow: true
+    end
+
+    resources :menus, only: [:index] do
+      resources :dishes, shallow: true
+    end
+
+    resources :sessions, only: [:new, :create, :destroy]
+
+    root to: 'static_pages#home'
+
+    match '/signup',  to: 'users#new'
+    match '/signin',  to: 'sessions#new'
+    match '/signout', to: 'sessions#destroy'
+
+    match '/help',    to: 'static_pages#help'
+    match '/about',   to: 'static_pages#about'
+    match '/contact', to: 'static_pages#contact'
+    match '*path', to: redirect("/#{I18n.default_locale}/%{path}")
   end
 
-  resources :carts
+  match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
+  match '', to: redirect("/#{I18n.default_locale}")
 
-  resources :dishes, only: [:index]
 
-  resources :users do
-    resources :restaurants, shallow: true
-  end
-
-  resources :restaurants, only: [:index] do
-    resources :menus, shallow: true
-  end
-
-  resources :menus, only: [:index] do
-    resources :dishes, shallow: true
-  end
-
-  resources :sessions, only: [:new, :create, :destroy]
-
-  root to: 'static_pages#home'
-
-  match '/signup',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
-
-  match '/help',    to: 'static_pages#help'
-  match '/about',   to: 'static_pages#about'
-  match '/contact', to: 'static_pages#contact'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

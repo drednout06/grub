@@ -4,16 +4,20 @@
     <div class="caption">
 	    <h4> <%= dish.name %> </h4>
 	    <p> <%= dish.description %></p>
-	    <h4> <%= dish.price %> tenge </h4>
-	    <%= button_to 'Add to Cart', line_items_path(dish_id: dish),
-	    		class: "btn btn-success btn-small pull-right", remote: true %>
-
-	  	<% if current_user.authorized?(dish) %>
-		  	<p>
-		  		<%= link_to 'Edit', edit_dish_path(dish) %> |
-		   		<%= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' } %>
-		   	</p>
-	 		<% end %>
+	    <div class="price">
+	    	<h4> <%= number_to_currency(dish.price) %> </h4>
+	    	<%= link_to line_items_path(dish_id: dish), method: :post,
+	    		class: "btn btn-success btn-small pull-right", remote: true do %>
+	    		<i class="icon-plus"></i>
+	    		<%= t(".add_to_cart") %>
+    		<% end %>
+  		</div>
   	</div>
   </div>
+  <% if signed_in? and current_user.authorized?(dish) %>
+		  	<p>
+		  		<%= link_to t("helpers.links.edit"), edit_dish_path(dish), class: "admin-links" %> |
+		   		<%= link_to t("helpers.links.destroy"), dish, method: :delete, data: { confirm: 'Are you sure?' }, class: "admin-links" %>
+		   	</p>
+	<% end %>
 </li>

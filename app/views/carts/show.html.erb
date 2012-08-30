@@ -1,12 +1,19 @@
-<h2>Your Cart</h2>
-<table class="table table-striped">
-	<%= render @cart.line_items %>
-	
-	<tr>
-		<td colspan="2">Total</td>
-		<td><%= number_to_currency(@cart.total_price) %></td>
-	</tr>
-</table>
+<%- model_class = Cart -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<%= button_to "Empty cart", @cart, method: :delete,
-			confirm: "Are you sure?" %>
+<dl class="dl-horizontal">
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              carts_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_cart_path(@cart), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              cart_path(@cart),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
