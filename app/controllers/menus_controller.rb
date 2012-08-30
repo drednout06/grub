@@ -15,7 +15,7 @@ class MenusController < ApplicationController
   # GET /menus/1.json
   def show
     @menu = Menu.find(params[:id])
-
+    @restaurant = @menu.restaurant
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @menu }
@@ -81,7 +81,7 @@ class MenusController < ApplicationController
     @menu.destroy
 
     respond_to do |format|
-      format.html { redirect_to menus_url }
+      format.html { redirect_to restaurant_menus_url(@restaurant) }
       format.json { head :no_content }
     end
   end

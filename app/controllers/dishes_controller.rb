@@ -78,9 +78,9 @@ class DishesController < ApplicationController
     @dish = Dish.find(params[:id])
     @menu = @dish.menu
     @dish.destroy
-
+    flash[:notice] = 'Dish was successfully deleted.'
     respond_to do |format|
-      format.html { redirect_to @menu }
+      format.html { redirect_back_or @menu }
       format.json { head :no_content }
     end
   end

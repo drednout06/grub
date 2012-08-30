@@ -1,12 +1,54 @@
+<% provide(:title, "#{@restaurant.name}") %>
 <div class="row">
 	<!--
 -->
 	<div class="span9">
-		<div class="navbar affix-top" id="nav-menu" data-spy="affix" data-offset-top="50">
+			<div class="row">
+				<div class="span2">
+					
+					<%= image_tag @restaurant.logo.url(:medium), class: "img-rounded" %>
+					<%= link_to t("helpers.links.edit"), edit_restaurant_path(@restaurant), class: "admin-links" %> |
+					<%= link_to t(".add_menu"), new_restaurant_menu_path(@restaurant), class: "admin-links" %>
+				
+				</div>
+				<div class="span7">
+					<div class="restaurant-name">
+						<%= @restaurant.title %>
+						<h1><%= @restaurant.name %></h1>
+					</div>
+					<table class="table table-condensed restaurant">
+						<thead>
+							<tr>
+								<th style="width: 20%"><%= Restaurant.human_attribute_name :minimum_order %></th>
+								<th style="width: 20%"><%= Restaurant.human_attribute_name :delivery_fee %></th>
+								<th style="width: 20%"><%= Restaurant.human_attribute_name :average_delivery_time %></th>
+								<th style="width: 40%"><%= Restaurant.human_attribute_name :description %></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="value">
+									<%= number_to_currency (@restaurant.minimum_order) %>
+								</td>
+								<td class="value">
+									<%= number_to_currency (@restaurant.delivery_fee) %>
+								</td>
+								<td class="value">
+									<%= distance_of_time_in_words(@restaurant.average_delivery_time * 60) %>
+								</td>
+								<td>
+									<%= @restaurant.description %>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</div>
+		</div>
+		<div class="navbar affix-top" id="nav-menu" data-spy="affix" data-offset-top="200">
 			<div class="navbar-inner">
 		    <div class="container">
 
-		    <a class="brand" href="#" style="font-family: garton;"><%= @restaurant.name %></a>
+		    <a class="brand" href="#" style="font-family: garton;"><%= t("navigation.menu") %></a>
 				<ul class="nav">
 					<% @restaurant.menus.each do |menu| %>
 						<li>
@@ -26,18 +68,14 @@
 	</div>
 	<div class="span3">
 		<div class="menu affix-top" data-spy="affix" data-offset-top="50">
-		<div class="thumbnail">
-				<%= image_tag @restaurant.logo.url(:medium) %>
-			
-				<%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
-					<%= render @cart %>
-				<% end %>
-			
+			<div class="">
+				
+					<%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+						<%= render @cart %>
+					<% end %>
+				
+			</div>
 		</div>
-		<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-		<%= link_to 'Back', restaurants_path %> |
-		<%= link_to 'Add a menu section', new_restaurant_menu_path(@restaurant) %>
-	</div>
 	</div>
 
 </div>

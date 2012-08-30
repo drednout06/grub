@@ -15,6 +15,10 @@ gem 'pg'
 
 gem 'json'
 
+gem 'globalize3'
+
+gem 'activeadmin'
+
 group :development, :test do
   gem 'rspec-rails', '2.10.0'
 end
@@ -34,7 +38,8 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.0.4.0'
 	gem 'twitter-bootstrap-rails'
 	gem 'less'
-
+  gem 'simple_form'
+  gem 'jquery-ui-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 

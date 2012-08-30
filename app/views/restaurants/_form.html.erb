@@ -1,33 +1,15 @@
-<%= form_for([@user, @restaurant]) do |f| %>
-  <% if @restaurant.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
-
-      <ul>
-      <% @restaurant.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :minimum_order %><br />
-    <%= f.number_field :minimum_order %>
-  </div>
-  <div class="field">
-    <%= f.label :logo %><br />
-    <%= f.file_field :logo %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+<%= simple_form_for [@user, @restaurant], :html => { :class => 'form-horizontal' } do |f| %>
+	<%= f.input :title %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :minimum_order %>
+  <%= f.input :delivery_fee %>
+  <%= f.input :average_delivery_time %>
+  <%= f.input :description %>
+  <%= f.input :logo %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                restaurants_path, :class => 'btn' %>
   </div>
 <% end %>
