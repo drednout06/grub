@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
     @user = current_user
     @cart = current_cart
     @address = @user.address if !@user.nil?
-    if signed_in?
+    if user_signed_in?
       if @address and !@address.new_record?
         @address.update_attributes(params[:address])
       else

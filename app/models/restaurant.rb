@@ -1,6 +1,6 @@
 class Restaurant < ActiveRecord::Base
   attr_accessible :address, :minimum_order, :name, :logo, :title,
-                  :average_delivery_time, :delivery_fee, :description
+                  :average_delivery_time, :delivery_fee, :description, :user_id
 
   has_attached_file :logo, :styles => { :medium => "400x400>", :thumb => "200x200>" },
   								:url  => "/assets/restaurants/:id/:style/:basename.:extension",

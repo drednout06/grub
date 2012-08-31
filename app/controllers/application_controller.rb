@@ -1,9 +1,18 @@
 class ApplicationController < ActionController::Base
+  
   protect_from_forgery
-  include SessionsHelper
+  
   include CartsHelper
 
   before_filter :set_locale
+
+  def authenticate_active_admin_user!
+    authenticate_user! 
+    unless current_user.admin?
+      flash[:alert] = "Unauthorized Access!"
+      redirect_to root_path 
+    end
+  end
 
 
   private

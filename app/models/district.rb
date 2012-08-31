@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: districts
+#
+#  id         :integer         not null, primary key
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#  name       :string(255)
+#  city_id    :integer
+#
+
 class District < ActiveRecord::Base
   attr_accessible :name, :city_id, :translations_attributes
   belongs_to :city

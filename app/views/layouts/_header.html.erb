@@ -15,8 +15,8 @@
             <%= t("navigation.home") %>
             <% end %></li>
           <li><%= link_to t("navigation.help"), help_path %></li>
-          <% if signed_in? %>
-            <% if current_user.admin? %>
+          <% if user_signed_in? %>
+            <% # if current_user.admin? %>
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <%= t("navigation.admin") %> <b class="caret"></b>
@@ -26,22 +26,22 @@
                   <li><%= link_to t("navigation.users"), users_path %></li>
                 </ul>
               </li>
-            <% end %>
+            <% # end %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <%= t("navigation.account") %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to t("navigation.profile"), current_user %></li>
-                <li><%= link_to t("navigation.settings"), edit_user_path(current_user) %></li>
+                <li><%= link_to t("navigation.settings"), edit_user_registration_path(current_user) %></li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to t("navigation.signout"), signout_path, method: "delete" %>
+                  <%= link_to t("navigation.signout"), destroy_user_session_path, method: "delete" %>
                 </li>
               </ul>
             </li>
           <% else %>
-            <li><%= link_to t("navigation.signin"), signin_path %></li>
+            <li><%= link_to t("navigation.signin"), new_user_session_path %></li>
           <% end %>
         </ul>
       </nav>

@@ -8,7 +8,7 @@
 		  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
 		                                 :default => "New #{model_class.model_name.human}") %></h1>
 		</div>
-		<% if signed_in? %>
+		<% if user_signed_in? %>
 		<p>
 			You are logged in as:
 			<%= "#{@user.name} (#{@user.email})" %>

@@ -1,10 +1,9 @@
 Grub::Application.routes.draw do
-
-  ActiveAdmin.routes(self)
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
-
   scope :path => "(:locale)", :shallow_path => "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+
+    devise_for :users
+
+    ActiveAdmin.routes(self)
 
     resources :line_items do
       member do
@@ -38,18 +37,17 @@ Grub::Application.routes.draw do
       resources :dishes, shallow: true
     end
 
-    resources :sessions, only: [:new, :create, :destroy]
+    #resources :sessions, only: [:new, :create, :destroy]
 
     root to: 'static_pages#home'
 
-    match '/signup',  to: 'users#new'
-    match '/signin',  to: 'sessions#new'
-    match '/signout', to: 'sessions#destroy'
+    #match '/signup',  to: 'users#new'
+    #match '/signin',  to: 'sessions#new'
+    #match '/signout', to: 'sessions#destroy'
 
     match '/help',    to: 'static_pages#help'
     match '/about',   to: 'static_pages#about'
     match '/contact', to: 'static_pages#contact'
-    match '*path', to: redirect("/#{I18n.default_locale}/%{path}")
   end
 
   match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }

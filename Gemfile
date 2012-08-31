@@ -19,6 +19,8 @@ gem 'globalize3'
 
 gem 'activeadmin'
 
+gem 'devise'
+
 group :development, :test do
   gem 'rspec-rails', '2.10.0'
 end

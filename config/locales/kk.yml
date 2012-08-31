@@ -71,7 +71,7 @@ kk:
         email: Э-пошта
         created_at: Құрылған күні
         admin: Әкім
-        phone: Ұялы телефон
+        phone_number: Ұялы телефон
         password: Кұпия сөз
         password_confirmation: Кұпия сөз құптауы
 
@@ -92,6 +92,17 @@ kk:
       order:
         delivery_time: Әкелу уақыты
         change_from: Қаншадан қайырып беру
+
+
+  active_admin:
+    dashboard: Басбет
+    logout: Шығу
+    edit: Өндеу
+    delete: Жою
+    view: Көру
+    dashboard_welcome:
+      welcome: Қош келдіңіз!
+      call_to_action: Ал бастаңыз!
 
   date:
     abbr_day_names:

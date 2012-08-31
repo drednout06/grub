@@ -14,7 +14,7 @@
   		</div>
   	</div>
   </div>
-  <% if signed_in? and current_user.authorized?(dish) %>
+  <% if user_signed_in? and current_user.authorized?(dish) %>
 		  	<p>
 		  		<%= link_to t("helpers.links.edit"), edit_dish_path(dish), class: "admin-links" %> |
 		   		<%= link_to t("helpers.links.destroy"), dish, method: :delete, data: { confirm: 'Are you sure?' }, class: "admin-links" %>
