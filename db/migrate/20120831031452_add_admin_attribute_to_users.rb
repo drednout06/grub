@@ -3,6 +3,9 @@ class AddAdminAttributeToUsers < ActiveRecord::Migration
     add_column :users, :admin, :boolean, default: false, null: false
 
     User.create! do |r|
+      r.first_name = 'admin'
+      r.last_name = 'admin'
+      r.phone_number = '995928'
       r.email      = 'default@example.com'
       r.password   = 'password'
       r.admin = true
