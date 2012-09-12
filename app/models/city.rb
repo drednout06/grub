@@ -9,9 +9,12 @@
 #
 
 class City < ActiveRecord::Base
-  attr_accessible :name
-  has_many :districts
+  attr_accessible :name, :translations_attributes
+  has_many :districts, dependent: :destroy
   has_many :restaurants
   
+  translates :name
+  accepts_nested_attributes_for :translations
+
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 end
