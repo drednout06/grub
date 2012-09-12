@@ -1,7 +1,6 @@
 <% provide(:title, "#{@restaurant.name}") %>
 <div class="row">
-	<!--
--->
+
 	<div class="span9">
 			<div class="row">
 				<div class="span2">
@@ -68,12 +67,8 @@
 	</div>
 	<div class="span3">
 		<div class="menu affix-top" data-spy="affix" data-offset-top="50">
-			<div class="">
-				
-					<%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
-						<%= render @cart %>
-					<% end %>
-				
+			<div id="cart">
+				<%= render @cart %>
 			</div>
 		</div>
 	</div>

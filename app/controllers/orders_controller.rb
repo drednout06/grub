@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
+  before_filter :authenticate_user!
+
   def index
     @orders = Order.all
 
@@ -24,9 +26,12 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.json
   def new
-    @order = Order.new
     @user = current_user || User.new
-    @address = @user.address || Address.new
+    new_address = @user.addresses.new(name: t('helpers.links.new'))
+    @address = @user.addresses.last || new_address
+
+    @order = Order.new
+    
     @cart = current_cart
     respond_to do |format|
       format.html # new.html.erb
@@ -41,49 +46,36 @@ class OrdersController < ApplicationController
     @user = @order.user
   end
 
-  # POST /orders
-  # POST /orders.json
-  # TO-DO: REFACTOR!
   def create
     @user = current_user
     @cart = current_cart
-    @address = @user.address if !@user.nil?
-    if user_signed_in?
-      if @address and !@address.new_record?
-        @address.update_attributes(params[:address])
-      else
-        user_params = {name: "#{params[:address][:first_name]} - #{params[:address][:street]}"}
-        @address = @user.addresses.new(params[:address].merge(user_params))
-        @user.update_attributes({address_id: @address.id}) if @address.save
-      end
-    else
-      @user = User.new(params[:user])
-      if @user.save
-        custom_sign_in @user
-        user_params = {first_name: @user.first_name, last_name: @user.last_name,
-                        phone: @user.phone, name: "#{@user.first_name} - #{params[:address][:street]}"}
-        @address = @user.addresses.new(params[:address].merge(user_params))
-        @user.update_attributes({address_id: @address.id}) if @address.save
-      else
-        @address = Address.new(params[:address])
-        @order = Order.new(params[:order])
-        render action: "new"
-        return
-      end
 
+    address_params = params.delete(:address)
+    address_params[:name] =
+      "#{address_params[:first_name]} | #{address_params[:street]} #{address_params[:house]}"
+
+    @order = @user.orders.new(params[:order])
+
+    if params[:order][:address_id].blank?
+      @address = @user.addresses.new(address_params)
+      render action: "new" and return unless @address.save
+      params[:order][:address_id] = @order.address_id = @address.id
+    else
+      @address = Address.find(params[:order][:address_id])
+      render action: "new" and return unless @address.update_attributes(address_params)
     end
-    
-    @order = @user.orders.new(params[:order].merge({address_id: @address.id}))
+
     @order.add_line_items_from_cart(current_cart)
 
     respond_to do |format|
-      if @user.id and @address.id and @order.save
+      if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
-        format.html { render action: "new" }
+        params[:result] = 'failed'
+        format.html { render action: "new", notice: 'Save failed!' }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
@@ -102,6 +94,14 @@ class OrdersController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def update_address
+    @user = current_user
+    @address = params[:address_id].blank? ? @user.addresses.build : Address.find(params[:address_id])
+    respond_to do |format|
+      format.js
     end
   end
 

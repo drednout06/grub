@@ -1,5 +1,9 @@
 kk:
   
+  orders:
+    new:
+      new_address: Жаңа
+      
   restaurants:
     show:
       add_menu: "Мәзір қосу"
@@ -11,6 +15,13 @@ kk:
   dishes:
     dish:
       add_to_cart: "Қосу"
+
+  static_pages:
+    home:
+      headline: Енді ешқашан аш қалмайсыз!
+      subheadline: grub.kz - тегін тамаққа тапсырыс беру қызметі
+      your_city: Қалаңыз
+      your_district: Ауданыңыз
 
   carts:
     headline: "Тапсырысыңыз"
@@ -33,22 +44,54 @@ kk:
     profile: Профайл
     signout: Шығу
     signin: Кіру
+    signup: Тіркелу
     about: Біз туралы
     contact: Байланыс
     news: Жаңалықтар
     menu: Мәзір
     main_title: Ас болсын!
+    search: Іздеу
+    city: Қала
 
 
   activerecord:
     models:
-      restaurant: Ресторан
-      menu: Меню
-      user: Пайдаланушы
-      order: Тапсырыс
-      address: Мекен-жай
-      cart: Тапсырыс
-
+      restaurant:
+        zero: Мейрамхана жоқ 
+        one: Мейрамхана
+        other: Мейрамханалар
+      menu:
+        zero: Мәзір жоқ 
+        one: Мәзір
+        other: Мәзірлер
+      user:
+        zero: Пайдаланушы жоқ 
+        one: Пайдаланушы
+        other: Пайдаланушылар
+      order:
+        zero: Тапсырыс жоқ 
+        one: Тапсырыс
+        other: Тапсырыстар
+      address:
+        zero: Мекенжай жоқ 
+        one: Мекенжай
+        other: Мекенжайлар
+      cart:
+        zero: Себет жоқ 
+        one: Себет
+        other: Себеттер
+      city:
+        zero: Қала жоқ
+        one: Қала
+        other: Қалалар
+      district:
+        zero: Аудан жоқ
+        one: Аудан
+        other: Аудандар
+      deliverability:
+        zero: Жеткізу жоқ
+        one: Жеткізу
+        other: Жеткізулер
 
     attributes:
       restaurant:
@@ -61,6 +104,8 @@ kk:
         average_delivery_time: Жеткізу уақыты
         delivery_fee: Жеткізу бағасы
         description: Қосымша ақпарат
+        districts: Аудандар
+        city: Қала
 
 
       menu:
@@ -74,6 +119,7 @@ kk:
         phone_number: Ұялы телефон
         password: Кұпия сөз
         password_confirmation: Кұпия сөз құптауы
+        remember_me: Мені осы компьютерде сақта
 
       address:
         city: Қала
@@ -85,7 +131,7 @@ kk:
         comment: Қосымша ақпарат
         first_name: Аты
         last_name: Жөні
-        phone: Ұялы телефон
+        phone_number: Ұялы телефон
         street: Көше
         korpus: Корпус
 
@@ -100,9 +146,33 @@ kk:
     edit: Өндеу
     delete: Жою
     view: Көру
+    new_model: Жаңа
+    any: Кезкелген
+    search_field: Іздеу
+    equal_to: Тең
+    greater_than: Артық
+    less_than: Кем
+    filter: Сүзгізу
+    clear_filters: Сүзгіштерді өшіру
+    cancel: Болдырмау
+    create: '%{model} құру'
     dashboard_welcome:
       welcome: Қош келдіңіз!
       call_to_action: Ал бастаңыз!
+
+  devise:
+    registrations:
+      user:
+        signed_up: Жүйеге сәтті тіркелдіңіз!
+    sessions:
+      user:
+        signed_out: Жүйеден сәтті шықтыңыз!
+        signed_in: Жүйеге сәтті кірдіңіз!
+    failure:
+      user:
+        unauthenticated: Алдын ала жүйеге кіруіңізді өтінеміз!
+        invalid: Ақпаратты қате тердіңіз!
+
 
   date:
     abbr_day_names:
@@ -283,6 +353,9 @@ kk:
     titles:
       new: 'Жаңа %{model}'
       edit: '%{model} өндеу'
+    label:
+      user:
+        remember_me: Мені осы компьютерде сақта
   number:
     currency:
       format:

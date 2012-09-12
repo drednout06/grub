@@ -22,5 +22,6 @@ end
 #  average_delivery_time :integer
 #  description           :text
 #  delivery_fee          :integer
+#  city_id               :integer
 #
 

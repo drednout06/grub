@@ -1,33 +1,10 @@
 <%= simple_form_for @order, :html => { :class => 'form-horizontal' } do |form| %>
   
-  <% if !user_signed_in? %>
-	  <%= simple_fields_for @user do |f| %>
-		  <%= f.input :first_name %>
-		  <%= f.input :last_name %>
-		  <%= f.input :phone %>
-		  <%= f.input :email %>
-		  <%= f.input :password %>
-		  <%= f.input :password_confirmation %>
-		<% end %>
-	<% end %>
+  <%= form.input :address_id, collection: @user.addresses, selected: @address.id || "" %>
 
-
-	<%= simple_fields_for @address do |f| %>
-		<% if user_signed_in? %>
-			<%= f.input :first_name, input_html: { value: "#{@user.first_name}"} %>
-		  <%= f.input :last_name, input_html: { value: "#{@user.last_name}"} %>
-		  <%= f.input :phone, input_html: { value: "#{@user.phone}"} %>
-		<% end %>
-	  <%= f.input :city %>
-	  <%= f.input :district %>
-	  <%= f.input :street %>
-	  <%= f.input :house %>
-	  <%= f.input :korpus %>
-	  <%= f.input :porch %>
-	  <%= f.input :floor %>
-	  <%= f.input :doorphone %>
-	  <%= f.input :comment %>
-	<% end %>
+  <div id="order-address-form">
+    <%= render 'address_form', address: @address %>
+  </div>
 
   <%= form.input :delivery_time %>
   <%= form.input :change_from %>

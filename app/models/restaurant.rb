@@ -1,6 +1,7 @@
 class Restaurant < ActiveRecord::Base
   attr_accessible :address, :minimum_order, :name, :logo, :title,
-                  :average_delivery_time, :delivery_fee, :description, :user_id
+                  :average_delivery_time, :delivery_fee, :description, :user_id,
+                  :deliverabilities_attributes, :city_id
 
   has_attached_file :logo, :styles => { :medium => "400x400>", :thumb => "200x200>" },
   								:url  => "/assets/restaurants/:id/:style/:basename.:extension",
@@ -8,9 +9,12 @@ class Restaurant < ActiveRecord::Base
 
 
   belongs_to :user
+  belongs_to :city
   has_many :menus, dependent: :destroy
   has_many :dishes, through: :menus
   has_many :orders
+  has_many :deliverabilities, dependent: :destroy
+  has_many :districts, through: :deliverabilities
 
   validates :title, presence: true
   validates :average_delivery_time, presence: true
@@ -23,6 +27,8 @@ class Restaurant < ActiveRecord::Base
   validates_attachment :logo, :presence => true,
 	  content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] },
 	  size: { in: 0..5.megabytes }
+
+  accepts_nested_attributes_for :deliverabilities
 end
 # == Schema Information
 #
@@ -43,5 +49,6 @@ end
 #  average_delivery_time :integer
 #  description           :text
 #  delivery_fee          :integer
+#  city_id               :integer
 #
 

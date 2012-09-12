@@ -1,0 +1,38 @@
+
+
+
+<div id="order-address-form">
+
+<%= simple_form_for @address, :html => { :class => 'form-horizontal' } do |f| %>
+  
+  <%#= form.input :address_id, collection: @user.addresses, selected: @address.id %>
+    <%#= render 'address_form', address: @address  %>
+  <%= f.input :first_name, input_html: { value:
+    (@address.try(:first_name) ? @address.first_name : @user.first_name )} %>
+  <%= f.input :last_name, input_html: { value:
+    (@address.try(:last_name) ? @address.last_name : @user.last_name )} %>
+  <%= f.input :phone_number, input_html: { value:
+    (@address.try(:phone_number) ? @address.phone_number : @user.phone_number )} %>
+  <%= f.input :city %>
+  <%= f.input :district %>
+  <%= f.input :street %>
+  <%= f.input :house %>
+  <%= f.input :korpus %>
+  <%= f.input :porch %>
+  <%= f.input :floor %>
+  <%= f.input :doorphone %>
+  <%= f.input :comment %>
+
+  <%= f.simple_fields_for :orders do |form| %>
+    <%= form.input :delivery_time %>
+    <%= form.input :change_from %>
+
+    <div class="form-actions">
+      <%= form.button :submit, :class => 'btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  orders_path, :class => 'btn' %>
+    </div>
+  <% end %>
+<% end %>
+
+</div>

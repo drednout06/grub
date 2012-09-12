@@ -8,9 +8,14 @@
     <%= render 'layouts/shim' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <body data-spy="scroll" data-target="#nav-menu" data-offset="0">
+  <% if params[:controller] == 'static_pages' and params[:action] == 'home' %>
+  <body data-spy="scroll" data-target="#nav-menu" data-offset="0" id="thebody">
+    <% else %>
+    <body data-spy="scroll" data-target="#nav-menu" data-offset="0">
+    <% end %>
     <%= render 'layouts/header' %>
     <div class="container">
+      <%#= params[:controller] + params[:action] %>
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>">
           <a class="close" data-dismiss="alert">×</a>

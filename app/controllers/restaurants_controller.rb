@@ -2,7 +2,30 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @restaurants = Restaurant.all
+    
+    # filter = []
+    # if params.has_key?("filter")
+
+    #   if params[:filter][:city_id].present?
+    #     id = params[:filter][:city_id]
+    #     filter << ["city_id = #{id.to_i}"]
+    #   end
+
+    #   if params[:filter][:district_id].present?
+    #     id = params[:filter][:project_id]
+    #     filter << ["project_id = #{id.to_i}"]
+    #   end
+
+    #   if params[:filter][:change_type_id].present?
+    #     id = params[:filter][:change_type_id]
+    #     filter << ["change_type_id = #{id.to_i}"]
+    #   end
+
+    # end
+
+    #@q = Restaurant.joins(:deliverabilities).where('deliverabilities.restaurant_id' => ).ransack(params[:q])
+    @q = Restaurant.ransack(params[:q])
+    @restaurants = @q.result(:distinct => true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,7 +65,7 @@ class RestaurantsController < ApplicationController
   # POST /restaurants.json
   def create
     @user = User.find(params[:user_id])
-    @restaurant = @user.restaurants.build(params[:restaurant])
+    @restaurant = @user.build_restaurant(params[:restaurant])
     #@restaurant = Restaurant.new(params[:restaurant])
     respond_to do |format|
       if @restaurant.save

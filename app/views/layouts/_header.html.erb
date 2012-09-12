@@ -1,7 +1,9 @@
 <header class="navbar navbar-static-top">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "grub.kz", root_path, class: "brand" %>
+      <%= link_to root_path, class: "brand", id: 'logo' do %>
+        <%= image_tag('logo_small.png') %>
+      <% end %>
       <nav>
         <ul class="nav pull-right">
           <% if I18n.locale == :ru %>
@@ -36,7 +38,7 @@
                 <li><%= link_to t("navigation.settings"), edit_user_registration_path(current_user) %></li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to t("navigation.signout"), destroy_user_session_path, method: "delete" %>
+                  <%= link_to t("navigation.signout"), destroy_user_session_path %>
                 </li>
               </ul>
             </li>

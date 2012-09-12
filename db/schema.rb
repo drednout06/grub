@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120831031452) do
+ActiveRecord::Schema.define(:version => 20120907091101) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -36,14 +36,14 @@ ActiveRecord::Schema.define(:version => 20120831031452) do
     t.string   "floor"
     t.string   "doorphone"
     t.string   "comment"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "user_id"
     t.string   "name"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "korpus"
-    t.string   "phone"
+    t.string   "phone_number"
     t.string   "street"
   end
 
@@ -74,6 +74,14 @@ ActiveRecord::Schema.define(:version => 20120831031452) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "name"
+  end
+
+  create_table "deliverabilities", :force => true do |t|
+    t.integer  "restaurant_id"
+    t.integer  "district_id"
+    t.integer  "fee"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "dishes", :force => true do |t|
@@ -148,6 +156,7 @@ ActiveRecord::Schema.define(:version => 20120831031452) do
     t.integer  "average_delivery_time"
     t.text     "description"
     t.integer  "delivery_fee"
+    t.integer  "city_id"
   end
 
   create_table "users", :force => true do |t|
@@ -167,6 +176,7 @@ ActiveRecord::Schema.define(:version => 20120831031452) do
     t.string   "last_name"
     t.string   "phone_number"
     t.boolean  "admin",                  :default => false, :null => false
+    t.boolean  "restaurateur",           :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

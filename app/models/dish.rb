@@ -3,6 +3,7 @@ class Dish < ActiveRecord::Base
   belongs_to :menu
   has_one :restaurant, through: :menu
   has_many :line_items
+  
   has_attached_file :picture, :styles => { :medium => "400x400>", :thumb => "300x200>" },
   								:url  => "/assets/dishes/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/dishes/:id/:style/:basename.:extension"

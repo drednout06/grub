@@ -1,10 +1,63 @@
+<%- model_class = Restaurant -%>
 <% provide(:title, t("navigation.main_title")) %>
+<div class="container" id="landing">
 <div class="center hero-unit">
-  <h1>Grab your grub at grub.kz!</h1>
+  <h1> <%= t(".headline") %> </h1>
 
-  <h2>
-    grub.kz is a free service that keeps you fed!
-  </h2>
+  <p class="lead">
+    <%= t(".subheadline") %> 
+  </p>
 
-  <%= link_to "Sign up now!", "/#", class: "btn btn-large btn-primary" %>
+  <div class="row">
+	  <%= search_form_for @q, class: 'form-inline', url: search_restaurants_path, method: :post do |f| %>
+
+		  <div class="span3 offset1">
+			  <%= f.label :city_id_in, t(".your_city"), class: 'lead' %>
+			  <%= f.collection_select :city_id_in, City.order(:name), :id, :name,
+			  			include_blank: true, selected: @default_city.id, class: 'input-small' %>
+			</div>
+
+			<div class="span3">
+			  <%= f.label :deliverabilities_district_id_in, t('.your_district'), class: 'lead' %>
+			  <%= f.grouped_collection_select :deliverabilities_district_id_in, City.order(:name), :districts, :name, :id, :name, include_blank: true, class: 'input-small' %>
+			</div>
+			<div class="span2">
+		  <%= f.submit value: t('navigation.search'), class: 'btn btn-large btn-success' %>
+			</div>
+	  <% end %>
+	</div>
+
+</div>
+</div>
+<div class="container">
+	<section>
+    <div class="row features">
+
+      <div class="span4">
+        <h3>
+        	<i class="icon-pushpin"></i>
+        	Ауданыңызды белгілеңіз
+        </h3>
+         <p>
+             With Kippt it’s easy to collect all your links from apps and services. Set up syncs or use our browser extensions.
+          </p>
+      </div>
+
+      <div class="span4">
+        <h3>
+        	<i class="icon-heart"></i>
+        	Ресторан таңдаңыз
+        </h3>
+        <p>When you save something in Kippt, it’s  archived and there when you need it. Everything is archived and searchable.</p>
+      </div>
+      
+      <div class="span4">
+        <h3>
+        	<i class="icon-ok"></i>
+        	Тамағыңызды күтіңіз
+        </h3>
+        <p>Collect links with your colleagues for a certain project, to share what you know and follow what other's are discovering.</p>
+      </div>
+    </div>
+  </section>
 </div>

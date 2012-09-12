@@ -14,10 +14,12 @@
   		</div>
   	</div>
   </div>
-  <% if user_signed_in? and current_user.authorized?(dish) %>
-		  	<p>
-		  		<%= link_to t("helpers.links.edit"), edit_dish_path(dish), class: "admin-links" %> |
-		   		<%= link_to t("helpers.links.destroy"), dish, method: :delete, data: { confirm: 'Are you sure?' }, class: "admin-links" %>
-		   	</p>
-	<% end %>
+  <p>
+	  <% if can? :update, dish %>
+			<%= link_to t("helpers.links.edit"), edit_dish_path(dish), class: "admin-links" %> |
+		<% end %>
+		<% if can? :destroy, dish %>
+	 		<%= link_to t("helpers.links.destroy"), dish, method: :delete, data: { confirm: 'Are you sure?' }, class: "admin-links" %>
+		<% end %>
+	</p>
 </li>

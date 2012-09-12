@@ -1,6 +1,7 @@
 Grub::Application.routes.draw do
   scope :path => "(:locale)", :shallow_path => "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
-
+    root to: 'static_pages#home'
+    
     devise_for :users
 
     ActiveAdmin.routes(self)
@@ -19,7 +20,11 @@ Grub::Application.routes.draw do
     resources :carts
 
     resources :addresses, only: [:index]
-    resources :orders
+
+    resources :orders do
+      collection { get :update_address }
+    end
+    
     resources :dishes, only: [:index]
 
     resources :users do
@@ -28,7 +33,8 @@ Grub::Application.routes.draw do
       resources :orders, shallow: true
     end
 
-    resources :restaurants do
+    resources :restaurants, only: [:index] do
+      collection { post :search, to: 'restaurants#index' }
       resources :menus, shallow: true
       resources :orders, shallow: true
     end
@@ -39,7 +45,7 @@ Grub::Application.routes.draw do
 
     #resources :sessions, only: [:new, :create, :destroy]
 
-    root to: 'static_pages#home'
+    
 
     #match '/signup',  to: 'users#new'
     #match '/signin',  to: 'sessions#new'

@@ -3,8 +3,17 @@
 	  <h3><%= menu.name %></h3>
 	</p>
 
-	<%= link_to t("helpers.links.edit"), edit_menu_path(menu), class: "admin-links" %> |
-	<%= link_to t(".add_dish"), new_menu_dish_path(menu), class: "admin-links" %> 
+	<p>
+		<% if can? :update, menu %>
+			<%= link_to t("helpers.links.edit"), edit_menu_path(menu), class: "admin-links" %> |
+		<% end %>
+		<% if can? :create, Dish %>
+			<%= link_to t(".add_dish"), new_menu_dish_path(menu), class: "admin-links" %> |
+		<% end %>
+		<% if can? :destroy, menu %>
+	 		<%= link_to t("helpers.links.destroy"), menu, method: :delete, data: { confirm: 'Are you sure?' }, class: "admin-links" %>
+		<% end %>
+	</p>
 
 	<p>
 		<div>

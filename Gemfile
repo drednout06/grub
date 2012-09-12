@@ -12,14 +12,12 @@ gem "paperclip", "~> 3.0"
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-
 gem 'json'
-
 gem 'globalize3'
-
 gem 'activeadmin'
-
 gem 'devise'
+gem 'ransack'
+gem 'cancan'
 
 group :development, :test do
   gem 'rspec-rails', '2.10.0'

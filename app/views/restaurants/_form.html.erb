@@ -1,6 +1,7 @@
 <%= simple_form_for [@user, @restaurant], :html => { :class => 'form-horizontal' } do |f| %>
 	<%= f.input :title %>
   <%= f.input :name %>
+  <%= f.association :city %>
   <%= f.input :address %>
   <%= f.input :minimum_order %>
   <%= f.input :delivery_fee %>

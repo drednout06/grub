@@ -15,6 +15,11 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime        not null
 #  updated_at             :datetime        not null
+#  first_name             :string(255)
+#  last_name              :string(255)
+#  phone_number           :string(255)
+#  admin                  :boolean         default(FALSE), not null
+#  restaurateur           :boolean         default(FALSE)
 #
 
 class User < ActiveRecord::Base
@@ -29,10 +34,18 @@ class User < ActiveRecord::Base
   	:first_name, :last_name, :phone_number
   
   has_many :addresses
-  has_many :orders
+  has_many :orders, through: :addresses
   has_one :restaurant
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :phone_number, presence: true
 
   def authorized?(dish)
     admin? or dish.restaurant.user_id = id
+  end
+
+  def name
+    "#{first_name} #{last_name}"
   end
 end

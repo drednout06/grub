@@ -1,38 +1,33 @@
 <%- model_class = Restaurant -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human(count: 2) %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:address) %></th>
-      <th><%= model_class.human_attribute_name(:minimum_order) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td><%= restaurant.id %></td>
-        <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
-        <td><%= restaurant.address %></td>
-        <td><%= restaurant.minimum_order %></td>
-        <td><%= restaurant.user_id %></td>
-        <td><%=l restaurant.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_restaurant_path(restaurant), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      restaurant_path(restaurant),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<div class="row">
+<div class="span3">
+  <%= search_form_for @q, url: search_restaurants_path, method: :post do |f| %>
+  <%= f.label :name_cont, t("navigation.search") %>
+  <%= f.text_field :name_cont %>
+
+  <%= f.label :city_id_in, model_class.human_attribute_name(:city) %>
+  <%= f.collection_select :city_id_in, City.order(:name), :id, :name, include_blank: true %>
+  <div>
+    <%= f.label :deliverabilities_district_id_in, model_class.human_attribute_name(:districts) %>
+    <%= f.grouped_collection_select :deliverabilities_district_id_in, City.order(:name), :districts, :name, :id, :name, include_blank: true %>
+  </div>
+  <%= f.label :minimum_order_lteq, model_class.human_attribute_name(:minimum_order) %>
+  <%= f.text_field :minimum_order_lteq %>
+
+  <%= f.label :average_delivery_time_lteq, model_class.human_attribute_name(:average_delivery_time) %>
+  <%= f.text_field :average_delivery_time_lteq %>
+
+  <%= f.submit %>
+  <% end %>
+</div>
+
+<div class="span9 restaurant-div">
+  <ul class="restaurant-list">
+    <%= render @restaurants %>
+  </ul>
+</div>
+</div>
