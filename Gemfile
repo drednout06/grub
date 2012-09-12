@@ -13,7 +13,8 @@ gem "paperclip", "~> 3.0"
 
 gem 'pg'
 gem 'json'
-gem 'globalize3'
+#gem 'globalize3'
+gem 'globalize3', :git => 'git://github.com/svenfuchs/globalize3.git'
 gem 'activeadmin'
 gem 'devise'
 gem 'ransack'
