@@ -38,15 +38,12 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.0.4.0'
 	gem 'twitter-bootstrap-rails'
 	gem 'less'
-  gem 'simple_form'
-  gem 'jquery-ui-rails'
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.2.3'
 end
 
+gem 'simple_form'
 gem 'jquery-rails', '2.1.1'
+gem 'jquery-ui-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
