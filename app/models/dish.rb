@@ -1,10 +1,12 @@
 class Dish < ActiveRecord::Base
-  attr_accessible :description, :name, :price, :picture
+  attr_accessible :description, :name, :price, :picture, :city_id, :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   belongs_to :menu
   has_one :restaurant, through: :menu
   has_many :line_items
   
-  has_attached_file :picture, :styles => { :medium => "400x400>", :thumb => "300x200>" },
+  has_attached_file :picture, :styles => { :large => "600x600>", thumb: {geometry: "300x200>", :processors => [:cropper]},
+                                          medium: {geometry: "450x300>", :processors => [:cropper]}},
   								:url  => "/assets/dishes/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/dishes/:id/:style/:basename.:extension"
 
@@ -19,6 +21,21 @@ class Dish < ActiveRecord::Base
   validates_numericality_of :price, presence: true, greater_than: -1, only_integer: true
 
   before_destroy :ensure_not_referenced_by_any_line_item
+
+  after_update :reprocess_picture, :if => :cropping?
+
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
+  
+  def picture_geometry(style = :original)
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(picture.path(style))
+  end
+  
+  def reprocess_picture
+    picture.reprocess!
+  end
 
   private
   

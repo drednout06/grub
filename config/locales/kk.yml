@@ -37,7 +37,7 @@ kk:
     home: Басты бет
     help: Көмек
     admin: Админ
-    account: Тіркелгі
+    account: Тіркелгім
     restaurants: Ресторандар
     users: Пайдаланушылар
     settings: Параметрлер
@@ -52,6 +52,9 @@ kk:
     main_title: Ас болсын!
     search: Іздеу
     city: Қала
+    orders: Тапсырыстарым
+    favorites: Таңдаулыларым
+    restaurant: Ресторан
 
 
   activerecord:
@@ -92,6 +95,10 @@ kk:
         zero: Жеткізу жоқ
         one: Жеткізу
         other: Жеткізулер
+      cuisine:
+        zero: Тамақ түрі жоқ
+        one: Тамақ түрі
+        other: Тамақ түрлері
 
     attributes:
       restaurant:
@@ -106,6 +113,8 @@ kk:
         description: Қосымша ақпарат
         districts: Аудандар
         city: Қала
+        logo: Логотип
+        title: Түрі
 
 
       menu:
@@ -116,6 +125,7 @@ kk:
         email: Э-пошта
         created_at: Құрылған күні
         admin: Әкім
+        restaurateur: Ресторатор
         phone_number: Ұялы телефон
         password: Кұпия сөз
         password_confirmation: Кұпия сөз құптауы

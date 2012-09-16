@@ -15,6 +15,7 @@ class DishesController < ApplicationController
   # GET /dishes/1.json
   def show
     @dish = Dish.find(params[:id])
+    @menu = @dish.menu
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @dish }
@@ -46,7 +47,14 @@ class DishesController < ApplicationController
 
     respond_to do |format|
       if @dish.save
-        format.html { redirect_to @menu, notice: 'Dish was successfully created.' }
+        flash[:notice] = 'Dish was successfully created.'
+        format.html do
+          if params[:dish][:picture].blank?
+            redirect_to @dish
+          else
+            render action: 'crop'
+          end
+        end
         format.json { render json: @dish, status: :created, location: @dish }
       else
         format.html { render action: "new" }
@@ -63,7 +71,14 @@ class DishesController < ApplicationController
 
     respond_to do |format|
       if @dish.update_attributes(params[:dish])
-        format.html { redirect_to @menu, notice: 'Dish was successfully updated.' }
+        flash[:notice] = 'Dish was successfully updated.'
+        format.html do
+          if params[:dish][:picture].blank?
+            redirect_to @dish
+          else
+            render action: 'crop'
+          end
+        end
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

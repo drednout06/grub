@@ -3,28 +3,17 @@
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @dish.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:menu_id) %>:</strong></dt>
-  <dd><%= @dish.menu_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @dish.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
-  <dd><%= @dish.price %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:picture_file_name) %>:</strong></dt>
-  <dd><%= @dish.picture_file_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:picture_content_type) %>:</strong></dt>
-  <dd><%= @dish.picture_content_type %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:picture_file_size) %>:</strong></dt>
-  <dd><%= @dish.picture_file_size %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:picture_updated_at) %>:</strong></dt>
-  <dd><%= @dish.picture_updated_at %></dd>
-</dl>
+<p>
+    <div>
+    <ul class="thumbnails">
+      <%= render @dish %>
+    </ul>
+  </div>
+  </p>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              dishes_path, :class => 'btn'  %>
+              menu_path(@menu), :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_dish_path(@dish), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

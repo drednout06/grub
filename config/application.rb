@@ -61,6 +61,6 @@ module Grub
 
     config.assets.initialize_on_precompile = false
 
-    config.i18n.fallbacks = true
+    config.i18n.fallbacks = [:kk, :ru]
   end
 end

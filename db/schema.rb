@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912194443) do
+ActiveRecord::Schema.define(:version => 20120912232001) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -86,6 +86,23 @@ ActiveRecord::Schema.define(:version => 20120912194443) do
 
   add_index "city_translations", ["city_id"], :name => "index_city_translations_on_city_id"
   add_index "city_translations", ["locale"], :name => "index_city_translations_on_locale"
+
+  create_table "cuisine_translations", :force => true do |t|
+    t.integer  "cuisine_id"
+    t.string   "locale"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "cuisine_translations", ["cuisine_id"], :name => "index_cuisine_translations_on_cuisine_id"
+  add_index "cuisine_translations", ["locale"], :name => "index_cuisine_translations_on_locale"
+
+  create_table "cuisines", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "deliverabilities", :force => true do |t|
     t.integer  "restaurant_id"

@@ -4,6 +4,7 @@ jQuery ->
   #$('#restaurant_search select').addClass('input-medium')
 
   #$('#q_deliverabilities_district_id_in').hide()
+  
   districts = $('#q_deliverabilities_district_id_in').html()
   
   city = $('#q_city_id_in :selected').text()

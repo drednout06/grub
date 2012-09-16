@@ -1,13 +1,13 @@
 class Restaurant < ActiveRecord::Base
   attr_accessible :address, :minimum_order, :name, :logo, :title,
                   :average_delivery_time, :delivery_fee, :description, :user_id,
-                  :deliverabilities_attributes, :city_id
+                  :deliverabilities_attributes, :city_id, :crop_x, :crop_y, :crop_w, :crop_h
 
-  has_attached_file :logo, :styles => { :medium => "400x400>", :thumb => "200x200>" },
+  has_attached_file :logo, :styles => { :large => "600x600>",
+                      thumb: {geometry: "300x200>", :processors => [:cropper]}},
   								:url  => "/assets/restaurants/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/restaurants/:id/:style/:basename.:extension"
-
-
+                  
   belongs_to :user
   belongs_to :city
   has_many :menus, dependent: :destroy
@@ -29,6 +29,23 @@ class Restaurant < ActiveRecord::Base
 	  size: { in: 0..5.megabytes }
 
   accepts_nested_attributes_for :deliverabilities
+
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  after_update :reprocess_logo, :if => :cropping?
+
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
+  
+  def logo_geometry(style = :original)
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(logo.path(style))
+  end
+  
+  def reprocess_logo
+    logo.reprocess!
+  end
+
 end
 # == Schema Information
 #

@@ -2,28 +2,6 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    
-    # filter = []
-    # if params.has_key?("filter")
-
-    #   if params[:filter][:city_id].present?
-    #     id = params[:filter][:city_id]
-    #     filter << ["city_id = #{id.to_i}"]
-    #   end
-
-    #   if params[:filter][:district_id].present?
-    #     id = params[:filter][:project_id]
-    #     filter << ["project_id = #{id.to_i}"]
-    #   end
-
-    #   if params[:filter][:change_type_id].present?
-    #     id = params[:filter][:change_type_id]
-    #     filter << ["change_type_id = #{id.to_i}"]
-    #   end
-
-    # end
-
-    #@q = Restaurant.joins(:deliverabilities).where('deliverabilities.restaurant_id' => ).ransack(params[:q])
     @q = Restaurant.ransack(params[:q])
     @restaurants = @q.result(:distinct => true)
 
@@ -69,7 +47,14 @@ class RestaurantsController < ApplicationController
     #@restaurant = Restaurant.new(params[:restaurant])
     respond_to do |format|
       if @restaurant.save
-        format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
+        flash[:notice] = 'Restaurant was successfully created.'
+        format.html do
+          if params[:restaurant][:logo].blank?
+            redirect_to @restaurant
+          else
+            render action: 'crop'
+          end
+        end
         format.json { render json: @restaurant, status: :created, location: @restaurant }
       else
         format.html { render action: "new" }
@@ -85,7 +70,14 @@ class RestaurantsController < ApplicationController
 
     respond_to do |format|
       if @restaurant.update_attributes(params[:restaurant])
-        format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
+        flash[:notice] = 'Restaurant was successfully updated.'
+        format.html do
+          if params[:restaurant][:logo].blank?
+            redirect_to @restaurant
+          else
+            render action: 'crop'
+          end
+        end
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -104,5 +96,10 @@ class RestaurantsController < ApplicationController
       format.html { redirect_to restaurants_url }
       format.json { head :no_content }
     end
+  end
+
+  def operate
+    @restaurant = current_user.restaurant
+    @orders = @restaurant.orders
   end
 end

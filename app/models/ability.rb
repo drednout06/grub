@@ -27,6 +27,10 @@ class Ability
         restaurant.try(:user) == user
       end
 
+      can :operate, Restaurant do |restaurant|
+        restaurant.try(:user) == user
+      end      
+
     # user
     else
       can :create, Order

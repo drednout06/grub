@@ -10,6 +10,8 @@
   <dd><%= @menu.restaurant_id %></dd>
 </dl>
 
+<%= render @menu %>
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               restaurant_menus_path(@restaurant), :class => 'btn'  %>

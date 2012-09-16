@@ -6,21 +6,25 @@ ActiveAdmin.register User do
     column :email
     column :phone_number
     column :admin
+    column :restaurateur
     column :created_at
   end
 
   form do |f|
     f.inputs "User Details" do
+      f.input :first_name
+      f.input :last_name
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.input :restaurateur, :label => "Restaurateur"
       f.input :admin, :label => "Administrator"
     end
     f.buttons
   end
 
   create_or_edit = Proc.new {
-    @user            = User.find_or_create_by_id(params[:id])
+    @user = User.find_or_create_by_id(params[:id])
     @user.admin = params[:user][:admin]
     @user.attributes = params[:user].delete_if do |k, v| 
       (k == "admin") ||

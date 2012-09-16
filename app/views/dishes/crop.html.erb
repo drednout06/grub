@@ -1,0 +1,44 @@
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $('#cropbox').Jcrop({
+    onChange: update_crop,
+    onSelect: update_crop,
+    setSelect: [0, 0, 600, 600],
+    aspectRatio: 3/2
+  });
+});
+
+function update_crop(coords) {
+  var rx = 300/coords.w;
+  var ry = 200/coords.h;
+  $('#preview').css({
+    width: Math.round(rx * <%= @dish.picture_geometry(:large).width %>) + 'px',
+    height: Math.round(ry * <%= @dish.picture_geometry(:large).height %>) + 'px',
+    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+  });
+  var ratio = <%= @dish.picture_geometry(:original).width %> / <%= @dish.picture_geometry(:large).width %>;
+  $("#crop_x").val(Math.round(coords.x * ratio));
+  $("#crop_y").val(Math.round(coords.y * ratio));
+  $("#crop_w").val(Math.round(coords.w * ratio));
+  $("#crop_h").val(Math.round(coords.h * ratio));
+}
+</script>
+
+<h1>Crop picture<h1>
+
+<%= image_tag @dish.picture.url(:large), :id => "cropbox", class: 'jcrop' %>
+
+<h4>Preview:</h4>
+<div style="width:300px; height:200px; overflow:hidden">
+  <%= image_tag @dish.picture.url(:large), :id => "preview", class: 'jcrop' %>
+</div>
+
+<%= form_for @dish do |f| %>
+  <% %w[x y w h].each do |attribute| %>
+    <%= f.text_field "crop_#{attribute}", id: "crop_#{attribute}" %> <br>
+  <% end %>
+  <div class="actions">
+    <%= f.submit "Crop" %>
+  </div>
+<% end %>
