@@ -35,6 +35,8 @@ class User < ActiveRecord::Base
   
   has_many :addresses
   has_many :orders, through: :addresses
+  has_many :reviews, dependent: :destroy
+  has_many :evaluations, class_name: "RSEvaluation", as: :source
   has_one :restaurant
 
   validates :first_name, presence: true
@@ -47,5 +49,9 @@ class User < ActiveRecord::Base
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def rating_for(restaurant)
+    evaluations.where(target_type: restaurant.class, target_id: restaurant.id).first.try(:value) || 0
   end
 end

@@ -1,33 +1,60 @@
 <%- model_class = Restaurant -%>
+
+<%= render partial: 'restaurants/slider' %>
+<%= render partial: 'restaurants/rating' %>
+
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human(count: 2) %></h1>
 </div>
 
 <div class="row">
 <div class="span3">
-  <%= search_form_for @q, url: search_restaurants_path, method: :post do |f| %>
-  <%= f.label :name_cont, t("navigation.search") %>
-  <%= f.text_field :name_cont %>
 
-  <%= f.label :city_id_in, model_class.human_attribute_name(:city) %>
-  <%= f.collection_select :city_id_in, City.order(:name), :id, :name, include_blank: true %>
-  <div>
+  <%= search_form_for @q, url: search_restaurants_path, method: :post, remote: true do |f| %>
+
+    Sort:
+    <%= f.sort_fields do |s| %>
+    <%= s.sort_select %>
+    <% end %>
+
+    <%= f.label :cuisine_tags_cuisine_id_eq_any, t("navigation.cuisines") %>
+    <%= f.collection_select :cuisine_tags_cuisine_id_eq_any, Cuisine.all, :id, :name, {},
+                multiple: true, as: :check_boxes %>
+
+    <%= f.label :name_cont, t("navigation.search") %>
+    <%= f.text_field :name_cont %>
+
+    <span id='value_span'>
+    <%= f.label :minimum_order_lteq, model_class.human_attribute_name(:minimum_order) + ':',
+            style: "display: inline;"  %>
+    
+    <%= f.text_field :minimum_order_lteq, style: "color:#5BB75B; font-weight:bold; display: inline; width: 57px;" %>
+    </span>
+    <div id="money_slider"></div>
+
+    <span id='value_span'>
+    <%= f.label :rating_gteq, model_class.human_attribute_name(:rating) + ':',
+            style: "display: inline;"  %>
+    
+    <%= f.text_field :rating_gteq, style: "color:#5BB75B; font-weight:bold; display: inline; width: 57px;" %>
+    </span>
+    <div id="rating_slider"></div>
+
+    <%= f.label :city_id_in, model_class.human_attribute_name(:city) %>
+    <%= f.collection_select :city_id_in, City.order(:name), :id, :name, include_blank: true %>
+    
     <%= f.label :deliverabilities_district_id_in, model_class.human_attribute_name(:districts) %>
     <%= f.grouped_collection_select :deliverabilities_district_id_in, City.order(:name), :districts, :name, :id, :name, include_blank: true %>
-  </div>
-  <%= f.label :minimum_order_lteq, model_class.human_attribute_name(:minimum_order) %>
-  <%= f.text_field :minimum_order_lteq %>
 
-  <%= f.label :average_delivery_time_lteq, model_class.human_attribute_name(:average_delivery_time) %>
-  <%= f.text_field :average_delivery_time_lteq %>
+    <%#= f.label :average_delivery_time_lteq, model_class.human_attribute_name(:average_delivery_time) %>
+    <%#= f.text_field :average_delivery_time_lteq %>
 
-  <%= f.submit %>
+    <%= f.submit class: 'btn btn-success' %>
   <% end %>
+
 </div>
 
-<div class="span9 restaurant-div">
-  <ul class="restaurant-list">
-    <%= render @restaurants %>
-  </ul>
+<div class="span9 restaurant-div" id="restaurants">
+  <%= render partial: 'restaurants' %>
 </div>
 </div>

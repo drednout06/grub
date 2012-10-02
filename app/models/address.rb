@@ -1,14 +1,16 @@
 class Address < ActiveRecord::Base
   attr_accessible :city, :comment, :district, :doorphone, :floor,
     :house, :porch, :address, :street, :korpus, :phone_number, :first_name,
-    :last_name, :name, :orders, :user
+    :last_name, :name, :orders, :user, :city_id, :district_id
 
   belongs_to :user
   has_many :orders
+  belongs_to :city
+  belongs_to :district
   accepts_nested_attributes_for :orders
 
-  validates :city, presence: true
-  validates :district, presence: true
+  validates :city_id, presence: true
+  validates :district_id, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :user_id, presence: true

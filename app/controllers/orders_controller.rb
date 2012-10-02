@@ -116,4 +116,20 @@ class OrdersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def accept
+    @order = Order.find(params[:id])
+    @order.update_attributes(status: Order::STATUSES[:accepted])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def reject
+    @order = Order.find(params[:id])
+    @order.update_attributes(status: Order::STATUSES[:rejected])
+    respond_to do |format|
+      format.js
+    end
+  end
 end

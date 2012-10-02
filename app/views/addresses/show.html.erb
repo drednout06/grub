@@ -1,38 +1,9 @@
-<%- model_class = Addres -%>
+<%- model_class = Address -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
-  <dd><%= @address.city %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:district) %>:</strong></dt>
-  <dd><%= @address.district %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:house) %>:</strong></dt>
-  <dd><%= @address.house %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:porch) %>:</strong></dt>
-  <dd><%= @address.porch %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:floor) %>:</strong></dt>
-  <dd><%= @address.floor %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:doorphone) %>:</strong></dt>
-  <dd><%= @address.doorphone %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:comment) %>:</strong></dt>
-  <dd><%= @address.comment %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @address.user_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @address.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
-  <dd><%= @address.first_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
-  <dd><%= @address.last_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:korpus) %>:</strong></dt>
-  <dd><%= @address.korpus %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:phone) %>:</strong></dt>
-  <dd><%= @address.phone %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:street) %>:</strong></dt>
-  <dd><%= @address.street %></dd>
-</dl>
+<%= render @address %>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

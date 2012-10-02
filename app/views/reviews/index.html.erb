@@ -1,0 +1,24 @@
+<%= render partial: 'restaurants/rating' %>
+
+<%- model_class = Review -%>
+
+<div class="row offset1">
+<%= render @restaurant %>
+</div>
+
+<div class="row">
+
+	<div class="page-header">
+	  <h3><%= t('navigation.your_review') %></h3>
+	</div>
+
+
+	<%= render partial: 'form' %>
+
+	<div class="page-header">
+	  <h3><%= t('navigation.other_reviews') %></h3>
+	</div>
+
+	<%= render @reviews %>
+
+</div>

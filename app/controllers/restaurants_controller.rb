@@ -1,13 +1,17 @@
 class RestaurantsController < ApplicationController
+  after_filter :update_rating, only: :rate
+
   # GET /restaurants
   # GET /restaurants.json
   def index
     @q = Restaurant.ransack(params[:q])
     @restaurants = @q.result(:distinct => true)
+    @q.build_sort if @q.sorts.empty?
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @restaurants }
+      format.js
     end
   end
 
@@ -15,6 +19,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1.json
   def show
     @restaurant = Restaurant.find(params[:id])
+    @reviews = @restaurant.reviews
     @cart = current_cart
     respond_to do |format|
       format.html # show.html.erb
@@ -99,7 +104,25 @@ class RestaurantsController < ApplicationController
   end
 
   def operate
-    @restaurant = current_user.restaurant
-    @orders = @restaurant.orders
+    @restaurant = Restaurant.find(params[:id])
+    @q = @restaurant.orders.ransack(params[:q])
+    @orders = @q.result(:distinct => true)
+    
+    @pending_orders = @orders.pending
   end
+
+  def rate
+    value = params[:rating].to_i
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.add_or_update_evaluation(:rating, value, current_user)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  private
+    
+    def update_rating
+      @restaurant.update_attributes(rating: @restaurant.reputation_value_for(:rating))
+    end
 end

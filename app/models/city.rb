@@ -12,6 +12,8 @@ class City < ActiveRecord::Base
   attr_accessible :name, :translations_attributes
   has_many :districts, dependent: :destroy
   has_many :restaurants
+  has_many :addresses
+  
   
   translates :name
   accepts_nested_attributes_for :translations

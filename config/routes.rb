@@ -26,6 +26,11 @@ Grub::Application.routes.draw do
 
     resources :orders do
       collection { get :update_address }
+
+      member do
+        post :accept
+        post :reject
+      end
     end
     
     resources :dishes, only: [:index]
@@ -40,24 +45,20 @@ Grub::Application.routes.draw do
       collection do
         post :search, to: 'restaurants#index'
       end
+
       member do
+        post :rate
         get :operate
       end
+      
       resources :menus, shallow: true
       resources :orders, shallow: true
+      resources :reviews, shallow: true
     end
 
     resources :menus, only: [:index] do
       resources :dishes, shallow: true
     end
-
-    #resources :sessions, only: [:new, :create, :destroy]
-
-    
-
-    #match '/signup',  to: 'users#new'
-    #match '/signin',  to: 'sessions#new'
-    #match '/signout', to: 'sessions#destroy'
 
     match '/help',    to: 'static_pages#help'
     match '/about',   to: 'static_pages#about'

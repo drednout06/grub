@@ -2,28 +2,33 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
+
+<div class="row">
+  <div class="span9">
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:user_id) %></th>
-      <th><%= model_class.human_attribute_name(:address_id) %></th>
-      <th><%= model_class.human_attribute_name(:delivery_time) %></th>
-      <th><%= model_class.human_attribute_name(:change_from) %></th>
+      <th><%= model_class.human_attribute_name(:sum) %></th>
+      <th><%= Address.human_attribute_name(:district) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:delivery_time) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= link_to order.id, order_path(order) %></td>
+        <td><%= order.id %></td>
         <td><%= order.user_id %></td>
-        <td><%= order.address_id %></td>
-        <td><%= order.delivery_time %></td>
-        <td><%= order.change_from %></td>
-        <td><%=l order.created_at %></td>
+        <td><%= order.total_price %></td>
+        <td><%= order.address.district.name %></td>
+        <td><%= order.created_at.to_s(:short) %></td>
+        <td><%= order.delivery_time.to_s(:short) %></td>
         <td>
+          <%= link_to t('.view', :default => t("helpers.links.view")),
+                      order_path(order), :class => 'btn btn-mini' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_order_path(order), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -36,7 +41,15 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_order_path,
-            :class => 'btn btn-primary' %>
+  <div class="span3">
+    <div class="page-header">
+      <h3><%=t '.Statistics', :default => Restaurant.human_attribute_name(:statistics) %></h3>
+    </div>
+    <p>
+    New orders: <%=  %>
+    </p>
+  </div>
+</div>
+

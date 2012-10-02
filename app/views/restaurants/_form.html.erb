@@ -6,8 +6,9 @@
   <%= f.input :minimum_order %>
   <%= f.input :delivery_fee %>
   <%= f.input :average_delivery_time %>
-  <%= f.input :description %>
+  <%= f.input :description, input_html: {rows: 4} %>
   <%= f.input :logo %>
+  <%= f.association :cuisines, as: :check_boxes %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

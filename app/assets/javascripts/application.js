@@ -14,5 +14,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery.Jcrop
+//= require jquery.rating.pack
+//= require jquery.MetaData
 //= require_tree .
 //= require twitter/bootstrap

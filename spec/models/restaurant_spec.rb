@@ -23,5 +23,6 @@ end
 #  description           :text
 #  delivery_fee          :integer
 #  city_id               :integer
+#  rating                :decimal(, )
 #
 

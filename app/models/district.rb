@@ -13,6 +13,7 @@ class District < ActiveRecord::Base
   attr_accessible :name, :city_id, :translations_attributes
   belongs_to :city
   has_many :deliverabilities, dependent: :destroy
+  has_many :addresses
 
   validates :city_id, presence: true
   validates :name, presence: true, uniqueness: { case_sensitive: false, scope: :city_id }

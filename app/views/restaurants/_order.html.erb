@@ -1,0 +1,18 @@
+<tr class="<%= order.status %>" id="<%= dom_id(order) %>">
+  <td class='changeable'><%= order.id %></td>
+  <td class='changeable'><%= order.user_id %></td>
+  <td class='changeable'><%= order.total_price %></td>
+  <td class='changeable'><%= order.address.district.name %></td>
+  <td class='changeable'><%= order.created_at.to_s(:short) %></td>
+  <td class='changeable'><%= order.delivery_time.to_s(:short) %></td>
+  <td>
+    <%= link_to t('.view', :default => t("helpers.links.view")),
+                order_path(order), :class => 'btn btn-mini' %>
+    <%= link_to t('.accept', :default => t("helpers.links.accept")),
+                accept_order_path(order), :class => 'btn btn-mini btn-success',
+                method: :post, remote: true %>
+    <%= link_to t('.reject', :default => t("helpers.links.reject")),
+                reject_order_path(order), :class => 'btn btn-mini btn-danger',
+                :method => :post, remote: true %>
+  </td>
+</tr>

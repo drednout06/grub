@@ -26,5 +26,15 @@ module ApplicationHelper
   def store_location
     session[:return_to] = request.url
   end
+
+  def star_button_readonly(name, value, checked, disabled)
+    radio_button_tag(name, value, checked, class: 'hover-star {split:2}',
+        disabled: disabled)
+  end
+
+  def star_button(value, checked)
+    radio_button_tag("rating", value, checked, class: 'hover-star required',
+      title: t("navigation.rating_#{value}"))
+  end
   
 end

@@ -1,7 +1,33 @@
+# == Schema Information
+#
+# Table name: restaurants
+#
+#  id                    :integer         not null, primary key
+#  name                  :string(255)
+#  address               :string(255)
+#  minimum_order         :integer
+#  user_id               :integer
+#  created_at            :datetime        not null
+#  updated_at            :datetime        not null
+#  logo_file_name        :string(255)
+#  logo_content_type     :string(255)
+#  logo_file_size        :integer
+#  logo_updated_at       :datetime
+#  title                 :string(255)
+#  average_delivery_time :integer
+#  description           :text
+#  delivery_fee          :integer
+#  city_id               :integer
+#  rating                :decimal(, )
+#
+
 class Restaurant < ActiveRecord::Base
   attr_accessible :address, :minimum_order, :name, :logo, :title,
                   :average_delivery_time, :delivery_fee, :description, :user_id,
-                  :deliverabilities_attributes, :city_id, :crop_x, :crop_y, :crop_w, :crop_h
+                  :deliverabilities_attributes, :cuisines, :cuisine_ids, :rating,
+
+                  :city_id, :crop_x, :crop_y, :crop_w, :crop_h
+
 
   has_attached_file :logo, :styles => { :large => "600x600>",
                       thumb: {geometry: "300x200>", :processors => [:cropper]}},
@@ -15,6 +41,12 @@ class Restaurant < ActiveRecord::Base
   has_many :orders
   has_many :deliverabilities, dependent: :destroy
   has_many :districts, through: :deliverabilities
+  has_many :reviews, dependent: :destroy
+  has_many :cuisine_tags, dependent: :destroy
+  has_many :cuisines, through: :cuisine_tags
+  has_many :evaluations, class_name: "RSEvaluation", as: :target
+
+  has_reputation :rating, source: :user, aggregated_by: :average
 
   validates :title, presence: true
   validates :average_delivery_time, presence: true
@@ -47,25 +79,3 @@ class Restaurant < ActiveRecord::Base
   end
 
 end
-# == Schema Information
-#
-# Table name: restaurants
-#
-#  id                    :integer         not null, primary key
-#  name                  :string(255)
-#  address               :string(255)
-#  minimum_order         :integer
-#  user_id               :integer
-#  created_at            :datetime        not null
-#  updated_at            :datetime        not null
-#  logo_file_name        :string(255)
-#  logo_content_type     :string(255)
-#  logo_file_size        :integer
-#  logo_updated_at       :datetime
-#  title                 :string(255)
-#  average_delivery_time :integer
-#  description           :text
-#  delivery_fee          :integer
-#  city_id               :integer
-#
-

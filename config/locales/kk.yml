@@ -5,6 +5,7 @@ kk:
       new_address: Жаңа
       
   restaurants:
+    delivery_time: "шамамен %{minutes} минут"
     show:
       add_menu: "Мәзір қосу"
 
@@ -55,6 +56,19 @@ kk:
     orders: Тапсырыстарым
     favorites: Таңдаулыларым
     restaurant: Ресторан
+    rating: Рейтингі
+    rating_1: 'Өте нашар'
+    rating_2: 'Нашар'
+    rating_3: 'Орташа'
+    rating_4: 'Жақсы'
+    rating_5: 'Керемет!'
+    reviews: 'Пікірлер'
+    your_rating: Бағаңыз
+    your_review: Пікіріңіз
+    his_rating: Бағасы
+    other_reviews: Басқа пікірлер
+    cuisines: Тамақ түрлері
+    no_restaurants: Oops... Критерияларыңыз бойынша мейрамхана табылмады :(
 
 
   activerecord:
@@ -99,6 +113,10 @@ kk:
         zero: Тамақ түрі жоқ
         one: Тамақ түрі
         other: Тамақ түрлері
+      review:
+        zero: Пікір жоқ
+        one: Пікір
+        other: Пікірлер
 
     attributes:
       restaurant:
@@ -118,6 +136,8 @@ kk:
 
 
       menu:
+        name: Аты
+
       user:
         id: Нөмері
         first_name: Аты
@@ -148,6 +168,13 @@ kk:
       order:
         delivery_time: Әкелу уақыты
         change_from: Қаншадан қайырып беру
+        id: Нөмері
+        created_at: Құрылған уақыты
+        sum: Сома
+
+      review:
+        content: Толығырақ
+        title: Қорытынды
 
 
   active_admin:
@@ -355,11 +382,14 @@ kk:
       update: '%{model} жаңарту'
     actions: Басқару
     links:
+      view: Көру
       edit: Өндеу
       destroy: Жою
       back: Артқа
       new: Жаңа
       cancel: Болдырмау
+      accept: Қабылдау
+      reject: Болдырмау
     titles:
       new: 'Жаңа %{model}'
       edit: '%{model} өндеу'

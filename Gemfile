@@ -19,6 +19,7 @@ gem 'activeadmin'
 gem 'devise'
 gem 'ransack'
 gem 'cancan'
+gem 'activerecord-reputation-system', require: 'reputation_system'
 
 group :development, :test do
   gem 'rspec-rails', '2.10.0'

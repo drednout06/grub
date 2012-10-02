@@ -11,4 +11,6 @@
  *= require_self
  *= require bootstrap_and_overrides
  *= require jquery.Jcrop
+ *= require jquery.rating
+ *= require jquery-ui/blitzer/jquery-ui-1.8.23.custom.css
  */

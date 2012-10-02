@@ -1,0 +1,25 @@
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $( "#money_slider" ).slider({
+      value:10000,
+      min: 0,
+      max: 10000,
+      step: 500,
+      slide: function( event, ui ) {
+        $( "#q_minimum_order_lteq" ).val( ui.value + " 〒" );
+      }
+    });
+    $( "#q_minimum_order_lteq" ).val( $( "#money_slider" ).slider( "value" ) + " 〒");
+
+    $( "#rating_slider" ).slider({
+      value:0.0,
+      min: 0,
+      max: 5.0,
+      step: 1,
+      slide: function( event, ui ) {
+        $( "#q_rating_gteq" ).val( ui.value );
+      }
+    });
+    $( "#q_rating_gteq" ).val( $( "#rating_slider" ).slider( "value" ));
+  });
+</script>

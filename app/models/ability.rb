@@ -34,6 +34,15 @@ class Ability
     # user
     else
       can :create, Order
+
+      can :update, User do |some_user|
+        user == some_user
+      end
+
+      can :rate, Restaurant do |restaurant|
+        true # if the user has ever ordered from the restaurant
+      end
+
       can :manage, LineItem do |line_item|
         line_item.try(:user) == user
       end

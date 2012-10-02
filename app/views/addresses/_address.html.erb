@@ -1,0 +1,50 @@
+<dl class="dl-horizontal">
+  <p>
+  <h4>Заказчик:</h4>
+  <dt><strong><%= Address.human_attribute_name(:user) %>:</strong></dt>
+  <dd><%= address.user.name %></dd>
+
+  <dt><strong><%= Address.human_attribute_name(:phone_number) %>:</strong></dt>
+  <dd><%= address.phone_number %></dd>
+  </p>
+
+  <p>
+    <h4>Получатель:</h4>
+  <dt><strong><%= Address.human_attribute_name(:first_name) %>:</strong></dt>
+  <dd><%= "#{address.first_name} #{address.last_name}" %></dd>
+
+  <dt><strong><%= Address.human_attribute_name(:street) %>:</strong></dt>
+  <dd><%= "#{address.street} #{address.house}" %></dd>
+
+  <% if address.korpus.present? %>
+  <dt><strong><%= Address.human_attribute_name(:korpus) %>:</strong></dt>
+  <dd><%= address.korpus %></dd>
+  <% end %>
+
+  <% if address.porch.present? %>
+  <dt><strong><%= Address.human_attribute_name(:porch) %>:</strong></dt>
+  <dd><%= address.porch %></dd>
+  <% end %>
+
+  <% if address.floor.present? %>
+  <dt><strong><%= Address.human_attribute_name(:floor) %>:</strong></dt>
+  <dd><%= address.floor %></dd>
+  <% end %>
+
+  <% if address.doorphone.present? %>
+  <dt><strong><%= Address.human_attribute_name(:doorphone) %>:</strong></dt>
+  <dd><%= address.doorphone %></dd>
+  <% end %>
+
+  <dt><strong><%= Address.human_attribute_name(:district) %>:</strong></dt>
+  <dd><%= address.district.name %></dd>
+
+  <dt><strong><%= Address.human_attribute_name(:city) %>:</strong></dt>
+  <dd><%= address.city.name %></dd>
+
+  <% if address.comment.present? %>
+  <dt><strong><%= Address.human_attribute_name(:comment) %>:</strong></dt>
+  <dd><%= address.comment %></dd>
+  <% end %>
+  </p>
+</dl>

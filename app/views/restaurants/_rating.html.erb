@@ -1,0 +1,26 @@
+<script type="text/javascript" charset="utf-8">
+	grub = {
+		rater: function() {
+			$('.hover-star').rating({
+				<% if @restaurant %>
+					focus: function(value, link){
+						var tip = $('#hover-rating');
+						tip[0].data = tip[0].data || tip.html();
+						tip.html(link.title || 'value: '+value);
+					},
+					blur: function(value, link){
+						var tip = $('#hover-rating');
+						$('#hover-rating').html(tip[0].data || '');
+					},
+					callback: function(value, link){
+						$.post('<%= rate_restaurant_path(@restaurant)%>', {rating: value})
+					}
+				<% end %>
+			});
+			}
+	}
+	$(function(){
+			grub.rater();
+		}
+	);
+</script>

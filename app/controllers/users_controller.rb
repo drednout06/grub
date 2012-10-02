@@ -35,6 +35,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    #render partial: 'devise/registrations/edit'
   end
 
   def update
@@ -58,7 +59,7 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user?(@user)
+      redirect_to(root_path) unless can? :update, @user
     end
 
     def admin_user

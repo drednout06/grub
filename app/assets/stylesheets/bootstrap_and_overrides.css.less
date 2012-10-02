@@ -81,14 +81,6 @@ h1 {
   //text-align: center;
 }
 
-h2 {
-  font-size: 1.7em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #999;
-}
 
 p {
   font-size: 1.1em;
@@ -269,8 +261,10 @@ header {
   .value {
     font-weight: bold;
     font-size: 16px;
-    
-  text-align: center;
+    text-align: center;
+  }
+  .description {
+    font-size: 12px;
   }
   th, td {
     overflow: hidden;
@@ -331,8 +325,18 @@ header {
   //height: 100%;
 }
 
-.restaurant-row {
-  margin-top: 20px;
+.restaurant_span {
+  margin-left: 14px;
+  .restaurant-row {
+    margin-top: 20px;
+  }
+
+  .span7 {
+    margin-left: 14px;
+  }
+  table {
+    margin-bottom: 0;
+  }
 }
 
 #order-address-form {
@@ -401,4 +405,36 @@ img.jcrop {
   .brand {
     padding: 9px 20px 11px;
   }
+}
+
+.well.review {
+  //margin-bottom: 0;
+}
+
+.star_rating {
+  padding: 5px 0;
+
+  .review_title {
+    padding-left: 10px;
+    font-weight: bold;
+  }
+}
+
+#money_slider, #rating_slider {
+    width: 218px !important;
+    margin-bottom: 10px;
+}
+
+// nice font: Rokkitt, 'Trebuchet MS', sans-serif;;
+.pending .changeable {
+  font-weight: bold;
+}
+
+.rejected .changeable {
+  color: #8C1717;
+  font-weight: none;
+}
+
+.accepted .changeable {
+  font-weight: none;
 }
