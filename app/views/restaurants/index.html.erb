@@ -9,20 +9,32 @@
 
 <div class="row">
 <div class="span3">
-
   <%= search_form_for @q, url: search_restaurants_path, method: :post, remote: true do |f| %>
-
-    Sort:
-    <%= f.sort_fields do |s| %>
-    <%= s.sort_select %>
-    <% end %>
-
-    <%= f.label :cuisine_tags_cuisine_id_eq_any, t("navigation.cuisines") %>
-    <%= f.collection_select :cuisine_tags_cuisine_id_eq_any, Cuisine.all, :id, :name, {},
-                multiple: true, as: :check_boxes %>
 
     <%= f.label :name_cont, t("navigation.search") %>
     <%= f.text_field :name_cont %>
+
+    <p>
+    Sort by:
+    <%= label_tag "q_s_rating_desc", nil, class: "radio" do %>
+      <%= radio_button_tag "q[s]", "rating desc", true %>
+      <%= model_class.human_attribute_name(:rating) %>
+    <% end %>
+
+    <%= label_tag "q_s_minimum_order_asc", nil, class: "radio" do %>
+      <%= radio_button_tag "q[s]", "minimum_order asc", true %>
+      <%= model_class.human_attribute_name(:minimum_order) %>
+    <% end %>
+
+    <%= label_tag "q_s_delivery_fee_asc", nil, class: "radio" do %>
+      <%= radio_button_tag "q[s]", "delivery_fee asc", true %>
+      <%= model_class.human_attribute_name(:delivery_fee) %>
+    <% end %>
+    </p>
+    
+    <%= f.label :cuisine_tags_cuisine_id_eq_any, t("navigation.cuisines") %>
+    <%= f.collection_select :cuisine_tags_cuisine_id_eq_any, Cuisine.all, :id, :name, {},
+                multiple: true, as: :check_boxes %>
 
     <span id='value_span'>
     <%= f.label :minimum_order_lteq, model_class.human_attribute_name(:minimum_order) + ':',

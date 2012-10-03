@@ -1,0 +1,38 @@
+<script type="text/javascript" charset="utf-8">
+
+	$(function () {
+		soundManager.setup({
+		  url: '/swf/',
+		  onready: function() {
+		    var notification = soundManager.createSound({
+		      id: 'notification',
+		      url: '/mp3/notification.mp3'
+		    });
+		  },
+		  ontimeout: function() {
+		    // Hrmm, SM2 could not start. Missing SWF? Flash blocked? Show an error, etc.?
+		  }
+		});
+
+		function notifyIfPending() {
+		  if ($('.pending').length > 0) {
+		    soundManager.play('notification');
+		  }
+		};
+
+		function updateOrders() {
+		  if ($(".order").length > 0) {
+		    var after = $("#orders").attr("data-time");
+		  } else {
+		    var after = "0";
+		  }
+		  $.getScript("<%= restaurant_orders_path(@restaurant) %>.js?after=" + after)
+		  setTimeout(updateOrders, 30000);
+		};		
+
+		setTimeout(updateOrders, 30000);
+		setInterval(notifyIfPending, 30000);
+		
+	});
+
+</script>

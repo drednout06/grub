@@ -106,9 +106,9 @@ class RestaurantsController < ApplicationController
   def operate
     @restaurant = Restaurant.find(params[:id])
     @q = @restaurant.orders.ransack(params[:q])
-    @orders = @q.result(:distinct => true)
-    
-    @pending_orders = @orders.pending
+
+    @orders = @q.result(distinct: true)
+    @most_recent = @orders.first
   end
 
   def rate

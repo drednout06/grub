@@ -18,3 +18,4 @@
 //= require jquery.MetaData
 //= require_tree .
 //= require twitter/bootstrap
+//= require soundmanager2-nodebug-jsmin

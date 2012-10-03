@@ -133,6 +133,7 @@ kk:
         city: Қала
         logo: Логотип
         title: Түрі
+        rating: Рейтинг
 
 
       menu:
@@ -171,6 +172,7 @@ kk:
         id: Нөмері
         created_at: Құрылған уақыты
         sum: Сома
+        status: Статус
 
       review:
         content: Толығырақ

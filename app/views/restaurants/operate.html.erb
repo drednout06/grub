@@ -2,34 +2,35 @@
 <div class="page-header">
   <h1><%= "#{@restaurant.name}: #{t '.title', :default => model_class.model_name.human.pluralize}" %></h1>
 </div>
-
+<% @orders = @orders.order("created_at desc") %>
 <div class="row">
   <div class="span9">
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= sort_link(@q, :id, model_class.human_attribute_name(:id)) %></th>
-      <th><%= sort_link(@q, :user_id, model_class.human_attribute_name(:user_id)) %></th>
-      <th><%= sort_link(@q, :sum, model_class.human_attribute_name(:sum)) %></th>
-      <th><%= sort_link(@q, :district, Address.human_attribute_name(:district)) %></th>
-      <th><%= sort_link(@q, :created_at, model_class.human_attribute_name(:created_at)) %></th>
-      <th><%= sort_link(@q, :delivery_time, model_class.human_attribute_name(:delivery_time)) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody id="orders">
-    <%= render partial: 'order', collection: @orders %>
-  </tbody>
-</table>
-</div>
-
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= sort_link(@q, :id, model_class.human_attribute_name(:id)) %></th>
+          <th><%= sort_link(@q, :status, model_class.human_attribute_name(:status)) %></th>
+          <th><%= sort_link(@q, :user_id, model_class.human_attribute_name(:user_id)) %></th>
+          <th><%= sort_link(@q, :sum, model_class.human_attribute_name(:sum)) %></th>
+          <th><%= sort_link(@q, :district, Address.human_attribute_name(:district)) %></th>
+          <th><%= sort_link(@q, :created_at, model_class.human_attribute_name(:created_at)) %></th>
+          <th><%= sort_link(@q, :delivery_time, model_class.human_attribute_name(:delivery_time)) %></th>
+          <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        </tr>
+      </thead>
+      <tbody id="orders" data-time="<%= @most_recent.created_at.to_i %>">
+        <%= render @orders %>
+      </tbody>
+    </table>
+  </div>
   <div class="span3">
     <div class="page-header">
       <h3><%=t '.Statistics', :default => Restaurant.human_attribute_name(:statistics) %></h3>
     </div>
     <p>
-    New orders: <%= @pending_orders.count %>
+    New orders: <%= @orders.pending.count %>
     </p>
   </div>
 </div>
 
+<%= render partial: 'soundmanager' %>

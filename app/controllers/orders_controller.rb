@@ -4,11 +4,11 @@ class OrdersController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @orders = Order.all
+    @orders = Order.where("restaurant_id = ? and created_at > ?",
+      params[:restaurant_id], Time.at(params[:after].to_i + 1)).order("created_at DESC");
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @orders }
+      format.js
     end
   end
 
@@ -27,8 +27,9 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @user = current_user || User.new
+    @address = @user.addresses.last
     new_address = @user.addresses.new(name: t('helpers.links.new'))
-    @address = @user.addresses.last || new_address
+    @address ||= new_address
 
     @order = Order.new
     
@@ -50,6 +51,7 @@ class OrdersController < ApplicationController
     @user = current_user
     @cart = current_cart
 
+    params[:order][:status] = Order::STATUSES[:pending]
     address_params = params.delete(:address)
     address_params[:name] =
       "#{address_params[:first_name]} | #{address_params[:street]} #{address_params[:house]}"
@@ -58,10 +60,12 @@ class OrdersController < ApplicationController
 
     if params[:order][:address_id].blank?
       @address = @user.addresses.new(address_params)
+      params[:result] = 'create failed'
       render action: "new" and return unless @address.save
       params[:order][:address_id] = @order.address_id = @address.id
     else
       @address = Address.find(params[:order][:address_id])
+      params[:result] = 'update failed'
       render action: "new" and return unless @address.update_attributes(address_params)
     end
 
@@ -74,7 +78,7 @@ class OrdersController < ApplicationController
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
-        params[:result] = 'failed'
+        params[:result] = 'order creation failed'
         format.html { render action: "new", notice: 'Save failed!' }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end

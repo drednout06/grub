@@ -14,7 +14,7 @@
 
 class Order < ActiveRecord::Base
   attr_accessible :address_id, :change_from, :delivery_time, :address,
-                  :address_type, :address_attributes, :comment, :status
+                  :address_type, :address_attributes, :comment, :status, :restaurant_id
 
   has_one :user, through: :address
   belongs_to :restaurant
@@ -36,6 +36,8 @@ class Order < ActiveRecord::Base
   scope :pending, where(status: STATUSES[:pending])
   scope :accepted, where(status: STATUSES[:accepted])
   scope :rejected, where(status: STATUSES[:rejected])
+
+  default_scope :order => 'created_at DESC'
   
 
   def add_line_items_from_cart(cart)
