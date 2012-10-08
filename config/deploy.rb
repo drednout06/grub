@@ -49,3 +49,20 @@ namespace :deploy do
   end
   before "deploy", "deploy:check_revision"
 end
+
+namespace :deploy do
+  desc "reload the database with seed data"
+  task :seed do
+    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
+  end
+
+  desc "tail production log files" 
+  task :tail_logs, :roles => :app do
+    run "tail -f #{shared_path}/log/production.log" do |channel, stream, data|
+      trap("INT") { puts 'Interupted'; exit 0; } 
+      puts  # for an extra line break before the host name
+      puts "#{channel[:host]}: #{data}" 
+      break if stream == :err
+    end
+  end
+end

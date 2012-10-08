@@ -68,7 +68,7 @@ kk:
     his_rating: Бағасы
     other_reviews: Басқа пікірлер
     cuisines: Тамақ түрлері
-    no_restaurants: Oops... Критерияларыңыз бойынша мейрамхана табылмады :(
+    no_restaurants: Әттеген-ай... Критерияларыңыз бойынша мейрамхана табылмады :(
 
 
   activerecord:
