@@ -45,9 +45,12 @@ html {
   overflow-y: scroll;
 }
 
-#thebody {
-  background: asset-url('landing.jpg') center 79px no-repeat,
-                    asset-url('landing.jpg') left 79px repeat-x;
+#thebody { 
+  background: asset-url('try1.jpg') no-repeat; 
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
 }
 
 section {
@@ -69,10 +72,6 @@ textarea {
 
 
 /* typography */
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
 
 h1 {
   font-size: 3em;
@@ -234,6 +233,7 @@ header {
   h4, form, form div {
     display: inline;
   }
+  padding: 5px;
 }
 
 .form-inline {
@@ -244,9 +244,9 @@ header {
 }
 
 .restaurant-name {
-  h1 {
+  h2 {
     margin-top: 0;
-    margin-bottom: 0;
+    //margin-bottom: 0;
   }
 }
 
@@ -265,6 +265,10 @@ header {
   }
   .description {
     font-size: 12px;
+    div {
+      height: 4.8em;
+      overflow: hidden;
+    }
   }
   th, td {
     overflow: hidden;
@@ -345,7 +349,7 @@ header {
 
 .navbar .navbar-inner {
   //padding: 20px 0 10px;
-  nav {
+  div.nav-collapse {
     font-family: 'Helvetica Neue';
     font-size: 16px;
   }
@@ -354,10 +358,15 @@ header {
 #landing {
   color: white;
 
-  label, p {
+  label {
     font-size: 30px;
-    //font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
+
+  p {
+    font-size: 30px;
+    margin-bottom: 40px;
+  }
+
   .btn {
       font-size: 24px;
       padding: 12px 32px;
@@ -437,4 +446,34 @@ img.jcrop {
 
 .accepted .changeable {
   font-weight: none;
+}
+
+#features {
+  text-align: center;
+}
+
+.alert {
+  position: fixed;
+  width: inherit;
+}
+
+.dish_text {
+  height: 6.9em;
+  overflow: hidden;
+  p {
+    line-height: 1.2em;
+  }
+}
+
+div.divider {
+  height: 1px;
+  margin: 9px 1px;
+  overflow: hidden;
+  background-color: #E5E5E5;
+  border-bottom: 1px solid white;
+}
+
+#cart .lead {
+  margin-bottom: 0px;
+  font-size: 16px;
 }

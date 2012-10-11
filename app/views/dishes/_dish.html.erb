@@ -1,9 +1,12 @@
 <li class="span3">
   <div class="thumbnail dish">
     	<%= image_tag dish.picture.url(:thumb), width: 260, height: 173 %>
-    <div class="caption">
-	    <h4> <%= dish.name %> </h4>
-	    <p> <%= dish.description %></p>
+    <div class="caption popovered"  rel="popover" data-content="<%= dish.description %>"
+  		data-original-title="<%= dish.name %>" data-trigger="hover">
+    	<div class="dish_text">
+		    <h4 class="dish_name"> <%= dish.name %> </h4>
+		    <p> <%= dish.description %></p>
+	    </div>
 	    <div class="price">
 	    	<h4> <%= number_to_currency(dish.price) %> </h4>
 	    	<%= link_to line_items_path(dish_id: dish), method: :post,

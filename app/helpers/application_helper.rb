@@ -3,7 +3,7 @@ module ApplicationHelper
 
   # Returns the full title on a per-page basis.
   def full_title(page_title)
-    base_title = "grub"
+    base_title = "grub.kz"
     if page_title.empty?
       base_title
     else
@@ -35,6 +35,19 @@ module ApplicationHelper
   def star_button(value, checked)
     radio_button_tag("rating", value, checked, class: 'hover-star required',
       title: t("navigation.rating_#{value}"))
+  end
+
+  def order_status_to_class(status)
+    case status
+    when "pending"
+      "warning"
+    when "accepted"
+      "success"
+    when "rejected"
+      "error"
+    else
+      "info"
+    end
   end
   
 end

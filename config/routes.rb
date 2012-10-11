@@ -41,7 +41,7 @@ Grub::Application.routes.draw do
       resources :orders, shallow: true
     end
 
-    resources :restaurants, only: [:index] do
+    resources :restaurants do
       collection do
         post :search, to: 'restaurants#index'
       end
@@ -49,6 +49,7 @@ Grub::Application.routes.draw do
       member do
         post :rate
         get :operate
+        get :get_orders
       end
       
       resources :menus, shallow: true

@@ -4,7 +4,10 @@
       <%= link_to root_path, class: "brand", id: 'logo' do %>
         <%= image_tag('logo_small.png') %>
       <% end %>
-      <nav>
+      <div class="nav-collapse">
+        <ul class="nav pull-left">
+          <li><a href="#">Άλφα version</a></li>
+        </ul>
         <ul class="nav pull-right">
           <% if I18n.locale == :ru %>
             <li><%= link_to "Қазақша", locale: "kk" %></li>
@@ -20,7 +23,7 @@
               <% end %>
             </li>
 
-            <li><%= link_to restaurants_path do %>
+            <li><%= link_to user_orders_path(current_user) do %>
               <i class="icon-list"></i>
               <%= t("navigation.orders") %>
               <% end %>
@@ -48,7 +51,7 @@
             <li><%= link_to t("navigation.signin"), new_user_session_path %></li>
           <% end %>
         </ul>
-      </nav>
+      </div>
     </div>
   </div>
 </header>

@@ -26,7 +26,7 @@
 		  } else {
 		    var after = "0";
 		  }
-		  $.getScript("<%= restaurant_orders_path(@restaurant) %>.js?after=" + after)
+		  $.getScript("<%= get_orders_restaurant_path(@restaurant) %>.js?after=" + after)
 		  setTimeout(updateOrders, 30000);
 		};		
 

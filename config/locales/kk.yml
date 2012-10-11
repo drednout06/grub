@@ -1,14 +1,19 @@
 kk:
-  
+
   orders:
     new:
       new_address: Жаңа
       
   restaurants:
+    index:
+      sort_by: Не бойынша сорттау
+      title: '%{count} асхана табылды'
     delivery_time: "шамамен %{minutes} минут"
+    cuisines: Асы
     show:
       add_menu: "Мәзір қосу"
-
+  reviews:
+    ago: "%{time} бұрын"
   menus:
     menu:
       add_dish: "Тағам қосу"
@@ -20,9 +25,15 @@ kk:
   static_pages:
     home:
       headline: Енді ешқашан аш қалмайсыз!
-      subheadline: grub.kz - тегін тамаққа тапсырыс беру қызметі
+      subheadline: grub.kz - тамаққа тапсырыс беру қызметі
       your_city: Қалаңыз
       your_district: Ауданыңыз
+      feature_1: 1. Ауданыңызды белгілеңіз
+      feature_1_desription: Ауданыңызға тамақ жеткізетін асханаларды көру үшін ауданыңызды белгілеңіз. Табылған асханалар арасыннан қалағаныңызды таңдаңыз.
+      feature_2: 2. Тамағыңызды таңдаңыз
+      feature_2_desription: Ұнаған асхананың суретті мәзірінен, ең сүйікті тамағыңызды таңдаңыз.
+      feature_3: 3. Тапсырысыңызды күтіңіз
+      feature_3_desription: Мекенжайыңызды еңгізіп, тапсырыңызды жібергеннен кейін, асханаңыз тамағыңызды ең қысқа уақытта жеткізеді.
 
   carts:
     headline: "Тапсырысыңыз"
@@ -39,7 +50,7 @@ kk:
     help: Көмек
     admin: Админ
     account: Тіркелгім
-    restaurants: Ресторандар
+    restaurants: Асханалар
     users: Пайдаланушылар
     settings: Параметрлер
     profile: Профайл
@@ -68,53 +79,53 @@ kk:
     his_rating: Бағасы
     other_reviews: Басқа пікірлер
     cuisines: Тамақ түрлері
-    no_restaurants: Әттеген-ай... Критерияларыңыз бойынша мейрамхана табылмады :(
+    no_restaurants: Әттең-ай... Критерияларыңыз бойынша асхана табылмады :(
 
 
   activerecord:
     models:
       restaurant:
-        zero: Мейрамхана жоқ 
-        one: Мейрамхана
-        other: Мейрамханалар
+        zero: Асхана табылмады 
+        one: Асхана
+        other: Асханалар
       menu:
-        zero: Мәзір жоқ 
+        zero: Мәзір табылмады 
         one: Мәзір
         other: Мәзірлер
       user:
-        zero: Пайдаланушы жоқ 
+        zero: Пайдаланушы табылмады 
         one: Пайдаланушы
         other: Пайдаланушылар
       order:
-        zero: Тапсырыс жоқ 
+        zero: Тапсырыс табылмады 
         one: Тапсырыс
         other: Тапсырыстар
       address:
-        zero: Мекенжай жоқ 
+        zero: Мекенжай табылмады 
         one: Мекенжай
         other: Мекенжайлар
       cart:
-        zero: Себет жоқ 
+        zero: Себет табылмады 
         one: Себет
         other: Себеттер
       city:
-        zero: Қала жоқ
+        zero: Қала табылмады
         one: Қала
         other: Қалалар
       district:
-        zero: Аудан жоқ
+        zero: Аудан табылмады
         one: Аудан
         other: Аудандар
       deliverability:
-        zero: Жеткізу жоқ
+        zero: Жеткізу табылмады
         one: Жеткізу
         other: Жеткізулер
       cuisine:
-        zero: Тамақ түрі жоқ
+        zero: Тамақ түрі табылмады
         one: Тамақ түрі
         other: Тамақ түрлері
       review:
-        zero: Пікір жоқ
+        zero: Пікір табылмады
         one: Пікір
         other: Пікірлер
 
@@ -335,9 +346,9 @@ kk:
     format: ! '%{attribute} %{message}'
     messages:
       accepted: нужно подтвердить
-      blank: не может быть пустым
+      blank: бос бола алмайды
       confirmation: не совпадает с подтверждением
-      empty: не может быть пустым
+      empty: бос бола алмайды
       equal_to: может иметь лишь значение, равное %{count}
       even: может иметь лишь нечетное значение
       exclusion: имеет зарезервированное значение

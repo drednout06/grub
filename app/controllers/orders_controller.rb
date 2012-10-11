@@ -4,13 +4,16 @@ class OrdersController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @orders = Order.where("restaurant_id = ? and created_at > ?",
-      params[:restaurant_id], Time.at(params[:after].to_i + 1)).order("created_at DESC");
+    @user = current_user
+    @q = @user.orders.ransack(params[:q])
+    @orders = @q.result(distinct: true)
 
     respond_to do |format|
-      format.js
+      format.html # index.html.erb
+      format.json { render json: @orders }
     end
   end
+
 
   # GET /orders/1
   # GET /orders/1.json

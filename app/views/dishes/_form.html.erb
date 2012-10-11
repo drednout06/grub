@@ -1,6 +1,6 @@
 <%= simple_form_for [@menu, @dish], :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
-  <%= f.input :description %>
+  <%= f.input :description, input_html: {rows: 3} %>
   <%= f.input :price %>
   <%= f.input :picture %>
 

@@ -9,9 +9,15 @@
 	<div class="span7">
 		<div class="row">
 			<div class="restaurant-name span5">
-				<%= restaurant.title %>
-				<h2><%= restaurant.name %></h2>
+				
+				<h2>
+					<%= restaurant.name %>
+					<small>
+						<%= restaurant.title %>		
+					</small>
+				</h2>
 			</div>
+
 			<div class="span2">
 				<%= t('navigation.rating') %>:
 				<span id="rating-number"><%= restaurant.rating %></span>
@@ -25,6 +31,12 @@
 			</div>
 		</div>
 
+		<% if restaurant.cuisines.any? %>
+			<small>
+				<%= "#{t("restaurants.cuisines")}: #{ restaurant.cuisines.limit(5).map {|c| c.name}.join(' / ')}" %>
+			</small>
+		<% end %>
+				
 			<table class="table table-condensed restaurant">
 				<thead>
 					<tr>
@@ -45,12 +57,15 @@
 						<td class="value">
 							<%= t('restaurants.delivery_time', minutes: restaurant.average_delivery_time) %>
 						</td>
-						<td class="description">
-							<%= restaurant.description %>
+						<td class="description tooltiped"  rel="tooltip" data-placement="top"
+  							data-original-title="<%= restaurant.description %>" data-trigger="hover">
+							<div><%= restaurant.description %></div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
+
+
 		
 	</div>
 </div>

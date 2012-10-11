@@ -5,44 +5,38 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:city) %></th>
-      <th><%= model_class.human_attribute_name(:district) %></th>
-      <th><%= model_class.human_attribute_name(:house) %></th>
-      <th><%= model_class.human_attribute_name(:porch) %></th>
-      <th><%= model_class.human_attribute_name(:floor) %></th>
-      <th><%= model_class.human_attribute_name(:doorphone) %></th>
-      <th><%= model_class.human_attribute_name(:comment) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:first_name) %></th>
       <th><%= model_class.human_attribute_name(:last_name) %></th>
-      <th><%= model_class.human_attribute_name(:korpus) %></th>
-      <th><%= model_class.human_attribute_name(:phone) %></th>
       <th><%= model_class.human_attribute_name(:street) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:house) %></th>
+      <th><%= model_class.human_attribute_name(:district) %></th>
+      <th><%= model_class.human_attribute_name(:city) %></th>
+      <th><%= model_class.human_attribute_name(:phone_number) %></th>
+      <th><%= model_class.human_attribute_name(:porch) %></th>
+      <th><%= model_class.human_attribute_name(:floor) %></th>
+      <th><%= model_class.human_attribute_name(:doorphone) %></th>
+      <th><%= model_class.human_attribute_name(:korpus) %></th>
+      <th><%= model_class.human_attribute_name(:comment) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @addresses.each do |address| %>
       <tr>
-        <td><%= link_to address.id, address_path(address) %></td>
-        <td><%= address.city %></td>
-        <td><%= address.district %></td>
-        <td><%= address.house %></td>
-        <td><%= address.porch %></td>
-        <td><%= address.floor %></td>
-        <td><%= address.doorphone %></td>
-        <td><%= address.comment %></td>
-        <td><%= address.user_id %></td>
         <td><%= address.name %></td>
         <td><%= address.first_name %></td>
         <td><%= address.last_name %></td>
-        <td><%= address.korpus %></td>
-        <td><%= address.phone %></td>
         <td><%= address.street %></td>
-        <td><%=l address.created_at %></td>
+        <td><%= address.house %></td>
+        <td><%= address.district.name %></td>
+        <td><%= address.city.name %></td>
+        <td><%= address.phone_number %></td>
+        <td><%= address.porch %></td>
+        <td><%= address.floor %></td>
+        <td><%= address.doorphone %></td>
+        <td><%= address.korpus %></td>
+        <td><%= address.comment %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_address_path(address), :class => 'btn btn-mini' %>

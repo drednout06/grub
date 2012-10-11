@@ -22,7 +22,7 @@
 					<% end %>
 				</ul>
 				<ul class="nav pull-right">
-				<a class="brand" href="#reviews" ><%= t("navigation.reviews") %></a>
+				<li><a class="brand" href="#reviews" ><%= "#{t('navigation.reviews')} (#{@reviews.count})"%></a></li>
 				</ul>
 		    </div>
 	    </div>
@@ -42,9 +42,9 @@
 
 	<div class="span3">
 		<div class="menu affix-top" data-spy="affix" data-offset-top="90">
-			<div id="cart">
+			
 				<%= render @cart %>
-			</div>
+			
 		</div>
 	</div>
 

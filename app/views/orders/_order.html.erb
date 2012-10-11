@@ -1,11 +1,11 @@
-<tr class="<%= order.status %> order" id="<%= dom_id(order) %>">
-  <td class='changeable'><%= order.id %></td>
-  <td class='changeable'><%= order.status %></td>
-  <td class='changeable'><%= order.user_id %></td>
-  <td class='changeable'><%= order.total_price %></td>
-  <td class='changeable'><%= order.address.district.name %></td>
-  <td class='changeable'><%= order.created_at.to_s(:short) %></td>
-  <td class='changeable'><%= order.delivery_time.to_s(:short) %></td>
+<tr class="<%= order_status_to_class order.status %> <%= order.status %> order" id="<%= dom_id(order) %>">
+  <td><%= order.id %></td>
+  <td><%= order.status %></td>
+  <td><%= order.user_id %></td>
+  <td><%= order.total_price %></td>
+  <td><%= order.address.district.name %></td>
+  <td><%= order.created_at.to_s(:short) %></td>
+  <td><%= order.delivery_time.to_s(:short) %></td>
   <td>
     <%= link_to t('.view', :default => t("helpers.links.view")),
                 order_path(order), :class => 'btn btn-mini' %>

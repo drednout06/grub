@@ -120,6 +120,15 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def get_orders
+    @orders = Order.where("restaurant_id = ? and created_at > ?",
+      params[:id], Time.at(params[:after].to_i + 1)).order("created_at DESC");
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
     
     def update_rating

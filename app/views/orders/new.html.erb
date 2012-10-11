@@ -8,7 +8,6 @@
 		  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
 		                                 :default => "New #{model_class.model_name.human}") %></h1>
 		</div>
-		<%= debug flash %>
 		<div id='order_form'>
 			<%= render :partial => 'form' %>
 		</div>

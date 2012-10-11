@@ -4,7 +4,7 @@
 <%= render partial: 'restaurants/rating' %>
 
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human(count: 2) %></h1>
+  <h3><%=t '.title', count: @restaurants.count %></h3>
 </div>
 
 <div class="row">
@@ -15,21 +15,12 @@
     <%= f.text_field :name_cont %>
 
     <p>
-    Sort by:
-    <%= label_tag "q_s_rating_desc", nil, class: "radio" do %>
-      <%= radio_button_tag "q[s]", "rating desc", true %>
-      <%= model_class.human_attribute_name(:rating) %>
-    <% end %>
-
-    <%= label_tag "q_s_minimum_order_asc", nil, class: "radio" do %>
-      <%= radio_button_tag "q[s]", "minimum_order asc", true %>
-      <%= model_class.human_attribute_name(:minimum_order) %>
-    <% end %>
-
-    <%= label_tag "q_s_delivery_fee_asc", nil, class: "radio" do %>
-      <%= radio_button_tag "q[s]", "delivery_fee asc", true %>
-      <%= model_class.human_attribute_name(:delivery_fee) %>
-    <% end %>
+      <%= t(".sort_by") %>
+      <select name="q[s]">
+        <option value="rating desc"><%= model_class.human_attribute_name(:rating) %></option>
+        <option value="minimum_order asc"><%= model_class.human_attribute_name(:minimum_order) %></option>
+        <option value="delivery_fee asc"><%= model_class.human_attribute_name(:delivery_fee) %></option>
+      </select>
     </p>
     
     <%= f.label :cuisine_tags_cuisine_id_eq_any, t("navigation.cuisines") %>

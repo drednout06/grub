@@ -1,0 +1,4 @@
+<% unless @orders.empty? %>
+	$("#orders").prepend("<%=j render @orders %>");
+	$("#orders").attr("data-time", "<%= @orders.first.created_at.to_i %>");
+<% end %>

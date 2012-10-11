@@ -2,7 +2,6 @@
 <div class="page-header">
   <h1><%= "#{@restaurant.name}: #{t '.title', :default => model_class.model_name.human.pluralize}" %></h1>
 </div>
-<% @orders = @orders.order("created_at desc") %>
 <div class="row">
   <div class="span9">
     <table class="table table-striped">

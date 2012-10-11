@@ -18,11 +18,8 @@ class ApplicationController < ActionController::Base
   private
 
 		def set_locale
-		  I18n.locale = params[:locale] || I18n.default_locale
-		  # current_user.locale
-		  # request.subdomain
-		  # request.env["HTTP_ACCEPT_LANGUAGE"]
-		  # request.remote_ip
+		  I18n.locale = params[:locale] || session[:locale] || I18n.default_locale
+		  session[:locale] = I18n.locale
 		end
 
 		def default_url_options(options = {})

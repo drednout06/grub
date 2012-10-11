@@ -11,5 +11,5 @@
 
 <blockquote>
   <p><%= review.content %></p>
-  <small><%= "#{review.user.first_name} #{review.user.last_name}" %></small>
+  <small><%= "#{review.user.first_name}, #{t "reviews.ago", time: time_ago_in_words(review.created_at)}" %></small>
 </blockquote>
