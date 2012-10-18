@@ -1,6 +1,6 @@
 <%- model_class = Order -%>
 <div class="page-header">
-  <h1><%= "#{@restaurant.name}: #{t '.title', :default => model_class.model_name.human.pluralize}" %></h1>
+  <h1><%= @restaurant.name %></h1>
 </div>
 <div class="row">
   <div class="span9">
@@ -17,7 +17,7 @@
           <th><%=t '.actions', :default => t("helpers.actions") %></th>
         </tr>
       </thead>
-      <tbody id="orders" data-time="<%= @most_recent.created_at.to_i %>">
+      <tbody id="orders" data-time="<%= @most_recent.try(:created_at).to_i %>">
         <%= render @orders %>
       </tbody>
     </table>

@@ -34,7 +34,7 @@ class Restaurant < ActiveRecord::Base
   								:url  => "/assets/restaurants/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/restaurants/:id/:style/:basename.:extension"
                   
-  belongs_to :user
+  belongs_to :owner, class_name: "User", foreign_key: "user_id"
   belongs_to :city
   has_many :menus, dependent: :destroy
   has_many :dishes, through: :menus
@@ -45,6 +45,8 @@ class Restaurant < ActiveRecord::Base
   has_many :cuisine_tags, dependent: :destroy
   has_many :cuisines, through: :cuisine_tags
   has_many :evaluations, class_name: "RSEvaluation", as: :target
+  has_many :user_favorites, dependent: :destroy
+  has_many :fans, through: :user_favorites, source: :user
 
   has_reputation :rating, source: :user, aggregated_by: :average
 

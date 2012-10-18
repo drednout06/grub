@@ -4,29 +4,35 @@
 
 	<div class="span9">
 		
-    <%= render @restaurant %>
-  	
-		<div class="navbar affix-top" id="nav-menu" data-spy="affix" data-offset-top="280">
-			<div class="navbar-inner">
-		    <div class="container">
+		<div class="row">
+    	<%= render @restaurant %>
+    </div>
 
-		    <a class="brand" href="#" ><%= t("navigation.menu") %></a>
-		    
-				<ul class="nav">
-					<% @restaurant.menus.each do |menu| %>
-						<li>
-							<%= link_to "#menu_#{menu.id}" do %>
-								<%= menu.name %>
-							<% end %>
-						</li>
-					<% end %>
-				</ul>
-				<ul class="nav pull-right">
-				<li><a class="brand" href="#reviews" ><%= "#{t('navigation.reviews')} (#{@reviews.count})"%></a></li>
-				</ul>
+  	
+		<div class="navbar" id="nav-menu">
+			<div data-spy="affix" data-offset-top="300" class="nav-affix">
+				<div class="navbar-inner">
+			    <div class="container" id="spy-nav-menu" data-offset="50">
+
+			    <a class="brand" href="#" ><%= t("navigation.menu") %></a>
+			    
+					<ul class="nav">
+						<% @restaurant.menus.each do |menu| %>
+							<li>
+								<%= link_to "#menu_#{menu.id}" do %>
+									<%= menu.name %>
+								<% end %>
+							</li>
+						<% end %>
+					</ul>
+					<ul class="nav pull-right">
+					<li><a class="brand" href="#reviews" ><%= "#{t('navigation.reviews')} (#{@reviews.count})"%></a></li>
+					</ul>
+			    </div>
 		    </div>
-	    </div>
+	  	</div>
 		</div>
+
 		<div id="menus">
 			<%= render @restaurant.menus %>
 		</div>
@@ -41,7 +47,7 @@
 
 
 	<div class="span3">
-		<div class="menu affix-top" data-spy="affix" data-offset-top="90">
+		<div class="menu affix-top" data-spy="affix" data-offset-top="110">
 			
 				<%= render @cart %>
 			

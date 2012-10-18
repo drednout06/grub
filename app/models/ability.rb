@@ -12,11 +12,11 @@ class Ability
     elsif user.restaurateur?
 
       can :manage, Dish do |dish|
-        dish.try(:restaurant) == user.restaurant
+        dish.try(:owner) == user
       end
 
       can :manage, Menu do |menu|
-        menu.try(:restaurant) == user.restaurant
+        menu.try(:owner) == user
       end
 
       can :manage, Deliverability do |deliverability|
@@ -24,12 +24,12 @@ class Ability
       end
 
       can :update, Restaurant do |restaurant|
-        restaurant.try(:user) == user
+        restaurant.try(:owner) == user
       end
 
       can :operate, Restaurant do |restaurant|
-        restaurant.try(:user) == user
-      end      
+        restaurant.try(:owner) == user
+      end
 
     # user
     else

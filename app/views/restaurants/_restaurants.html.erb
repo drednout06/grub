@@ -1,14 +1,12 @@
-<ul class="restaurant-list">
-	<% if @restaurants.any? %>
+<div class="row">
+  <% if @restaurants.any? %>
   <% @restaurants.each do |restaurant| %>
-    <li>
-      <div class="span9 restaurant_span">
+    <div class="restaurant-row">
       <%= link_to "", restaurant %>
       <%= render restaurant %>
     </div>
-    </li>
   <% end %>
   <% else %>
   	<h3> <%= t('navigation.no_restaurants') %></h3>
   <% end %>
-</ul>
+</div>

@@ -9,6 +9,12 @@
   <%= f.input :description, input_html: {rows: 4} %>
   <%= f.input :logo %>
   <%= f.association :cuisines, as: :check_boxes %>
+
+  <%= f.fields_for :deliverabilities do |builder| %>
+    <%= render 'deliverability_fields', f: builder %>
+  <% end %>
+  <%= link_to_add_fields "Add deliverability", f, :deliverabilities %>
+
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

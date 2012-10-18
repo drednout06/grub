@@ -1,5 +1,5 @@
-<div class="row restaurant-row">
-	<div class="span2">
+<div id="<%= dom_id(restaurant) %>">
+	<div class="span2 restaurant-logo">
 		<%= image_tag restaurant.logo.url(:thumb), width: 170, class: "img-rounded" %>
 		<% if can? :update, restaurant %>
 		<%= link_to t("helpers.links.edit"), edit_restaurant_path(restaurant), class: "admin-links" %> |
@@ -17,17 +17,37 @@
 					</small>
 				</h2>
 			</div>
-
+				
 			<div class="span2">
-				<%= t('navigation.rating') %>:
-				<span id="rating-number"><%= restaurant.rating %></span>
-				<div>
+				<div class="row">
+				<span class="tooltiped" rel="tooltip" data-placement="top"
+						data-original-title="<%= "#{t('navigation.rating')}: #{restaurant.rating}/5" %>" data-trigger="hover">
 		      <% 1.upto(10) do |value| %>
 		        <%= star_button_readonly "rating_average_#{restaurant.id}", value,
-		        	(value==(restaurant.rating*2).round), true %>
+		        	(value==(restaurant.rating.to_i * 2).round), true %>
 		      <% end %>
-				
-				</div>
+					<span id="rating-number" style="margin: 0 0 10px 5px"><%= restaurant.rating %></span>
+				</span>
+
+				<span class="tooltiped" rel="tooltip" data-placement="top"
+						data-original-title="<%= t 'navigation.favorited', value: restaurant.fans.count %>" data-trigger="hover" style="margin-left: 15px;">
+					<% if user_signed_in? %>
+						<% user_favorite = current_user.favorite(restaurant) %>
+						<% if user_favorite %>
+							<%= link_to user_favorite_path(user_favorite),
+								method: :delete, remote: true, class: "favorite" do %>
+								<i class="icon-heart icon-large"></i>
+							<% end %>
+						<% else %>
+							<%= link_to user_user_favorites_path(current_user, restaurant_id: restaurant.id),
+								method: :post, remote: true, class: "favorite" do %>
+								<i class="icon-heart-empty icon-large"></i>
+							<% end %>
+						<%end%>
+					<% end %>
+					<span id="fans-number"><%= restaurant.fans.count %>
+				</span>
+			</div>
 			</div>
 		</div>
 
@@ -57,7 +77,7 @@
 						<td class="value">
 							<%= t('restaurants.delivery_time', minutes: restaurant.average_delivery_time) %>
 						</td>
-						<td class="description tooltiped"  rel="tooltip" data-placement="top"
+						<td class="description tooltiped" rel="tooltip" data-placement="top"
   							data-original-title="<%= restaurant.description %>" data-trigger="hover">
 							<div><%= restaurant.description %></div>
 						</td>

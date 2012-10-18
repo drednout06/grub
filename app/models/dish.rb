@@ -4,6 +4,7 @@ class Dish < ActiveRecord::Base
   belongs_to :menu
   has_one :restaurant, through: :menu
   has_many :line_items
+  delegate :owner, to: :restaurant, allow_nil: true
   
   has_attached_file :picture, :styles => { :large => "600x600>", thumb: {geometry: "300x200>", :processors => [:cropper]},
                                           medium: {geometry: "450x300>", :processors => [:cropper]}},

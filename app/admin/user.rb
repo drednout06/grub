@@ -8,6 +8,7 @@ ActiveAdmin.register User do
     column :admin
     column :restaurateur
     column :created_at
+    default_actions
   end
 
   form do |f|

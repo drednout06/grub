@@ -48,7 +48,7 @@ class RestaurantsController < ApplicationController
   # POST /restaurants.json
   def create
     @user = User.find(params[:user_id])
-    @restaurant = @user.build_restaurant(params[:restaurant])
+    @restaurant = @user.restaurants.build(params[:restaurant])
     #@restaurant = Restaurant.new(params[:restaurant])
     respond_to do |format|
       if @restaurant.save

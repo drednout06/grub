@@ -48,6 +48,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def restaurateur
+    @restaurants = current_user.restaurants
+  end
+
   private
 
     def signed_in_user

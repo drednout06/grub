@@ -6,9 +6,9 @@
       <% end %>
       <div class="nav-collapse">
         <ul class="nav pull-left">
-          <li><a href="#">Άλφα version</a></li>
+          <li><a href="#"><i class="icon-info-sign"></i>Demo version!</a></li>
         </ul>
-        <ul class="nav pull-right">
+        <ul class="nav pull-right" id="nav">
           <% if I18n.locale == :ru %>
             <li><%= link_to "Қазақша", locale: "kk" %></li>
           <% elsif I18n.locale == :kk %>
@@ -17,6 +17,14 @@
           <li class="divider-vertical"></li>
 
           <% if user_signed_in? %>
+            <% if current_user.restaurateur? %>
+              <li><%= link_to restaurateur_user_path(current_user) do %>
+                <i class="icon-cogs"></i>
+                <%= t("navigation.restaurateur") %>
+                <% end %>
+              </li>
+            <% end %>
+
             <li><%= link_to restaurants_path do %>
               <i class="icon-heart"></i>
               <%= t("navigation.favorites") %>
@@ -36,9 +44,6 @@
                 <%= t("navigation.account") %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <% if current_user.restaurateur? or current_user.admin? %>
-                  <li><%= link_to t("navigation.restaurant"), current_user %></li>
-                <% end %>
                 <li><%= link_to t("navigation.profile"), current_user %></li>
                 <li><%= link_to t("navigation.settings"), edit_user_registration_path(current_user) %></li>
                 <li class="divider"></li>

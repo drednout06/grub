@@ -50,7 +50,7 @@ class DishesController < ApplicationController
         flash[:notice] = 'Dish was successfully created.'
         format.html do
           if params[:dish][:picture].blank?
-            redirect_to @dish
+            redirect_to @dish.menu
           else
             render action: 'crop'
           end
@@ -74,7 +74,7 @@ class DishesController < ApplicationController
         flash[:notice] = 'Dish was successfully updated.'
         format.html do
           if params[:dish][:picture].blank?
-            redirect_to @dish
+            redirect_to @dish.menu
           else
             render action: 'crop'
           end

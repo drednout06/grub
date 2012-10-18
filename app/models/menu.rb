@@ -2,6 +2,7 @@ class Menu < ActiveRecord::Base
   attr_accessible :name
   belongs_to :restaurant
   has_many :dishes, dependent: :destroy
+  delegate :owner, to: :restaurant, allow_nil: true
 
   validates :name, presence: true, uniqueness: { case_sensitive: false, scope: :restaurant_id }
   validates :restaurant_id, presence: true

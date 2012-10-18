@@ -31,13 +31,15 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  	:first_name, :last_name, :phone_number
+  	:first_name, :last_name, :phone_number, :admin, :restaurateur
   
   has_many :addresses
   has_many :orders, through: :addresses
   has_many :reviews, dependent: :destroy
   has_many :evaluations, class_name: "RSEvaluation", as: :source
-  has_one :restaurant
+  has_many :restaurants, dependent: :destroy
+  has_many :user_favorites, dependent: :destroy
+  has_many :favorites, through: :user_favorites, source: :restaurant
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -53,5 +55,9 @@ class User < ActiveRecord::Base
 
   def rating_for(restaurant)
     evaluations.where(target_type: restaurant.class, target_id: restaurant.id).first.try(:value) || 0
+  end
+
+  def favorite(restaurant)
+    user_favorites.where(restaurant_id: restaurant.id).first
   end
 end

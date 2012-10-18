@@ -8,13 +8,11 @@
     <%= render 'layouts/shim' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <% if params[:controller] == 'static_pages' and params[:action] == 'home' %>
-  <body data-spy="scroll" data-target="#nav-menu" data-offset="0" id="thebody">
-    <% else %>
-    <body data-spy="scroll" data-target="#nav-menu" data-offset="0">
-    <% end %>
+
+  <body data-spy="scroll" data-target="#spy-nav-menu"
+        id="<%= body_id %>">
     <%= render 'layouts/header' %>
-    <div class="container">
+    <div class="container" id="<%= container_id %>">
       <%#= params[:controller] + params[:action] %>
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>">
@@ -23,8 +21,8 @@
         </div>
       <% end %>
       <%= yield %>
-      <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
+      <%#= debug(params) if Rails.env.development? %>
     </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

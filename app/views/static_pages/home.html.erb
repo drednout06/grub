@@ -22,7 +22,10 @@
 			  <%= f.grouped_collection_select :deliverabilities_district_id_in, City.order(:name), :districts, :name, :id, :name, include_blank: true, class: 'input-small' %>
 			</div>
 			<div class="span2">
-		  <%= f.submit value: t('navigation.search'), class: 'btn btn-large btn-success' %>
+        <button type="submit" class="btn btn-success btn-large">
+          <i class="icon-search"></i>
+          <%= t('navigation.search') %>
+        </button>
 			</div>
 	  <% end %>
 	</div>
@@ -35,7 +38,7 @@
     <div class="span4">
       <h3>
       	<%= t(".feature_1") %>
-        <i class="icon-pushpin"></i>
+        <i class="icon-map-marker icon-large" style="color: #2cacb3;"></i>
       </h3>
        <p><%= t(".feature_1_desription") %></p>
     </div>
@@ -43,7 +46,7 @@
     <div class="span4">
       <h3>
         <%= t(".feature_2") %>
-        <i class="icon-heart"></i>
+        <i class="icon-heart icon-large" style="color: #ff7c3e;"></i>
       </h3>
       <p><%= t(".feature_2_desription") %></p>
     </div>
@@ -51,7 +54,7 @@
     <div class="span4">
       <h3>
       	<%= t(".feature_3") %>
-        <i class="icon-ok"></i>
+        <i class="icon-ok" style="color: #99d83e;"></i>
       </h3>
       <p><%= t(".feature_3_desription") %></p>
     </div>
