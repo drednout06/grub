@@ -7,6 +7,12 @@ GIT
       activerecord (>= 3.0.0)
       paper_trail (~> 2)
 
+GIT
+  remote: git://github.com/swanandp/acts_as_list.git
+  revision: f62c43265f0e47fe7666a93849abad5aa7c5c6d3
+  specs:
+    acts_as_list (0.1.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -103,6 +109,7 @@ GEM
     highline (1.6.15)
     hike (1.2.1)
     i18n (0.6.0)
+    ice_cube (0.9.0)
     inherited_resources (1.3.1)
       has_scope (~> 0.5.0)
       responders (~> 0.6)
@@ -250,6 +257,7 @@ GEM
     will_paginate (3.0.3)
     xpath (0.1.4)
       nokogiri (~> 1.3)
+    yaml_db (0.2.3)
 
 PLATFORMS
   ruby
@@ -257,6 +265,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin
   activerecord-reputation-system
+  acts_as_list!
   annotate (~> 2.4.1.beta)
   bcrypt-ruby (= 3.0.1)
   bootstrap-sass (~> 2.0.4.0)
@@ -268,6 +277,7 @@ DEPENDENCIES
   devise
   faker (= 1.0.1)
   globalize3!
+  ice_cube
   jquery-rails (= 2.1.1)
   jquery-ui-rails
   json
@@ -283,3 +293,4 @@ DEPENDENCIES
   uglifier (>= 1.2.3)
   unicorn
   will_paginate (= 3.0.3)
+  yaml_db

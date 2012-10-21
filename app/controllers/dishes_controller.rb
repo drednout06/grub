@@ -99,4 +99,11 @@ class DishesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def sort
+    params[:dish].each_with_index do |id, index|
+      Dish.update_all({position: index+1}, {id: id})
+    end
+    render nothing: true
+  end
 end

@@ -8,7 +8,7 @@
     <%= render 'layouts/shim' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-
+  <%= render 'shared/analytics' %>
   <body data-spy="scroll" data-target="#spy-nav-menu"
         id="<%= body_id %>">
     <%= render 'layouts/header' %>
@@ -21,7 +21,7 @@
         </div>
       <% end %>
       <%= yield %>
-      <%#= debug(params) if Rails.env.development? %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
     <%= render 'layouts/footer' %>
   </body>

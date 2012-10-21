@@ -1,8 +1,8 @@
 class ReviewsController < InheritedResources::Base
 	belongs_to :restaurant
 	def index
-		@review = current_user.reviews.new
 		@restaurant = Restaurant.find(params[:restaurant_id])
+		@review = @restaurant.reviews.where(user_id: current_user.id).first || Review.new
 		index!
 	end
 
@@ -18,4 +18,5 @@ class ReviewsController < InheritedResources::Base
 			render action: 'index'
 		end
 	end
+
 end

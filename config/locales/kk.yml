@@ -6,19 +6,27 @@ kk:
       
   restaurants:
     restaurant:
-      add_menu: Мәзір қосу
+      closed: Жабық
+      closed_tooltip: Асхана әзірше жабық бірақ алдынала тапсырыс берсеңіз болады.
+      control_menus: Мәзірлерді басқару
+      to_favorite: Таңдаулыларыма қосу
+      favorited_by: '%{value} пайдаланушы таңдаулы етті'
     index:
-      sort_by: Не бойынша сорттау
+      sort_by: Не бойынша реттеу
       title: '%{count} асхана табылды'
     delivery_time: "шамамен %{minutes} минут"
     cuisines: Асы
     show:
-      add_menu: "Мәзір қосу"
+      no_reviews: Ешкім әле пікір қалдырмады.
+
+
   reviews:
     ago: "%{time} бұрын"
+
   menus:
     menu:
-      add_dish: "Тағам қосу"
+      add_dish: Тағам қосу
+      control_dishes: Тағамдарды басқару
 
   dishes:
     dish:
@@ -74,7 +82,6 @@ kk:
     favorites: Таңдаулыларым
     restaurateur: Ресторатор
     rating: Рейтингі
-    favorited: '%{value} пайдаланущы таңдаулы етті'
     rating_1: 'Өте нашар'
     rating_2: 'Нашар'
     rating_3: 'Орташа'
@@ -147,16 +154,19 @@ kk:
         name: Аты
         address: Мекен-жайы
         user_id: Пайдаланушы
-        created_at: Құрылған күні
+        created_at: Құрылған кезі
         minimum_order: Минималды тапсырыс
         average_delivery_time: Жеткізу уақыты
         delivery_fee: Жеткізу бағасы
         description: Қосымша ақпарат
         districts: Аудандар
+        menus: Мәзірлер
+        business_hours: Жұмыс уақыты
         city: Қала
         logo: Логотип
         title: Түрі
         rating: Рейтинг
+        details: Детәлдер
 
 
       menu:
@@ -167,7 +177,7 @@ kk:
         first_name: Аты
         last_name: Жөні
         email: Э-пошта
-        created_at: Құрылған күні
+        created_at: Құрылған кезі
         admin: Әкім
         restaurateur: Ресторатор
         phone_number: Ұялы телефон
@@ -193,13 +203,13 @@ kk:
         delivery_time: Әкелу уақыты
         change_from: Қаншадан қайырып беру
         id: Нөмері
-        created_at: Құрылған уақыты
+        created_at: Құрылған кезі
         sum: Сома
         status: Статус
 
       review:
         content: Толығырақ
-        title: Қорытынды
+        title: Қысқаша
 
       dish:
         name: Аты
@@ -422,6 +432,7 @@ kk:
       cancel: Болдырмау
       accept: Қабылдау
       reject: Болдырмау
+      drag: көшіру
     titles:
       new: 'Жаңа %{model}'
       edit: '%{model} өндеу'

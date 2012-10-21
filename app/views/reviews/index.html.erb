@@ -2,23 +2,24 @@
 
 <%- model_class = Review -%>
 
-<div class="row offset1">
-<%= render @restaurant %>
+<div class="row">
+	<%= render @restaurant %>
 </div>
 
 <div class="row">
+	<div class="span9">
+		<div class="page-header">
+		  <h3><%= t('navigation.your_review') %></h3>
+		</div>
 
-	<div class="page-header">
-	  <h3><%= t('navigation.your_review') %></h3>
+
+		<%= render partial: 'form' %>
+
+		<div class="page-header">
+		  <h3><%= t('navigation.other_reviews') %></h3>
+		</div>
+
+		<%= render @reviews %>
 	</div>
-
-
-	<%= render partial: 'form' %>
-
-	<div class="page-header">
-	  <h3><%= t('navigation.other_reviews') %></h3>
-	</div>
-
-	<%= render @reviews %>
 
 </div>

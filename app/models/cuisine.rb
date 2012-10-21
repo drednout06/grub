@@ -18,4 +18,8 @@ class Cuisine < ActiveRecord::Base
   accepts_nested_attributes_for :translations
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
+
+  acts_as_list
+
+  default_scope :order => 'position ASC'
 end

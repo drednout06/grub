@@ -47,6 +47,7 @@ class Restaurant < ActiveRecord::Base
   has_many :evaluations, class_name: "RSEvaluation", as: :target
   has_many :user_favorites, dependent: :destroy
   has_many :fans, through: :user_favorites, source: :user
+  has_many :business_hours, dependent: :destroy
 
   has_reputation :rating, source: :user, aggregated_by: :average
 
@@ -80,6 +81,18 @@ class Restaurant < ActiveRecord::Base
   
   def reprocess_logo
     logo.reprocess!
+  end
+
+  def open?
+    business_hours.any? { |hour| hour.schedule.occurring_at?(Time.now) }
+  end
+
+  def business_hour
+    business_hours.detect { |hour| hour.schedule.occurring_at?(Time.now) }
+  end
+
+  def today_hours
+    business_hours.find_all { |hour| hour.day == Date::DAYNAMES[Time.now.wday].downcase }
   end
 
 end

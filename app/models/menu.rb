@@ -6,6 +6,10 @@ class Menu < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { case_sensitive: false, scope: :restaurant_id }
   validates :restaurant_id, presence: true
+
+  acts_as_list scope: :restaurant
+
+  default_scope :order => 'position ASC'
 end
 # == Schema Information
 #

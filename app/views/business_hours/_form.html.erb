@@ -1,0 +1,13 @@
+<%= simple_form_for [@restaurant, @business_hour], :html => { :class => 'form-horizontal' } do |f| %>
+  
+  <%= f.input :opening, input_html: {class: 'timepicker'} %>
+  <%= f.input :closing, input_html: {class: 'timepicker'} %>
+	<%= f.input :day, collection: @weekdays.keys, as: :select, selected: @weekdays.invert[@business_hour.day] %>
+
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                :back , :class => 'btn' %>
+  </div>
+<% end %>

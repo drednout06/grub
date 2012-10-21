@@ -1,5 +1,6 @@
 Grub::Application.routes.draw do
 
+
   scope :path => "(:locale)", :shallow_path => "(:locale)", locale: /en|kk|ru/ do
     root to: 'static_pages#home'
     
@@ -20,7 +21,11 @@ Grub::Application.routes.draw do
 
     resources :carts
     
-    resources :cuisines
+    resources :cuisines do
+      collection do
+        post :sort
+      end
+    end
 
     resources :addresses, only: [:index]
 
@@ -59,13 +64,22 @@ Grub::Application.routes.draw do
         get :get_orders
       end
       
-      resources :menus, shallow: true
+      resources :menus, shallow: true do
+        collection do
+          post :sort
+        end
+
+        resources :dishes, shallow: true do
+          collection do
+            post :sort
+          end
+        end
+      end
+
       resources :orders, shallow: true
       resources :reviews, shallow: true
-    end
-
-    resources :menus do
-      resources :dishes, shallow: true
+      resources :business_hours, shallow: true
+      resources :deliverabilities, shallow: true
     end
 
     match '/help',    to: 'static_pages#help'

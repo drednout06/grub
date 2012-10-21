@@ -20,6 +20,9 @@ gem 'devise'
 gem 'ransack'
 gem 'cancan'
 gem 'activerecord-reputation-system', require: 'reputation_system'
+gem 'ice_cube'
+gem 'acts_as_list', :git => 'git://github.com/swanandp/acts_as_list.git'
+gem 'yaml_db'
 
 group :development, :test do
   gem 'rspec-rails', '2.10.0'

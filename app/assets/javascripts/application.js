@@ -19,5 +19,6 @@
 //= require_directory .
 //= require twitter/bootstrap
 //= require soundmanager2-nodebug-jsmin
+//= require jquery-ui-timepicker-addon
 
 var grub = grub || {};

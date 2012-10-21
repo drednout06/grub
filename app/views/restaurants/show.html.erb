@@ -26,7 +26,9 @@
 						<% end %>
 					</ul>
 					<ul class="nav pull-right">
-					<li><a class="brand" href="#reviews" ><%= "#{t('navigation.reviews')} (#{@reviews.count})"%></a></li>
+					<li><a class="brand" href="#reviews" >
+						<i class="icon-comments-alt"></i>
+						<%= "#{t('navigation.reviews')} (#{@reviews.count})"%></a></li>
 					</ul>
 			    </div>
 		    </div>
@@ -41,7 +43,12 @@
 			<p>
 			  <h3><%= t("navigation.reviews") %></h3>
 			</p>
-			<%= render @reviews %>
+			<% if @reviews.any? %>
+				<%= render @reviews %>
+			<% else %>
+				<p><%= t(".no_reviews") %></p>
+			<% end %>
+
 		</div>
 	</div>
 
