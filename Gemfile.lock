@@ -293,7 +293,6 @@ DEPENDENCIES
   jquery-ui-rails
   json
   less
-  net-ssh
   paperclip (~> 3.0)
   pg
   rails (= 3.2.6)
