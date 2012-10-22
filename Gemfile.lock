@@ -58,7 +58,6 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.0.4.0)
     bootstrap-will_paginate (0.0.6)
       will_paginate
     bourbon (2.1.1)
@@ -220,10 +219,6 @@ GEM
       rspec (~> 2.10.0)
     rubyzip (0.9.9)
     sass (3.2.1)
-    sass-rails (3.2.4)
-      railties (~> 3.2.0)
-      sass (>= 3.1.10)
-      tilt (~> 1.3)
     selenium-webdriver (2.24.0)
       childprocess (>= 0.2.5)
       libwebsocket (~> 0.1.3)
@@ -272,7 +267,6 @@ DEPENDENCIES
   annotate (~> 2.4.1.beta)
   aws-sdk
   bcrypt-ruby (= 3.0.1)
-  bootstrap-sass (~> 2.0.4.0)
   bootstrap-will_paginate (= 0.0.6)
   cancan
   capistrano
@@ -292,7 +286,6 @@ DEPENDENCIES
   ransack
   rmagick
   rspec-rails (= 2.10.0)
-  sass-rails (= 3.2.4)
   simple_form
   twitter-bootstrap-rails
   uglifier (>= 1.2.3)
