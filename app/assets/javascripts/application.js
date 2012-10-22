@@ -16,7 +16,7 @@
 //= require jquery.Jcrop
 //= require jquery.rating.pack
 //= require jquery.MetaData
-//= require_directory .
+//= require_tree .
 //= require twitter/bootstrap
 //= require soundmanager2-nodebug-jsmin
 //= require jquery-ui-timepicker-addon
