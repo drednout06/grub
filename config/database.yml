@@ -52,4 +52,4 @@ production:
   database: grub_production
   pool: 5
   username: grub
-  password:
+  password: pass
