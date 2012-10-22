@@ -6,10 +6,11 @@ class Dish < ActiveRecord::Base
   has_many :line_items
   delegate :owner, to: :restaurant, allow_nil: true
   
-  has_attached_file :picture, :styles => { :large => "600x600>", thumb: {geometry: "300x200>", :processors => [:cropper]},
-                                          medium: {geometry: "450x300>", :processors => [:cropper]}},
-  								:url  => "/assets/dishes/:id/:style/:basename.:extension",
-                  :path => ":rails_root/public/assets/dishes/:id/:style/:basename.:extension"
+  has_attached_file :picture, :styles => { :large => "600x600>", thumb: {geometry: "300x200>",
+            processors: [:cropper]}, medium: {geometry: "450x300>", :processors => [:cropper]}},
+            path: "/dishes/:attachment/:id/:style.:extension",  
+            storage: :s3,
+            s3_credentials: "#{Rails.root}/config/s3.yml"
 
   validates_attachment :picture, :presence => true,
 	  content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] },
@@ -35,7 +36,8 @@ class Dish < ActiveRecord::Base
   
   def picture_geometry(style = :original)
     @geometry ||= {}
-    @geometry[style] ||= Paperclip::Geometry.from_file(picture.path(style))
+    picture_path = (picture.options[:storage] == :s3) ? picture.url(style) : picture.path(style)
+    @geometry[style] ||= Paperclip::Geometry.from_file(picture_path)
   end
   
   def reprocess_picture

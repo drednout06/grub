@@ -8,12 +8,9 @@ gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem "paperclip", "~> 3.0"
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
 gem 'json'
-#gem 'globalize3'
 gem 'globalize3', :git => 'git://github.com/svenfuchs/globalize3.git'
 gem 'activeadmin'
 gem 'devise'
@@ -22,7 +19,8 @@ gem 'cancan'
 gem 'activerecord-reputation-system', require: 'reputation_system'
 gem 'ice_cube'
 gem 'acts_as_list', :git => 'git://github.com/swanandp/acts_as_list.git'
-gem 'yaml_db'
+gem 'aws-sdk'
+gem 'rmagick'
 
 group :development, :test do
   gem 'rspec-rails', '2.10.0'

@@ -31,8 +31,9 @@ class Restaurant < ActiveRecord::Base
 
   has_attached_file :logo, :styles => { :large => "600x600>",
                       thumb: {geometry: "300x200>", :processors => [:cropper]}},
-  								:url  => "/assets/restaurants/:id/:style/:basename.:extension",
-                  :path => ":rails_root/public/assets/restaurants/:id/:style/:basename.:extension"
+                      #path: "/restaurants/:attachment/:id/:style.:extension",
+                      storage: :s3,
+                      s3_credentials: "#{Rails.root}/config/s3.yml"
                   
   belongs_to :owner, class_name: "User", foreign_key: "user_id"
   belongs_to :city
@@ -76,7 +77,8 @@ class Restaurant < ActiveRecord::Base
   
   def logo_geometry(style = :original)
     @geometry ||= {}
-    @geometry[style] ||= Paperclip::Geometry.from_file(logo.path(style))
+    logo_path = (logo.options[:storage] == :s3) ? logo.url(style) : logo.path(style)
+    @geometry[style] ||= Paperclip::Geometry.from_file(logo_path)
   end
   
   def reprocess_logo
