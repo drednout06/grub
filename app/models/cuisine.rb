@@ -9,7 +9,9 @@
 #
 
 class Cuisine < ActiveRecord::Base
-  attr_accessible :name, :translations_attributes
+	before_save :set_position
+
+  attr_accessible :name, :translations_attributes, :position
 
   has_many :cuisine_tags
   has_many :restaurants, through: :cuisine_tags, dependent: :destroy
@@ -19,7 +21,13 @@ class Cuisine < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 
-  acts_as_list
+  # acts_as_list
 
   default_scope :order => 'position ASC'
+
+  private
+
+	  def set_position
+	    self.position ||= Time.now.to_i
+	  end
 end

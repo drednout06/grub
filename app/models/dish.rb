@@ -1,5 +1,6 @@
 class Dish < ActiveRecord::Base
-  attr_accessible :description, :name, :price, :picture, :city_id, :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessible :description, :name, :price, :picture, :city_id, :crop_x, :crop_y, :crop_w, :crop_h,
+                  :position
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   belongs_to :menu
   has_one :restaurant, through: :menu
@@ -23,8 +24,9 @@ class Dish < ActiveRecord::Base
   validates_numericality_of :price, presence: true, greater_than: -1, only_integer: true
 
   before_destroy :ensure_not_referenced_by_any_line_item
+  before_save :set_position
 
-  acts_as_list scope: :menu
+  # acts_as_list scope: :menu
 
   default_scope :order => 'position ASC'
 
@@ -53,6 +55,10 @@ class Dish < ActiveRecord::Base
         errors.add(:base, 'Line Items present')
         return false
       end
+    end
+
+    def set_position
+      self.position ||= Time.now.to_i
     end
 end
 # == Schema Information
