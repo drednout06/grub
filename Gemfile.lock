@@ -7,6 +7,12 @@ GIT
       activerecord (>= 3.0.0)
       paper_trail (~> 2)
 
+GIT
+  remote: git://github.com/swanandp/acts_as_list.git
+  revision: f62c43265f0e47fe7666a93849abad5aa7c5c6d3
+  specs:
+    acts_as_list (0.1.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -268,6 +274,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin
   activerecord-reputation-system
+  acts_as_list!
   annotate (~> 2.4.1.beta)
   aws-sdk
   bcrypt-ruby (= 3.0.1)
