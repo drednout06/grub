@@ -21,6 +21,8 @@ gem 'ice_cube'
 # gem 'acts_as_list', :git => 'git://github.com/swanandp/acts_as_list.git', :require => false
 gem 'aws-sdk'
 gem 'rmagick'
+gem 'sqlite3'
+gem 'taps'
 
 group :development, :test do
   gem 'rspec-rails', '2.10.0'
