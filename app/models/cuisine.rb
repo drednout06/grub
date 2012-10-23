@@ -19,7 +19,7 @@ class Cuisine < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 
-  # acts_as_list
+  acts_as_list
 
   default_scope :order => 'position ASC'
 end

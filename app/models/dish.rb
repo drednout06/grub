@@ -24,7 +24,7 @@ class Dish < ActiveRecord::Base
 
   before_destroy :ensure_not_referenced_by_any_line_item
 
-  # acts_as_list scope: :menu
+  acts_as_list scope: :menu
 
   default_scope :order => 'position ASC'
 
