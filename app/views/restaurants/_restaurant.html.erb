@@ -46,6 +46,9 @@
 									data-original-title="<%= t '.to_favorite' %>" data-trigger="hover" ></i>
 							<% end %>
 						<%end%>
+					<% else %>
+						<i class="icon-heart-empty icon-large tooltiped" rel="tooltip" data-placement="top"
+									data-original-title="<%= t '.to_favorite' %>" data-trigger="hover" ></i>
 					<% end %>
 					<span id="fans-number" class="tooltiped" rel="tooltip" data-placement="top"
 						data-original-title="<%= t '.favorited_by', value: restaurant.fans.count %>" data-trigger="hover"> <%= restaurant.fans.count %>
