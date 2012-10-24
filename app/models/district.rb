@@ -20,4 +20,6 @@ class District < ActiveRecord::Base
 
   translates :name
   accepts_nested_attributes_for :translations, :deliverabilities
+
+  default_scope order: "name ASC"
 end

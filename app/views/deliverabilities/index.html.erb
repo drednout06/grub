@@ -1,12 +1,14 @@
 <%- model_class = Deliverability -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => District.model_name.human.pluralize %></h1>
+  <h2>
+  <%= link_to @restaurant.name, restaurant_path(@restaurant) %>:
+  <%=t '.title', :default => District.model_name.human(count: 2) %></h2>
 </div>
+
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:restaurant_id) %></th>
       <th><%= model_class.human_attribute_name(:district) %></th>
       <th><%= model_class.human_attribute_name(:fee) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -17,7 +19,6 @@
     <% @deliverabilities.each do |deliverability| %>
       <tr>
         <td><%= link_to deliverability.id, deliverability_path(deliverability) %></td>
-        <td><%= deliverability.restaurant_id %></td>
         <td><%= deliverability.district.name %></td>
         <td><%= deliverability.fee %></td>
         <td><%=l deliverability.created_at %></td>

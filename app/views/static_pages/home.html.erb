@@ -1,40 +1,39 @@
 <%- model_class = Restaurant -%>
 <% provide(:title, t("navigation.main_title")) %>
 <div class="container" id="landing">
-<div class="center hero-unit">
-  <h1> <%= t(".headline") %> </h1>
+  <div class="center hero-unit">
+    <h1> <%= t(".headline") %> </h1>
 
-  <p class="lead">
-    <%= t(".subheadline") %> 
-  </p>
+    <p class="lead">
+      <%= t(".subheadline") %> 
+    </p>
 
-  <div class="row">
-	  <%= search_form_for @q, class: 'form-inline', url: search_restaurants_path, method: :post do |f| %>
+    <div class="row">
+  	  <%= search_form_for @q, class: 'form-inline', url: search_restaurants_path, method: :post do |f| %>
 
-		  <div class="span3 offset1">
-			  <%= f.label :city_id_in, t(".your_city"), class: 'lead' %>
-			  <%= f.collection_select :city_id_in, City.order(:name), :id, :name,
-			  			include_blank: true, selected: @default_city.id, class: 'input-small' %>
-			</div>
+  		  <div class="span3 offset1">
+  			  <%= f.label :city_id_in, t(".your_city"), class: 'lead' %>
+  			  <%= f.collection_select :city_id_in, City.order(:name), :id, :name,
+  			  			include_blank: true, selected: @default_city.id, class: 'input-small' %>
+  			</div>
 
-			<div class="span3">
-			  <%= f.label :deliverabilities_district_id_in, t('.your_district'), class: 'lead' %>
-			  <%= f.grouped_collection_select :deliverabilities_district_id_in, City.order(:name), :districts, :name, :id, :name, include_blank: true, class: 'input-small' %>
-			</div>
-			<div class="span2">
-        <button type="submit" class="btn btn-success btn-large">
-          <i class="icon-search"></i>
-          <%= t('navigation.search') %>
-        </button>
-			</div>
-	  <% end %>
-	</div>
+  			<div class="span3">
+  			  <%= f.label :deliverabilities_district_id_in, t('.your_district'), class: 'lead' %>
+  			  <%= f.grouped_collection_select :deliverabilities_district_id_in, City.order(:name), :districts, :name, :id, :name, include_blank: true, class: 'input-small' %>
+  			</div>
+  			<div class="span2">
+          <button type="submit" class="btn btn-success btn-large">
+            <i class="icon-search"></i>
+            <%= t('navigation.search') %>
+          </button>
+  			</div>
+  	  <% end %>
+  	</div>
 
-</div>
+  </div>
 </div>
 <div class="container">
   <div class="row" id="features">
-
     <div class="span4">
       <h3>
       	<%= t(".feature_1") %>

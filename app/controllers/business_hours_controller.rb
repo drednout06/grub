@@ -66,6 +66,11 @@ class BusinessHoursController < InheritedResources::Base
     schedule
   end
 
+  def index
+  	@weekdays = weekdays_for_select
+  	index!
+  end
+
   def weekdays_for_select
   	{
   		t('date.day_names')[1] => 'monday',

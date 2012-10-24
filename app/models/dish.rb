@@ -13,7 +13,7 @@ class Dish < ActiveRecord::Base
             storage: :s3,
             s3_credentials: "#{Rails.root}/config/s3.yml"
 
-  validates_attachment :picture, :presence => true,
+  validates_attachment :picture, #:presence => true,
 	  content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] },
 	  size: { in: 0..5.megabytes }
 

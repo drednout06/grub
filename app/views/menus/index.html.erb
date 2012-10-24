@@ -2,7 +2,7 @@
 <div class="page-header">
   <h2>
   <%= link_to @restaurant.name, restaurant_path(@restaurant) %>:
-  <%=t '.title', :default => model_class.model_name.human.pluralize %></h2>
+  <%=t '.title', :default => model_class.model_name.human(count: 2) %></h2>
 </div>
 <table class="table table-striped">
   <thead>

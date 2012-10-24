@@ -1,6 +1,8 @@
 <%- model_class = Dish -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h2>
+  <%= link_to @menu.restaurant.name, restaurant_path(@menu.restaurant) %>:
+  <%= @menu.name %></h2>
 </div>
 <table class="table table-striped">
   <thead>

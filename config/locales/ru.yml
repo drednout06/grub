@@ -1,4 +1,321 @@
 ru:
+  errors: &errors
+    format: ! '%{attribute} %{message}'
+    messages:
+      accepted: нужно подтвердить
+      blank: не может быть пустым
+      confirmation: не совпадает с подтверждением
+      empty: не может быть пустым
+      equal_to: может иметь лишь значение, равное %{count}
+      even: может иметь лишь нечетное значение
+      exclusion: имеет зарезервированное значение
+      greater_than: может иметь значение большее %{count}
+      greater_than_or_equal_to: может иметь значение большее или равное %{count}
+      inclusion: имеет непредусмотренное значение
+      invalid: имеет неверное значение
+      less_than: может иметь значение меньшее чем %{count}
+      less_than_or_equal_to: может иметь значение меньшее или равное %{count}
+      not_a_number: не является числом
+      not_an_integer: не является целым числом
+      odd: может иметь лишь четное значение
+      record_invalid: ! 'Возникли ошибки: %{errors}'
+      taken: уже существует
+      too_long:
+        few: слишком большой длины (не может быть больше чем %{count} символа)
+        many: слишком большой длины (не может быть больше чем %{count} символов)
+        one: слишком большой длины (не может быть больше чем %{count} символ)
+        other: слишком большой длины (не может быть больше чем %{count} символа)
+      too_short:
+        few: недостаточной длины (не может быть меньше %{count} символов)
+        many: недостаточной длины (не может быть меньше %{count} символов)
+        one: недостаточной длины (не может быть меньше %{count} символа)
+        other: недостаточной длины (не может быть меньше %{count} символа)
+      wrong_length:
+        few: неверной длины (может быть длиной ровно %{count} символа)
+        many: неверной длины (может быть длиной ровно %{count} символов)
+        one: неверной длины (может быть длиной ровно %{count} символ)
+        other: неверной длины (может быть длиной ровно %{count} символа)
+    template:
+      body: ! 'Проблемы возникли со следующими полями:'
+      header:
+        few: ! '%{model}: сохранение не удалось из-за %{count} ошибок'
+        many: ! '%{model}: сохранение не удалось из-за %{count} ошибок'
+        one: ! '%{model}: сохранение не удалось из-за %{count} ошибки'
+        other: ! '%{model}: сохранение не удалось из-за %{count} ошибки'
+
+  default_attributes: &default_attributes
+    id: Номер
+    name: Имя
+    district: Район
+    city: Город
+    created_at: Создан
+
+  orders:
+    new:
+      new_address: Добавить адрес
+
+  restaurants:
+    restaurant:
+      closed: Закрыто
+      closed_tooltip: На данный момент заведение закрыто, но возможен предзаказ
+      control_menus: Управление меню
+      to_favorite: Добавить в избранное
+      favorited_by: '%{value} пользователей добавили в избранное'
+    index:
+      sort_by: 'Сортировать по:'
+      title: 'Найдено %{count} заведения'
+    delivery_time: "около %{minutes} минут"
+    cuisines: Кухня
+    show:
+      no_reviews: Нет отзывов.
+
+  reviews:
+    ago: "%{time} назад"
+
+  menus:
+    menu:
+      add_dish: Добавить блюдо
+      control_dishes: Управление блюдами
+
+  dishes:
+    dish:
+      add_to_cart: Добавить
+
+  static_pages:
+    home:
+      headline: grub.kz - заказ еды на дом и в офис
+      subheadline: Больше нет оправдания быть голодным!
+      your_city: Ваш город
+      your_district: Ваш район
+      feature_1: 1. Укажите район
+      feature_1_desription: Укажите свое местонахождение чтобы определить заведения доставлюящие еду в Ваш район.
+      feature_2: 2. Выберите блюда
+      feature_2_desription: Выберите любимые блюда из меню выбранного Вами заведения.
+      feature_3: 3. Кушать подано!
+      feature_3_desription: Оформите свой заказ и наслаждайтесь едой. Оплата онлайн или наличными при доставке.
+
+  carts:
+    headline: Ваш заказ
+    qty: Количество
+    item: Блюдо
+    price: Цена
+    total: Всего
+    empty: Очистить
+    checkout: Заказать
+    empty_confirm: Хотить начать заново?
+
+  users:
+    restaurateur:
+      operate: Заказы
+
+  navigation:
+    home: На главную
+    help: Помощь
+    admin: Админ
+    account: Я
+    restaurants: Заведения
+    users: Пользаватели
+    settings: Параметры
+    profile: Профайл
+    signout: Выйти
+    signin: Войти
+    signup: Зарегистрироваться
+    about: О нас
+    contact: Связь
+    news: Новости
+    menu: Меню
+    main_title: Ас болсын!
+    search: Поиск
+    city: Город
+    orders: Мои заказы
+    favorites: Мои избранные
+    restaurateur: Ресторатор
+    rating: Рейтинг
+    rating_1: Отвратительно
+    rating_2: Плохо
+    rating_3: Пойдет
+    rating_4: Хорошо
+    rating_5: Супер!
+    reviews: Отзывы
+    your_rating: Ваша оценка
+    your_review: Ваш отзыв
+    his_rating: Оценка
+    other_reviews: Другие отзывы
+    cuisines: Кухни
+    no_restaurants: Упс... По Вашим критериям ничего не найдено :(
+    crop: Вырезать
+    crop_picture: Отредактировать изображение
+    preview: Предварительный просмотр
+
+  activerecord:
+    models:
+      restaurant:
+        zero: Заведения не найдены
+        one: Заведение
+        other: Заведения
+      menu:
+        zero: Меню не найдены
+        one: Меню
+        other: Меню
+      user:
+        zero: Пользаватели не найдены 
+        one: Пользаватель
+        other: Пользаватели
+      order:
+        zero: Заказы не найдены 
+        one: Заказ
+        other: Заказы
+      address:
+        zero: Адреса не найдены
+        one: Адрес
+        other: Адреса
+      cart:
+        zero: Корзины не найдены
+        one: Корзина
+        other: Корзины
+      city:
+        zero: Города не найдены
+        one: Город
+        other: Города
+      district:
+        zero: Районы не найдены
+        one: Район
+        other: Районы
+      deliverability:
+        zero: Доставки не найдены
+        one: Доставка
+        other: Доставки
+      cuisine:
+        zero: Кухни не найдены
+        one: Кухня
+        other: Кухни
+      review:
+        zero: Отзывы не найдены
+        one: Отзыв
+        other: Отзывы
+      dish:
+        zero: Блюда не найдены
+        one: Блюдо
+        other: Блюда
+      business_hour:
+        zero: Часы работы не найдены
+        one: Часы работы
+        other: Часы работы
+
+    attributes:
+      restaurant:
+        id: Номер
+        name: Имя
+        address: Адрес
+        user_id: Пользаватель
+        created_at: Создан
+        minimum_order: Минимальный заказ
+        average_delivery_time: Время доставки
+        delivery_fee: Стоимость доставки
+        description: Доп. информация
+        districts: Районы
+        menus: Меню
+        business_hours: Часы работы
+        city: Город
+        logo: Логотип
+        title: Тип заведения
+        rating: Рейтинг
+        details: Детали
+
+      deliverability:
+        <<: *default_attributes
+        fee: Цена
+      menu:
+        <<: *default_attributes
+        name: Имя
+      business_hour:
+        <<: *default_attributes
+        opening: От
+        closing: До
+        day: День
+        schedule: Часы
+      user:
+        id: Номер
+        first_name: Имя
+        last_name: Фамилия
+        email: Email
+        created_at: Создан
+        admin: Админ
+        restaurateur: Ресторатор
+        phone_number: Моб. телефон
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        remember_me: Запомнить меня на этом компьютере
+
+      address:
+        city: Город
+        district: Район
+        house: Дом
+        porch: Подъезд
+        floor: Этаж
+        doorphone: Домофон
+        comment: Доп. информация
+        first_name: Имя
+        last_name: Фамилия
+        phone_number: Моб. телефон
+        street: Улица
+        korpus: Корпус
+
+      order:
+        delivery_time: Время доставки
+        change_from: Сдача с
+        id: Номер
+        created_at: Создан
+        sum: Сумма
+        status: Статус
+
+      review:
+        content: Подробнее
+        title: Вкратце
+
+      dish:
+        name: Имя
+        description: Описание
+        price: Цена
+        picture: Изображение
+    errors:
+      <<: *errors
+
+  active_admin:
+    dashboard: Главная
+    logout: Выйти
+    edit: Редактировать
+    delete: Удалить
+    view: Просмотреть
+    new_model: Добавить
+    any: Любой
+    search_field: Поиск
+    equal_to: Равно
+    greater_than: Больше чем
+    less_than: Меньше чем
+    filter: Отфильтровать
+    clear_filters: Очистить фильтры
+    cancel: Отменить
+    create: 'Создать %{model}'
+    dashboard_welcome:
+      welcome: Добро пожаловать!
+      call_to_action: Ни пуха ни пера!
+
+  devise:
+    registrations:
+      user:
+        signed_up: Регистрация прошла успешно!
+    sessions:
+      user:
+        signed_out: Вы успешно вышли с системы.
+        signed_in: Вы успешно вошли в систему.
+    failure:
+      user:
+        unauthenticated: Необходимо сначало войти в систему
+        invalid: Информация введена неверно!
+    links:
+      forgot_password: Забыли пароль?
+
   date:
     abbr_day_names:
     - Вс
@@ -117,56 +434,31 @@ ru:
       month: Месяц
       second: Секунд
       year: Год
-  errors: &errors
-    format: ! '%{attribute} %{message}'
-    messages:
-      accepted: нужно подтвердить
-      blank: не может быть пустым
-      confirmation: не совпадает с подтверждением
-      empty: не может быть пустым
-      equal_to: может иметь лишь значение, равное %{count}
-      even: может иметь лишь нечетное значение
-      exclusion: имеет зарезервированное значение
-      greater_than: может иметь значение большее %{count}
-      greater_than_or_equal_to: может иметь значение большее или равное %{count}
-      inclusion: имеет непредусмотренное значение
-      invalid: имеет неверное значение
-      less_than: может иметь значение меньшее чем %{count}
-      less_than_or_equal_to: может иметь значение меньшее или равное %{count}
-      not_a_number: не является числом
-      not_an_integer: не является целым числом
-      odd: может иметь лишь четное значение
-      record_invalid: ! 'Возникли ошибки: %{errors}'
-      taken: уже существует
-      too_long:
-        few: слишком большой длины (не может быть больше чем %{count} символа)
-        many: слишком большой длины (не может быть больше чем %{count} символов)
-        one: слишком большой длины (не может быть больше чем %{count} символ)
-        other: слишком большой длины (не может быть больше чем %{count} символа)
-      too_short:
-        few: недостаточной длины (не может быть меньше %{count} символов)
-        many: недостаточной длины (не может быть меньше %{count} символов)
-        one: недостаточной длины (не может быть меньше %{count} символа)
-        other: недостаточной длины (не может быть меньше %{count} символа)
-      wrong_length:
-        few: неверной длины (может быть длиной ровно %{count} символа)
-        many: неверной длины (может быть длиной ровно %{count} символов)
-        one: неверной длины (может быть длиной ровно %{count} символ)
-        other: неверной длины (может быть длиной ровно %{count} символа)
-    template:
-      body: ! 'Проблемы возникли со следующими полями:'
-      header:
-        few: ! '%{model}: сохранение не удалось из-за %{count} ошибок'
-        many: ! '%{model}: сохранение не удалось из-за %{count} ошибок'
-        one: ! '%{model}: сохранение не удалось из-за %{count} ошибки'
-        other: ! '%{model}: сохранение не удалось из-за %{count} ошибки'
+  
   helpers:
     select:
-      prompt: ! 'Выберите: '
+      prompt: ! 'Таңдаңыз: '
     submit:
-      create: Создать %{model}
-      submit: Сохранить %{model}
-      update: Сохранить %{model}
+      create: 'Создать %{model}'
+      submit: 'Сохранить %{model}'
+      update: 'Обновить %{model}'
+    actions: Управление
+    links:
+      view: Просмотреть
+      edit: Редактировать
+      destroy: Удалить
+      back: Назад
+      new: Добавить
+      cancel: Отменить
+      accept: Принять
+      reject: Отменить
+      drag: Переместить
+    titles:
+      new: 'Новый %{model}'
+      edit: 'Редактировать %{model}'
+    label:
+      user:
+        remember_me: Сохранить меня на этом компьютере
   number:
     currency:
       format:
@@ -175,8 +467,8 @@ ru:
         precision: 2
         separator: .
         significant: false
-        strip_insignificant_zeros: false
-        unit: руб.
+        strip_insignificant_zeros: true
+        unit: 〒
     format:
       delimiter: ! ' '
       precision: 3
@@ -250,8 +542,5 @@ ru:
     pm: вечера
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
-    errors:
-      <<: *errors
-  activerecord:
     errors:
       <<: *errors

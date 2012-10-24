@@ -1,4 +1,4 @@
-<%= simple_form_for @order, :html => { :class => '' } do |form| %>
+<%= simple_form_for @order, :html => { :class => 'form-horizontal' } do |form| %>
   
   <%= form.input :address_id, collection: @user.addresses, selected: @address.id || "" %>
 

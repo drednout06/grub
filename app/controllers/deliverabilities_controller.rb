@@ -25,6 +25,7 @@ class DeliverabilitiesController < ApplicationController
   # GET /deliverabilities/new
   # GET /deliverabilities/new.json
   def new
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @deliverability = Deliverability.new
 
     respond_to do |format|
@@ -41,11 +42,12 @@ class DeliverabilitiesController < ApplicationController
   # POST /deliverabilities
   # POST /deliverabilities.json
   def create
-    @deliverability = Deliverability.new(params[:deliverability])
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @deliverability = @restaurant.deliverabilities.build(params[:deliverability])
 
     respond_to do |format|
       if @deliverability.save
-        format.html { redirect_to @deliverability, notice: 'Deliverability was successfully created.' }
+        format.html { redirect_to restaurant_deliverabilities_path(@restaurant), notice: 'Deliverability was successfully created.' }
         format.json { render json: @deliverability, status: :created, location: @deliverability }
       else
         format.html { render action: "new" }

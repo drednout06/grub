@@ -133,5 +133,6 @@ class RestaurantsController < ApplicationController
     
     def update_rating
       @restaurant.update_attributes(rating: @restaurant.reputation_value_for(:rating))
+      print 'hi from update_rating'
     end
 end

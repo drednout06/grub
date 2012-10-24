@@ -25,11 +25,11 @@ function update_crop(coords) {
 }
 </script>
 
-<h1>Crop Logo<h1>
+<h1><%= t('navigation.crop_picture') %><h1>
 
 <%= image_tag @restaurant.logo.url(:large), :id => "cropbox", class: 'jcrop' %>
 
-<h4>Preview:</h4>
+<h4><%= t('navigation.preview') %>:</h4>
 <div style="width:300px; height:200px; overflow:hidden">
   <%= image_tag @restaurant.logo.url(:large), :id => "preview", class: 'jcrop' %>
 </div>
@@ -39,6 +39,6 @@ function update_crop(coords) {
     <%= f.hidden_field "crop_#{attribute}", id: "crop_#{attribute}" %> <br>
   <% end %>
   <div class="actions">
-    <%= f.submit "Crop" %>
+    <%= f.submit t("navigation.crop"), class: "btn btn-primary" %>
   </div>
 <% end %>
