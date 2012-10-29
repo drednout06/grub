@@ -1,1 +1,8 @@
-$("#<%= dom_id(@restaurant)%> .favorite").attr("class", "unfavorite");
+$("#<%= dom_id(@restaurant)%> .heart").toggleClass("icon-heart-empty icon-heart");
+<% if @favorited %>
+$("#<%= dom_id(@restaurant)%> .fans-number").html(parseInt($("#<%= dom_id(@restaurant)%> .fans-number").html(), 10)+1)
+$("#<%= dom_id(@restaurant)%> .heart").attr("data-original-title", "<%= t 'restaurants.restaurant.to_unfavorite'%>")
+<% else %>
+$("#<%= dom_id(@restaurant)%> .fans-number").html(parseInt($("#<%= dom_id(@restaurant)%> .fans-number").html(), 10)-1)
+$("#<%= dom_id(@restaurant)%> .heart").attr("data-original-title", "<%= t 'restaurants.restaurant.to_favorite'%>")
+<% end %>

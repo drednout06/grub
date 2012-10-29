@@ -7,6 +7,7 @@ class RestaurantsController < ApplicationController
     @q = Restaurant.ransack(params[:q])
     @restaurants = @q.result(:distinct => true)
     @q.build_sort if @q.sorts.empty?
+    save_district params[:q].try(:[], :deliverabilities_district_id_in)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -20,7 +21,7 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     @reviews = @restaurant.reviews
-    @cart = current_cart
+    @cart = current_cart || create_cart_for(@restaurant)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @restaurant }

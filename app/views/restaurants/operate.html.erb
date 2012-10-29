@@ -23,9 +23,8 @@
     </table>
   </div>
   <div class="span3">
-    <div class="page-header">
-      <h3><%=t '.Statistics', :default => Restaurant.human_attribute_name(:statistics) %></h3>
-    </div>
+    <h3><%=t '.Statistics', :default => Restaurant.human_attribute_name(:statistics) %></h3>
+    
     <p>
     New orders: <%= @orders.pending.count %>
     </p>

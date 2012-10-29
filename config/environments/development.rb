@@ -40,7 +40,7 @@ Grub::Application.configure do
 
   config.assets.compile = true
 
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Paperclip - ImageMagick
   Paperclip.options[:command_path] = "/opt/local/bin/"

@@ -1,5 +1,7 @@
 class Cart < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :restaurant_id
+
+  belongs_to :restaurant
   has_many :line_items, dependent: :destroy
 
   def add_dish(dish_id)
@@ -14,6 +16,19 @@ class Cart < ActiveRecord::Base
 
 	def total_price
 		line_items.to_a.sum {|item| item.total_price }
+	end
+
+	def total_price_to(district_id)
+		restaurant.delivery_fee(district_id) +
+		line_items.to_a.sum {|item| item.total_price }
+	end
+
+	def enough?
+		restaurant.minimum_order <= total_price
+	end
+
+	def remainder
+		restaurant.minimum_order - total_price
 	end
 
 end

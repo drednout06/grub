@@ -53,6 +53,13 @@ ru:
   orders:
     new:
       new_address: Добавить адрес
+      title: Оформление заказа
+    address_form:
+      mandatory_legend: Данные получателя
+      optional_legend: Дополнительные данные
+    form:
+      preferences_legend: Предпочтения
+      submit: Отправить заказ
 
   restaurants:
     restaurant:
@@ -60,6 +67,7 @@ ru:
       closed_tooltip: На данный момент заведение закрыто, но возможен предзаказ
       control_menus: Управление меню
       to_favorite: Добавить в избранное
+      to_unfavorite: Удалить из избранных
       favorited_by: '%{value} пользователей добавили в избранное'
     index:
       sort_by: 'Сортировать по:'
@@ -100,9 +108,14 @@ ru:
     item: Блюдо
     price: Цена
     total: Всего
+    subtotal: Сумма заказа
     empty: Очистить
     checkout: Заказать
     empty_confirm: Хотить начать заново?
+
+  notice:
+    sum_insufficient: Необходимо пополнить заказ еще на %{value} тенге.
+    order_created: Заказ был успешно принят.
 
   users:
     restaurateur:
@@ -119,6 +132,7 @@ ru:
     profile: Профайл
     signout: Выйти
     signin: Войти
+    signin_long: Уже регистрировались? Тогда войдите в систему здесь!
     signup: Зарегистрироваться
     about: О нас
     contact: Связь
@@ -204,26 +218,22 @@ ru:
 
     attributes:
       restaurant:
-        id: Номер
-        name: Имя
         address: Адрес
         user_id: Пользаватель
-        created_at: Создан
         minimum_order: Минимальный заказ
         average_delivery_time: Время доставки
         delivery_fee: Стоимость доставки
         description: Доп. информация
-        districts: Районы
         menus: Меню
         business_hours: Часы работы
-        city: Город
         logo: Логотип
         title: Тип заведения
         rating: Рейтинг
         details: Детали
+        <<: *default_attributes
 
       deliverability:
-        <<: *default_attributes
+        
         fee: Цена
       menu:
         <<: *default_attributes
@@ -268,6 +278,7 @@ ru:
         created_at: Создан
         sum: Сумма
         status: Статус
+        address_id: Сохраненные адреса
 
       review:
         content: Подробнее
@@ -302,6 +313,11 @@ ru:
       call_to_action: Ни пуха ни пера!
 
   devise:
+    passwords:
+      new:
+        reset_send_button: Отправить
+      user:
+        send_instructions: Инструкции по восстановлению пароля были отправлены на Ваш email.
     registrations:
       user:
         signed_up: Регистрация прошла успешно!
@@ -326,7 +342,6 @@ ru:
     - Пт
     - Сб
     abbr_month_names:
-    - 
     - янв.
     - февр.
     - марта
@@ -352,7 +367,6 @@ ru:
       long: ! '%d %B %Y'
       short: ! '%d %b'
     month_names:
-    - 
     - января
     - февраля
     - марта
@@ -365,6 +379,19 @@ ru:
     - октября
     - ноября
     - декабря
+    month_names_nominative:
+    - январь
+    - февраль
+    - март
+    - апрель
+    - май
+    - июнь
+    - июль
+    - август
+    - сентябрь
+    - октябрь
+    - ноябрь
+    - декабрь
     order:
     - :day
     - :month
@@ -544,3 +571,20 @@ ru:
   activemodel:
     errors:
       <<: *errors
+
+  datepicker:
+    closeText: 'Закрыть'
+    prevText: '<Пред'
+    nextText: 'След>'
+    currentText: 'Сегодня'
+    weekHeader: 'Не'
+  timepicker:
+    timeOnlyTitle: 'Выберите время'
+    timeText: 'Время'
+    hourText: 'Часы'
+    minuteText: 'Минуты'
+    secondText: 'Секунды'
+    millisecText: 'Миллисекунды'
+    timezoneText: 'Часовой пояс'
+    currentText: 'Сейчас'
+    closeText: 'Закрыть'

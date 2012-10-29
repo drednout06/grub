@@ -1,28 +1,45 @@
 <div id="cart">
-	<div class="page-header">
-		<h3>
-			<i class="icon-shopping-cart icon-large"></i>
-			<%= t('carts.headline') %>
-		</h3>
-	</div>
+	<legend>
+		<i class="icon-shopping-cart icon-large"></i>
+		<%= t('carts.headline') %>
+	</legend>
 	<%= render @cart.line_items %>
 
-	<div class="row lead">
+	<div class="row">
 		<strong>
-		<div class="span2"><%= t('carts.total') %></div>
+		<div class="span2"><%= t('carts.subtotal') %></div>
 		<div class="span1"><%= number_to_currency(@cart.total_price) %></div>
 		</strong>
 	</div>
-		
-	<%= link_to new_order_path, method: :get,
-		class: "btn btn-success" do %>
-		<i class="icon-ok icon-large"></i>
-		<%= t("carts.checkout") %>
-	<% end %>
+	
+	<div class="row">
+		<div class="span2"><%= Restaurant.human_attribute_name :minimum_order %></div>
+		<div class="span1"><%= number_to_currency(@cart.restaurant.try(:minimum_order)) %></div>
+	</div>
 
-	<%= link_to @cart, method: :delete,
-		confirm: t("carts.empty_confirm"), remote: true, class: "btn btn-danger" do %>
-		<i class="icon-trash icon-large"></i>
-		<%= t("carts.empty") %>
+	<div class="row">
+		<div class="span2"><%= Restaurant.human_attribute_name :delivery_fee %></div>
+		<div class="span1"><%= number_to_currency(@cart.restaurant.try(:delivery_fee, current_district)) %></div>
+	</div>
+	<div class="divider"></div>
+	<div class="row lead" style="margin-bottom: 10px;">
+		<strong>
+		<div class="span2"><%= t('carts.total') %></div>
+		<div class="span1"><%= number_to_currency(@cart.total_price_to(current_district)) %></div>
+		</strong>
+	</div>
+	
+	<% unless params[:controller] == 'orders' %>
+		<%= link_to new_order_path, method: :get,
+			class: "btn btn-success", style: "margin: 0 10px 0 5px;" do %>
+			<i class="icon-ok icon-large"></i>
+			<%= t("carts.checkout") %>
+		<% end %>
+
+		<%= link_to @cart, method: :delete,
+			confirm: t("carts.empty_confirm"), remote: true, class: "btn btn-danger" do %>
+			<i class="icon-trash icon-large"></i>
+			<%= t("carts.empty") %>
+		<% end %>
 	<% end %>
 </div>

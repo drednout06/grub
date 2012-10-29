@@ -13,9 +13,10 @@
 			<div data-spy="affix" data-offset-top="300" class="nav-affix">
 				<div class="navbar-inner">
 			    <div class="container" id="spy-nav-menu" data-offset="50">
-
-			    <a class="brand" href="#" ><%= t("navigation.menu") %></a>
-			    
+			    <a class="brand" href="#" >
+			    	<%= t("navigation.menu") %>
+			    	<i class="icon-chevron-right" style="font-size: 16px;"></i>
+			    </a>
 					<ul class="nav">
 						<% @restaurant.menus.each do |menu| %>
 							<li>
@@ -54,10 +55,8 @@
 
 
 	<div class="span3">
-		<div class="menu affix-top" data-spy="affix" data-offset-top="110">
-			
-				<%= render @cart %>
-			
+		<div class="affix-top" data-spy="affix" data-offset-top="120" data-offset-bottom="500">
+			<%= render @cart %>
 		</div>
 	</div>
 

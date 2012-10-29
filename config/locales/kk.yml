@@ -2,9 +2,9 @@ kk:
   errors: &errors
     format: ! '%{attribute} %{message}'
     messages:
-      accepted: нужно подтвердить
+      accepted: құптау керек
       blank: бос бола алмайды
-      confirmation: не совпадает с подтверждением
+      confirmation: құптаумен сәйкес келмейді
       empty: бос бола алмайды
       equal_to: может иметь лишь значение, равное %{count}
       even: может иметь лишь нечетное значение
@@ -52,7 +52,14 @@ kk:
 
   orders:
     new:
+      title: Жаңа тапсырыс
       new_address: Жаңа
+    address_form:
+      mandatory_legend: Қабылдаушы туралы ақпарат
+      optional_legend: Қосымша деректер
+    form:
+      preferences_legend: Бапталымдар
+      submit: Тапсырысты жіберу
       
   restaurants:
     restaurant:
@@ -60,6 +67,7 @@ kk:
       closed_tooltip: Асхана әзірше жабық бірақ алдынала тапсырыс берсеңіз болады.
       control_menus: Мәзірлерді басқару
       to_favorite: Таңдаулыларыма қосу
+      to_unfavorite: Таңдаулыларымнан өшіру
       favorited_by: '%{value} пайдаланушы таңдаулы етті'
     index:
       sort_by: Не бойынша реттеу
@@ -101,9 +109,14 @@ kk:
     item: Тағам
     price: Бағасы
     total: Барлығы
+    subtotal: Тапсырыс сомасы
     empty: Өшіру
     checkout: Тапсырыс беру
     empty_confirm: Тапсырысты жаңадан бастағыңыз келе ме?
+
+  notice:
+    sum_insufficient: Тапсырысты кемінде тағыда %{value} теңгеге толтыруыңыз керек.
+    order_created: Тапсырысыңыз сәтті қабылданды.
 
   users:
     restaurateur:
@@ -120,6 +133,7 @@ kk:
     profile: Профайл
     signout: Шығу
     signin: Кіру
+    signin_long: Бұрында тіркелдіңіз бе? Онда осы жерден жүйеге кіріңіз!
     signup: Тіркелу
     about: Біз туралы
     contact: Байланыс
@@ -147,6 +161,7 @@ kk:
     crop: Қию
     crop_picture: Суретті қырқу
     preview: Алдын ала қарап алу
+
 
 
   activerecord:
@@ -261,6 +276,7 @@ kk:
         phone_number: Ұялы телефон
         street: Көше
         korpus: Корпус
+        <<: *default_attributes
 
       order:
         delivery_time: Әкелу уақыты
@@ -269,6 +285,8 @@ kk:
         created_at: Құрылған кезі
         sum: Сома
         status: Статус
+        address_id: Сақталған мекенжайлар
+        deliver_now: Бірден әкелу
 
       review:
         content: Толығырақ
@@ -303,6 +321,11 @@ kk:
       call_to_action: Ал бастаңыз!
 
   devise:
+    passwords:
+      new:
+        reset_send_button: Жіберу
+      user:
+        send_instructions: Құпия сөзді ысыру нұскауы имейліңізге жіберілді.
     registrations:
       user:
         signed_up: Жүйеге сәтті тіркелдіңіз!
@@ -328,7 +351,6 @@ kk:
     - Жұ
     - Сен
     abbr_month_names:
-    - 
     - қаң.
     - ақп.
     - нау.
@@ -354,7 +376,19 @@ kk:
       long: ! '%d %B %Y'
       short: ! '%d %b'
     month_names:
-    - 
+    - қаңтар
+    - ақпан
+    - науырыз
+    - сәуір
+    - мамыр
+    - мауысым
+    - шілде
+    - тамыз
+    - қыркүйек
+    - қазаң
+    - қараша
+    - желтоқсан
+    month_names_nominative:
     - қаңтар
     - ақпан
     - науырыз
@@ -546,3 +580,20 @@ kk:
   activemodel:
     errors:
       <<: *errors
+
+  datepicker:
+    closeText: 'Жабу'
+    prevText: '<Алдағы'
+    nextText: 'Келесі>'
+    currentText: 'Бүгін'
+    weekHeader: 'Апта'
+  timepicker:
+    timeOnlyTitle: 'Уақытты таңдаңыз'
+    timeText: 'Уақыт'
+    hourText: 'Сағат'
+    minuteText: 'Минут'
+    secondText: 'Секунд'
+    millisecText: 'Миллисекунд'
+    timezoneText: 'Уақыт белдеуі'
+    currentText: 'Қазір'
+    closeText: 'Жабу'

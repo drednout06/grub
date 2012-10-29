@@ -1,17 +1,18 @@
 class UserFavoritesController < InheritedResources::Base
+	before_filter :authenticate_user!
 
 	def index
-		@favorites = @user.favorites	
+		@favorites = current_user.favorites	
 	end
 
 	def create
 		@restaurant = Restaurant.find(params[:restaurant_id])
-		current_user.favorites << @restaurant
-	end
-
-	def destroy
-		@favorite = UserFavorite.find(params[:id])
-		@restaurant = @favorite.try(:restaurant)
-		@favorite.destroy unless @favorite.blank?
+		@favorited = true
+		if current_user.favorites.include?(@restaurant)
+			current_user.favorites.delete(@restaurant)
+			@favorited = false
+		else
+			current_user.favorites << @restaurant
+		end
 	end
 end

@@ -42,6 +42,11 @@ class LineItemsController < ApplicationController
   def create
     @cart = current_cart
     dish = Dish.find(params[:dish_id])
+
+    if @cart.try(:restaurant) != dish.restaurant
+      @cart.destroy
+      @cart = create_cart_for(dish.restaurant)
+    end
     @line_item = @cart.add_dish(dish.id)
 
     respond_to do |format|

@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: business_hours
+#
+#  id            :integer         not null, primary key
+#  restaurant_id :integer
+#  schedule      :text
+#  created_at    :datetime        not null
+#  updated_at    :datetime        not null
+#  day           :string(255)
+#  opening       :string(255)
+#  closing       :string(255)
+#
+
 class BusinessHour < ActiveRecord::Base
 	include IceCube
 

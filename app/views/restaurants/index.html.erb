@@ -44,15 +44,15 @@
     <div id="rating_slider"></div>
 
     <%= f.label :city_id_in, model_class.human_attribute_name(:city) %>
-    <%= f.collection_select :city_id_in, City.order(:name), :id, :name, include_blank: true %>
+    <%= f.collection_select :city_id_in, City.order(:name), :id, :name, include_blank: false %>
     
-    <%= f.label :deliverabilities_district_id_in, model_class.human_attribute_name(:districts) %>
-    <%= f.grouped_collection_select :deliverabilities_district_id_in, City.order(:name), :districts, :name, :id, :name, include_blank: true %>
+    <%= f.label :deliverabilities_district_id_in, model_class.human_attribute_name(:district) %>
+    <%= f.grouped_collection_select :deliverabilities_district_id_in, City.order(:name), :districts, :name, :id, :name, include_blank: false %>
 
     <%#= f.label :average_delivery_time_lteq, model_class.human_attribute_name(:average_delivery_time) %>
     <%#= f.text_field :average_delivery_time_lteq %>
 
-    <%= f.submit class: 'btn btn-success' %>
+    <%= f.submit t('navigation.search'), class: 'btn btn-success' %>
   <% end %>
 
 </div>

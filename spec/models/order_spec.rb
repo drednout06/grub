@@ -15,5 +15,7 @@ end
 #  created_at    :datetime        not null
 #  updated_at    :datetime        not null
 #  restaurant_id :integer
+#  status        :string(255)
+#  comment       :text
 #
 

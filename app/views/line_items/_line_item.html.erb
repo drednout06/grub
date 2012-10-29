@@ -1,13 +1,14 @@
 <div class="line_item" id="<%= line_item == @current_item?'current_item':'nothing' %>">
-	<div class="lead"><%= line_item.dish.name %> </div>
+	<span><%= line_item.dish.name %></span>
 	<div class="row">
 		<div class="span1">
+			<span>
 			<%= link_to raw('<i class="icon-minus-sign"></i>'), decrement_line_item_path(line_item),
 					remote: true, method: :post, class: "decrement" %>
 			<%= line_item.quantity %>
 			<%= link_to raw('<i class="icon-plus-sign"></i>'), increment_line_item_path(line_item),
 					remote: true, method: :post, class: "decrement" %>
-
+			</span>
 		</div>
 
 		<div class="span2"><%= number_to_currency(line_item.total_price) %></div>

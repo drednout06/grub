@@ -23,7 +23,7 @@
 
 class Restaurant < ActiveRecord::Base
   attr_accessible :address, :minimum_order, :name, :logo, :title,
-                  :average_delivery_time, :delivery_fee, :description, :user_id,
+                  :average_delivery_time, :description, :user_id,
                   :deliverabilities_attributes, :cuisines, :cuisine_ids, :rating,
 
                   :city_id, :crop_x, :crop_y, :crop_w, :crop_h
@@ -38,6 +38,7 @@ class Restaurant < ActiveRecord::Base
   belongs_to :owner, class_name: "User", foreign_key: "user_id"
   belongs_to :city
   has_many :menus, dependent: :destroy
+  has_many :carts, dependent: :destroy
   has_many :dishes, through: :menus
   has_many :orders
   has_many :deliverabilities, dependent: :destroy
@@ -54,7 +55,6 @@ class Restaurant < ActiveRecord::Base
 
   validates :title, presence: true
   validates :average_delivery_time, presence: true
-  validates :delivery_fee, presence: true
   validates :user_id, presence: true
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :address, presence: true
@@ -89,12 +89,20 @@ class Restaurant < ActiveRecord::Base
     business_hours.any? { |hour| hour.schedule.occurring_at?(Time.now) }
   end
 
+  def open_at?(time)
+    business_hours.any? { |hour| hour.schedule.occurring_at?(time) }
+  end
+
   def business_hour
     business_hours.detect { |hour| hour.schedule.occurring_at?(Time.now) }
   end
 
   def today_hours
     business_hours.find_all { |hour| hour.day == Date::DAYNAMES[Time.now.wday].downcase }
+  end
+
+  def delivery_fee(district_id)
+    deliverabilities.find_by_district_id(district_id).try(:fee)
   end
 
 end

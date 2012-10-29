@@ -1,9 +1,10 @@
 
 <div class="star_rating">
 	<span>
+		<% rating = review.user.rating_for(@restaurant) %>
   <% 1.upto(10) do |value| %>
     <%= star_button_readonly "review_rating_#{review.id}", value,
-    	(value==(review.user.rating_for(@restaurant)*2).round), true %>
+    	(value==(rating*2).round), true %>
   <% end %>
 		<span class="review_title"><%= review.title %></span>
 	</span>

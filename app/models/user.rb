@@ -33,8 +33,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,
   	:first_name, :last_name, :phone_number, :admin, :restaurateur
   
-  has_many :addresses
-  has_many :orders, through: :addresses
+  has_many :addresses, dependent: :destroy
+  has_many :orders
   has_many :reviews, dependent: :destroy
   has_many :evaluations, class_name: "RSEvaluation", as: :source
   has_many :restaurants, dependent: :destroy
@@ -59,5 +59,9 @@ class User < ActiveRecord::Base
 
   def favorite(restaurant)
     user_favorites.where(restaurant_id: restaurant.id).first
+  end
+
+  def favorited?(restaurant)
+    user_favorites.where(restaurant_id: restaurant.id).exists?
   end
 end

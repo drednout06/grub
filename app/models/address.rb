@@ -23,8 +23,6 @@ end
 # Table name: addresses
 #
 #  id           :integer         not null, primary key
-#  city         :string(255)
-#  district     :string(255)
 #  house        :string(255)
 #  porch        :string(255)
 #  floor        :string(255)
@@ -39,5 +37,7 @@ end
 #  korpus       :string(255)
 #  phone_number :string(255)
 #  street       :string(255)
+#  city_id      :integer
+#  district_id  :integer
 #
 

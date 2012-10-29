@@ -63,7 +63,8 @@ class DeliverabilitiesController < ApplicationController
 
     respond_to do |format|
       if @deliverability.update_attributes(params[:deliverability])
-        format.html { redirect_to @deliverability, notice: 'Deliverability was successfully updated.' }
+        format.html { redirect_to restaurant_deliverabilities_path(@deliverability.restaurant),
+           notice: 'Deliverability was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

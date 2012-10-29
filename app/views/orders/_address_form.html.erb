@@ -1,17 +1,31 @@
 <%= simple_fields_for address do |f| %>
-  <%= f.input :first_name, input_html: { value:
-    (address.try(:first_name) ? address.first_name : @user.first_name )} %>
-  <%= f.input :last_name, input_html: { value:
-    (address.try(:last_name) ? address.last_name : @user.last_name )} %>
-  <%= f.input :phone_number, input_html: { value:
-    (address.try(:phone_number) ? address.phone_number : @user.phone_number )} %>
-  <%= f.association :city %>
-  <%= f.association :district %>
-  <%= f.input :street %>
-  <%= f.input :house %>
-  <%= f.input :korpus %>
-  <%= f.input :porch %>
-  <%= f.input :floor %>
-  <%= f.input :doorphone %>
-  <%= f.input :comment %>
+  <legend><%= t '.mandatory_legend' %></legend>
+  <div class="row">
+    <div class="span4">
+      <%= f.input :first_name, input_html: { value:
+        (address.try(:first_name) ? address.first_name : @user.first_name )} %>
+      <%= f.input :last_name, input_html: { value:
+        (address.try(:last_name) ? address.last_name : @user.last_name )} %>
+      <%= f.input :phone_number, input_html: { value:
+        (address.try(:phone_number) ? address.phone_number : @user.phone_number )} %>
+    </div>
+    <div class="span5">
+      <%= f.association :city %>
+      <%= f.association :district %>
+      <%= f.input :street %>
+      <%= f.input :house, class: "input-small" %>
+    </div>
+  </div>
+  <legend><%= t '.optional_legend' %></legend>
+  <div class="row">
+    <div class="span4">
+      <%= f.input :korpus %>
+      <%= f.input :porch %>
+      <%= f.input :floor %>
+    </div>
+    <div class="span5">
+      <%= f.input :doorphone %>
+      <%= f.input :comment %>
+    </div>
+  </div>
 <% end %>

@@ -10,13 +10,16 @@
 #  created_at    :datetime        not null
 #  updated_at    :datetime        not null
 #  restaurant_id :integer
+#  status        :string(255)
+#  comment       :text
 #
 
 class Order < ActiveRecord::Base
   attr_accessible :address_id, :change_from, :delivery_time, :address,
-                  :address_type, :address_attributes, :comment, :status, :restaurant_id
+                  :address_type, :address_attributes, :comment, :status, :restaurant_id,
+                  :total, :deliver_now
 
-  has_one :user, through: :address
+  belongs_to :user
   belongs_to :restaurant
   belongs_to :address
   accepts_nested_attributes_for :address
@@ -24,7 +27,10 @@ class Order < ActiveRecord::Base
   has_many :line_items, dependent: :destroy
 
   #validates :user, presence: true
-  validates :address, presence: true
+  validates :address_id, presence: true
+  validates :restaurant_id, presence: true
+  validates :delivery_time, presence: true, if: :preorder?
+  validate :delivery_time_valid, if: :preorder?
 
   STATUSES = {pending: 'pending', accepted: 'accepted', rejected: 'rejected'}
 
@@ -38,13 +44,16 @@ class Order < ActiveRecord::Base
   scope :rejected, where(status: STATUSES[:rejected])
 
   default_scope :order => 'created_at DESC'
+  before_save :set_deliver_time
   
 
-  def add_line_items_from_cart(cart)
+  def add_data_from_cart(cart)
   	cart.line_items.each do |item|
   		item.cart_id = nil
   		line_items << item
   	end
+    self.restaurant_id = cart.restaurant_id
+    self.total = cart.total_price_to(address.district_id)
   end
 
   def total_price
@@ -53,6 +62,27 @@ class Order < ActiveRecord::Base
 
   def pending?
     status == STATUSES[:pending]
+  end
+
+  def preorder?
+    !deliver_now
+  end
+
+  def delivery_time_valid
+    unless delivery_time
+      errors.add(:delivery_time, "time is invalid")
+      return
+    end
+    # unless restaurant.open_at?(delivery_time)
+    #   errors.add(:delivery_time, "restaurant is closed at this time") 
+    # end
+    unless (delivery_time > Time.now and delivery_time <= Time.now.tomorrow)
+      errors.add(:delivery_time, "you can only order for the next 24 hours")
+    end
+  end
+
+  def set_delivery_time
+    self.delivery_time ||= Time.now.to_i
   end
 
 end

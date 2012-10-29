@@ -46,6 +46,10 @@ html {
   overflow-y: scroll;
 }
 
+body {
+  position: relative;
+}
+
 #landing-body { 
   background: asset-url('try1.jpg') no-repeat; 
   -webkit-background-size: 100%;
@@ -247,6 +251,10 @@ header {
   }
 }
 
+.affix-bottom {
+  position: absolute;
+  bottom: 490px;
+}
 
 .decrement {
   color: #94BBCE;
@@ -474,9 +482,15 @@ div.divider {
   border-bottom: 1px solid white;
 }
 
-#cart .lead {
-  margin-bottom: 0px;
-  font-size: 16px;
+#cart {
+  background-color: #fff;
+  position: auto;
+  overflow: scroll;
+  // padding: 20px 0 20px 0;
+  .row.lead {
+    margin-bottom: 0px;
+    font-size: 16px;
+  }
 }
 
 .favorite {
@@ -508,4 +522,15 @@ div.divider {
   font-size: 12px;
   color: #777;
   cursor: move;
+}
+
+.line_item {
+  font-weight: 200;
+  span {
+    margin-left: 10px;
+  }
+}
+
+#order-form {
+  
 }

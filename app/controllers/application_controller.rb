@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   include CartsHelper
+  include DistrictsHelper
 
   before_filter :set_locale
 
@@ -18,8 +19,8 @@ class ApplicationController < ActionController::Base
   private
 
 		def set_locale
-		  I18n.locale = params[:locale] || session[:locale] || I18n.default_locale
-		  session[:locale] = I18n.locale
+		  I18n.locale = params[:locale] || cookies[:locale] || I18n.default_locale
+		  cookies.permanent[:locale] = I18n.locale
 		end
 
 		def default_url_options(options = {})

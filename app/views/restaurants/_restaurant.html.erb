@@ -31,27 +31,18 @@
 				</span>
 
 				<span style="margin-left: 20px;">
-					<% if user_signed_in? %>
-						<% user_favorite = current_user.favorite(restaurant) %>
-						<% if user_favorite %>
-							<%= link_to user_favorite_path(user_favorite),
-								method: :delete, remote: true, class: "favorite" do %>
-								<i class="icon-heart icon-large tooltiped" rel="tooltip" data-placement="top"
-									data-original-title="<%= t '.to_favorite' %>" data-trigger="hover" ></i>
-							<% end %>
+					<%= link_to user_favorites_path(restaurant_id: restaurant.id),
+						method: :post, remote: true, class: "favorite" do %>
+						<% if current_user.try(:favorited?, restaurant) %>
+							<i class="icon-heart icon-large tooltiped heart" rel="tooltip" data-placement="top"
+								data-original-title="<%= t '.to_unfavorite' %>" data-trigger="hover"></i>
 						<% else %>
-							<%= link_to user_user_favorites_path(current_user, restaurant_id: restaurant.id),
-								method: :post, remote: true, class: "favorite" do %>
-								<i class="icon-heart-empty icon-large tooltiped" rel="tooltip" data-placement="top"
-									data-original-title="<%= t '.to_favorite' %>" data-trigger="hover" ></i>
-							<% end %>
-						<%end%>
-					<% else %>
-						<a href="#" class="favorite"><i class="icon-heart-empty icon-large tooltiped" rel="tooltip" data-placement="top"
-									data-original-title="<%= t '.to_favorite' %>" data-trigger="hover" ></i>
-						</a>
+							<i class="icon-heart-empty icon-large tooltiped heart" rel="tooltip" data-placement="top"
+								data-original-title="<%= t '.to_favorite' %>" data-trigger="hover"></i>
+						<% end %>
 					<% end %>
-					<span id="fans-number" class="tooltiped" rel="tooltip" data-placement="top"
+
+					<span class="tooltiped fans-number" rel="tooltip" data-placement="top"
 						data-original-title="<%= t '.favorited_by', value: restaurant.fans.count %>" data-trigger="hover"> <%= restaurant.fans.count %>
 					</span>
 				</span>
@@ -102,7 +93,7 @@
 							<%= number_to_currency (restaurant.minimum_order) %>
 						</td>
 						<td class="value">
-							<%= number_to_currency (restaurant.delivery_fee) %>
+							<%= number_to_currency(restaurant.delivery_fee(current_district)) %>
 						</td>
 						<td class="value">
 							<%= t('restaurants.delivery_time', minutes: restaurant.average_delivery_time) %>
@@ -114,9 +105,5 @@
 					</tr>
 				</tbody>
 			</table>
-
-
-		
 	</div>
 </div>
-

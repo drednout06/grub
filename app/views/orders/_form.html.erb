@@ -1,17 +1,18 @@
-<%= simple_form_for @order, :html => { :class => 'form-horizontal' } do |form| %>
-  
+<%= simple_form_for @order, :html => { :class => 'form-horizontal', id: "order-form" } do |form| %>
   <%= form.input :address_id, collection: @user.addresses, selected: @address.id || "" %>
 
   <div id="order-address-form">
     <%= render 'address_form', address: @address %>
   </div>
-
-  <%= form.input :delivery_time %>
+  <legend><%= t '.preferences_legend' %></legend>
+  <%= form.input :deliver_now, input_html: {checked: true} %>
+  <%= form.input :delivery_time, as: :custom_time, disabled: true, input_html: {class: "datetimepicker"}%>
   <%= form.input :change_from %>
 
   <div class="form-actions">
-    <%= form.button :submit, :class => 'btn-primary' %>
+    <%= form.button :submit, t('.submit'), :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                orders_path, :class => 'btn' %>
+                restaurant_path(@cart.restaurant), :class => 'btn' %>
   </div>
+  <%= render partial: 'shared/datetime_picker' %>
 <% end %>
