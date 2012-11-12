@@ -24,7 +24,7 @@
 class Restaurant < ActiveRecord::Base
   attr_accessible :address, :minimum_order, :name, :logo, :title,
                   :average_delivery_time, :description, :user_id,
-                  :deliverabilities_attributes, :cuisines, :cuisine_ids, :rating,
+                  :deliverabilities_attributes, :cuisines, :cuisine_ids, :rating, :enabled,
 
                   :city_id, :crop_x, :crop_y, :crop_w, :crop_h
 
@@ -52,6 +52,7 @@ class Restaurant < ActiveRecord::Base
   has_many :business_hours, dependent: :destroy
 
   has_reputation :rating, source: :user, aggregated_by: :average
+  is_impressionable
 
   validates :title, presence: true
   validates :average_delivery_time, presence: true
@@ -70,6 +71,7 @@ class Restaurant < ActiveRecord::Base
   after_update :reprocess_logo, :if => :cropping?
 
   default_scope :order => 'rating DESC'
+  scope :enabled, where(enabled: true)
 
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
@@ -103,6 +105,33 @@ class Restaurant < ActiveRecord::Base
 
   def delivery_fee(district_id)
     deliverabilities.find_by_district_id(district_id).try(:fee)
+  end
+
+  def views_count_by_day(start, finish = Time.zone.now)
+    views = impressions.where(created_at: start.beginning_of_day..finish.end_of_day)
+    views = views.group("date(created_at)")
+    views = views.select("date(created_at) as created_at, count(*) as count")
+    views.each_with_object({}) do |view, counts|
+      counts[view.created_at.to_date] = view.count
+    end
+  end
+
+  def orders_count_by_day(start, finish = Time.zone.now)
+    orders = self.orders.where(created_at: start.beginning_of_day..finish.end_of_day)
+    orders = orders.group("date(created_at)")
+    orders = orders.select("date(created_at) as created_at, count(*) as count")
+    orders.each_with_object({}) do |order, counts|
+      counts[order.created_at.to_date] = order.count
+    end
+  end
+
+  def revenues_by_day(start, finish = Time.zone.now)
+    revenues = orders.where(created_at: start.beginning_of_day..finish.end_of_day)
+    revenues = revenues.group("date(created_at)")
+    revenues = revenues.select("date(created_at) as created_at, sum(total) as total_sum")
+    revenues.each_with_object({}) do |revenue, sums|
+      sums[revenue.created_at.to_date] = revenue.total_sum
+    end
   end
 
 end

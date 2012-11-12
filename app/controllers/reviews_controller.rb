@@ -1,5 +1,7 @@
 class ReviewsController < InheritedResources::Base
+	load_and_authorize_resource
 	belongs_to :restaurant
+	
 	def index
 		@restaurant = Restaurant.find(params[:restaurant_id])
 		# @review = @restaurant.reviews.where(user_id: current_user.id).first || Review.new

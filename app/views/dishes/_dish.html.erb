@@ -5,7 +5,7 @@
   		data-original-title="<%= dish.name %>" data-trigger="hover">
     	<div class="dish_text">
 		    <h4 class="dish_name"> <%= dish.name %> </h4>
-		    <p> <%= dish.description %></p>
+		    <%= dish.description %>
 	    </div>
 	    <div class="price">
 	    	<h4> <%= number_to_currency(dish.price) %> </h4>

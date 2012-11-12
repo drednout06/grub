@@ -5,9 +5,6 @@
         <%= image_tag('logo_small.png') %>
       <% end %>
       <div class="nav-collapse">
-        <ul class="nav pull-left">
-          <li><a href="#"><i class="icon-info-sign"></i>Demo version</a></li>
-        </ul>
         <ul class="nav pull-right" id="nav">
           <% if I18n.locale == :ru %>
             <li><%= link_to "Қазақша", locale: "kk" %></li>
@@ -17,23 +14,23 @@
           <li class="divider-vertical"></li>
 
           <% if user_signed_in? %>
-            <% if current_user.restaurateur? %>
+            <% if current_user.restaurateur? or current_user.admin? %>
               <li><%= link_to restaurateur_user_path(current_user) do %>
                 <i class="icon-cogs"></i>
-                <%= t("navigation.restaurateur") %>
+                <%= t(".restaurateur") %>
                 <% end %>
               </li>
             <% end %>
 
             <li><%= link_to restaurants_path do %>
               <i class="icon-heart"></i>
-              <%= t("navigation.favorites") %>
+              <%= t(".favorites") %>
               <% end %>
             </li>
 
             <li><%= link_to user_orders_path(current_user) do %>
               <i class="icon-list"></i>
-              <%= t("navigation.orders") %>
+              <%= t(".orders") %>
               <% end %>
             </li>
                 
@@ -41,21 +38,27 @@
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="icon-user"></i>
-                <%= t("navigation.account") %> <b class="caret"></b>
+                <%= t(".account") %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to t("navigation.profile"), current_user %></li>
-                <li><%= link_to t("navigation.settings"), edit_user_registration_path(current_user) %></li>
+                <li><%= link_to current_user do %>
+                    <i class="icon-cogs"></i>
+                    <%= t(".settings") %>
+                  <% end %>
+                </li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to t("navigation.signout"), destroy_user_session_path %>
+                  <%= link_to destroy_user_session_path do %>
+                    <i class="icon-signout"></i>
+                    <%= t(".signout") %>
+                  <% end %>
                 </li>
               </ul>
             </li>
           <% else %>
             <li><%= link_to new_user_session_path do %>
-              <i class="icon-signin"></i>
-              <%= t("navigation.signin") %>
+                <i class="icon-signin"></i>
+                <%= t(".signin") %>
               <% end %>
             </li>
           <% end %>

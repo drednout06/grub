@@ -1,18 +1,17 @@
 <%= simple_form_for @address, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :city %>
-  <%= f.input :district %>
+  <%= f.input :name %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.association :city %>
+  <%= f.association :district %>
+  <%= f.input :street %>
   <%= f.input :house %>
+  <%= f.input :phone_number %>
   <%= f.input :porch %>
   <%= f.input :floor %>
   <%= f.input :doorphone %>
   <%= f.input :comment %>
-  <%= f.input :user_id %>
-  <%= f.input :name %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
   <%= f.input :korpus %>
-  <%= f.input :phone %>
-  <%= f.input :street %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

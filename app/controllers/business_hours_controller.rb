@@ -1,5 +1,6 @@
 class BusinessHoursController < InheritedResources::Base
 	belongs_to :restaurant, optional: true
+	load_and_authorize_resource
 
 	def edit
 		@weekdays = weekdays_for_select

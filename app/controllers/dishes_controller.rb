@@ -1,6 +1,6 @@
 class DishesController < ApplicationController
-  # GET /dishes
-  # GET /dishes.json
+  load_and_authorize_resource
+  
   def index
     @menu = Menu.find(params[:menu_id])
     @dishes = @menu.dishes

@@ -2,33 +2,40 @@
 <div class="page-header">
   <h1><%= @restaurant.name %></h1>
 </div>
-<div class="row">
-  <div class="span9">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th><%= sort_link(@q, :id, model_class.human_attribute_name(:id)) %></th>
-          <th><%= sort_link(@q, :status, model_class.human_attribute_name(:status)) %></th>
-          <th><%= sort_link(@q, :user_id, model_class.human_attribute_name(:user_id)) %></th>
-          <th><%= sort_link(@q, :sum, model_class.human_attribute_name(:sum)) %></th>
-          <th><%= sort_link(@q, :district, Address.human_attribute_name(:district)) %></th>
-          <th><%= sort_link(@q, :created_at, model_class.human_attribute_name(:created_at)) %></th>
-          <th><%= sort_link(@q, :delivery_time, model_class.human_attribute_name(:delivery_time)) %></th>
-          <th><%=t '.actions', :default => t("helpers.actions") %></th>
-        </tr>
-      </thead>
-      <tbody id="orders" data-time="<%= @most_recent.try(:created_at).to_i %>">
-        <%= render @orders %>
-      </tbody>
-    </table>
-  </div>
-  <div class="span3">
-    <h3><%=t '.Statistics', :default => Restaurant.human_attribute_name(:statistics) %></h3>
-    
-    <p>
-    New orders: <%= @orders.pending.count %>
-    </p>
-  </div>
-</div>
+
+<dl class="dl-horizontal">
+  <p>
+  <legend><%= t('.stats_24_hours') %></legend>
+  <dt><strong><%= Restaurant.human_attribute_name(:new_orders) %>:</strong></dt>
+  <dd><%= @orders.pending.count %></dd>
+  
+  <dt><strong><%= Restaurant.human_attribute_name(:views) %>:</strong></dt>
+  <dd><%= @restaurant.impressionist_count(filter: :session_hash) %></dd>
+
+  <dt><strong><%= Restaurant.human_attribute_name(:orders) %>:</strong></dt>
+  <dd><%= @restaurant.impressionist_count(filter: :session_hash) %></dd>
+  
+  </p>
+</dl>
+
+<legend><%= Restaurant.human_attribute_name(:orders) %></legend>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :id, model_class.human_attribute_name(:id)) %></th>
+      <th><%= sort_link(@q, :status, model_class.human_attribute_name(:status)) %></th>
+      <th><%= sort_link(@q, :user_id, model_class.human_attribute_name(:history)) %></th>
+      <th><%= sort_link(@q, :sum, model_class.human_attribute_name(:sum)) %></th>
+      <th><%= sort_link(@q, :district, Address.human_attribute_name(:district)) %></th>
+      <th><%= sort_link(@q, :waiting_time, model_class.human_attribute_name(:waiting_time)) %></th>
+      <th><%= sort_link(@q, :created_at, model_class.human_attribute_name(:created_at)) %></th>
+      <th><%= sort_link(@q, :delivery_time, model_class.human_attribute_name(:delivery_time)) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody id="orders" data-time="<%= @most_recent.try(:created_at).to_i %>">
+    <%= render @orders %>
+  </tbody>
+</table>
 
 <%= render partial: 'soundmanager' %>

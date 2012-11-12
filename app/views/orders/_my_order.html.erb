@@ -3,7 +3,7 @@
   <td><%= my_order.status %></td>
   <td><%= my_order.user_id %></td>
   <td><%= my_order.total_price %></td>
-  <td><%= my_order.address.district.name %></td>
+  <td><%= my_order.try(:address).try(:district).try(:name) %></td>
   <td><%= my_order.created_at.to_s(:short) %></td>
   <td><%= my_order.delivery_time.to_s(:short) %></td>
   <td>

@@ -64,6 +64,7 @@ Grub::Application.routes.draw do
         post :rate
         get :operate
         get :get_orders
+        get :stats
       end
       
       resources :menus, shallow: true do

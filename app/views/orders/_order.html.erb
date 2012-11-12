@@ -1,11 +1,12 @@
 <tr class="<%= order_status_to_class order.status %> <%= order.status %> order" id="<%= dom_id(order) %>">
   <td><%= order.id %></td>
-  <td><%= order.status %></td>
-  <td><%= order.user_id %></td>
+  <td><%= t ".#{order.status}" %></td>
+  <td><%= order.user.try(:restaurant_orders_count, order.restaurant_id) %></td>
   <td><%= order.total_price %></td>
-  <td><%= order.address.district.name %></td>
-  <td><%= order.created_at.to_s(:short) %></td>
-  <td><%= order.delivery_time.to_s(:short) %></td>
+  <td><%= order.try(:address).try(:district).try(:name) %></td>
+  <td><%= time_ago_in_words (order.delivery_time) %></td>
+  <td><%= l order.created_at, format: :short %></td>
+  <td><%= l order.delivery_time, format: :short %></td>
   <td>
     <%= link_to t('.view', :default => t("helpers.links.view")),
                 order_path(order), :class => 'btn btn-mini' %>

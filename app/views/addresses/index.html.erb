@@ -13,11 +13,6 @@
       <th><%= model_class.human_attribute_name(:district) %></th>
       <th><%= model_class.human_attribute_name(:city) %></th>
       <th><%= model_class.human_attribute_name(:phone_number) %></th>
-      <th><%= model_class.human_attribute_name(:porch) %></th>
-      <th><%= model_class.human_attribute_name(:floor) %></th>
-      <th><%= model_class.human_attribute_name(:doorphone) %></th>
-      <th><%= model_class.human_attribute_name(:korpus) %></th>
-      <th><%= model_class.human_attribute_name(:comment) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -32,11 +27,6 @@
         <td><%= address.district.name %></td>
         <td><%= address.city.name %></td>
         <td><%= address.phone_number %></td>
-        <td><%= address.porch %></td>
-        <td><%= address.floor %></td>
-        <td><%= address.doorphone %></td>
-        <td><%= address.korpus %></td>
-        <td><%= address.comment %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_address_path(address), :class => 'btn btn-mini' %>

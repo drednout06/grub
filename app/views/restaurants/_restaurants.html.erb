@@ -1,4 +1,8 @@
 <div class="row">
+  <legend><%=t '.title', count: @restaurants.count %></legend>
+</div>
+
+<div class="row">
   <% if @restaurants.any? %>
   <% @restaurants.each do |restaurant| %>
     <div class="restaurant-row">

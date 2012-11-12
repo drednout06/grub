@@ -23,6 +23,7 @@ gem 'aws-sdk'
 gem 'rmagick'
 gem 'sqlite3'
 gem 'taps'
+gem 'impressionist'
 
 group :development, :test do
   gem 'rspec-rails', '2.10.0'

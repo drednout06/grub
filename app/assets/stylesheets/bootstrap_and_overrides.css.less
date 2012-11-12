@@ -303,6 +303,7 @@ header {
     div {
       height: 4.8em;
       overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
   th, td {
@@ -362,6 +363,10 @@ header {
 
 #landing {
   color: white;
+
+  .hero-unit {
+    background-color: transparent;
+  }
 
   label {
     font-size: 30px;
@@ -462,11 +467,11 @@ img.jcrop {
 
 
 .dish_text {
-  height: 6.9em;
+  height: 84px;
+  width: 242;
+  display: block;
   overflow: hidden;
-  p {
-    line-height: 1.2em;
-  }
+  text-overflow: ellipsis;
 }
 
 .dish img {
@@ -533,4 +538,48 @@ div.divider {
 
 #order-form {
   
+}
+
+.dl-horizontal {
+  dt {
+    width: 150px;
+  }
+  dd {
+    margin-left: 160px;
+  }
+}
+
+#partners {
+
+  background: whiteSmoke;
+  padding: 40px 0 80px 0;
+  background-image: -webkit-radial-gradient(center center, circle contain, rgba(255, 255, 255, 0.8) 100%, whiteSmoke 100%);
+  background-color: white;
+  background-image: -moz-linear-gradient(#EEE, white);
+  background-image: -o-linear-gradient(#EEE, white);
+  background-image: -ms-linear-gradient(#EEE, white);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #EEE), color-stop(1, white));
+  background-image: -webkit-linear-gradient(#EEE, white);
+
+  p {
+    text-align: justify;
+  }
+  h3 {
+    line-height: 30px;
+    text-align: center;
+  }
+}
+
+hr.soften {
+  height: 1px;
+  margin: 70px 0;
+  background-image: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, .1), transparent);
+  background-image: -moz-linear-gradient(left, transparent, rgba(0, 0, 0, .1), transparent);
+  background-image: -ms-linear-gradient(left, transparent, rgba(0, 0, 0, .1), transparent);
+  background-image: -o-linear-gradient(left, transparent, rgba(0, 0, 0, .1), transparent);
+  border: 0;
+}
+
+.dropdown-menu > li > a:hover > [class^="icon-"] {
+  background-image: none;
 }

@@ -1,0 +1,48 @@
+<script type="text/javascript" charset="utf-8">
+	$(function(){
+		Morris.Line({
+		  element: 'conversions_chart',
+		  data: $('#conversions_chart').data('conversions'),
+		  xkey: 'created_at',
+	    ykeys: ['order', 'view'],
+	    labels: ['<%= Restaurant.human_attribute_name(:orders) %>', '<%= Restaurant.human_attribute_name(:views) %>'],
+	    lineColors: ['#99d83e','#ff7c3e']
+		});
+
+		Morris.Line({
+		  element: 'revenues_chart',
+		  data: $('#revenues_chart').data('revenues'),
+		  xkey: 'created_at',
+	    ykeys: ['revenue'],
+	    labels: ['<%= Restaurant.human_attribute_name(:revenues) %>'],
+	    postUnits: '〒',
+	    lineColors: ['#2cacb3']
+		});
+	});
+</script>
+  <legend>	
+		<%= form_tag stats_restaurant_path(@restaurant), method: :get, class: "form-inline" do %>
+			<%= label_tag(:start, t('.start')) %>
+		  <%= text_field_tag :start, nil, class: "input-small datepicker" %>
+		  <%= label_tag(:finish, t('.finish')) %>
+		  <%= text_field_tag :finish, nil, class: "input-small datepicker" %>
+		  <%= submit_tag t('.update'), class: "btn btn-primary" %>
+		<% end %>
+	</legend>
+	
+
+	<legend><%= t '.conversions_legend' %></legend>
+	<div class="row">
+		<%= content_tag :div, "", id: "conversions_chart",
+			data: {conversions: conversions_chart_data(@restaurant, @start, @finish)}, class: "span12" %>	
+	</div>
+
+	<legend><%= t '.revenues_legend' %></legend>
+	<div class="row">
+		<%= content_tag :div, "", id: "revenues_chart",
+			data: {revenues: revenues_chart_data(@restaurant, @start, @finish)}, class: "span12" %>	
+	</div>
+
+</div>
+
+<%= render partial: 'shared/datetime_picker' %>

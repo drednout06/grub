@@ -60,8 +60,14 @@ kk:
     form:
       preferences_legend: Бапталымдар
       submit: Тапсырысты жіберу
+    order:
+      pending: Күтілуде
+      accepted: Қабылданды
+      rejected: Болдырылмады
       
   restaurants:
+    restaurants:
+      title: '%{count} табылған асханалардан біреуін таңдаңыз'
     restaurant:
       closed: Жабық
       closed_tooltip: Асхана әзірше жабық бірақ алдынала тапсырыс берсеңіз болады.
@@ -71,12 +77,31 @@ kk:
       favorited_by: '%{value} пайдаланушы таңдаулы етті'
     index:
       sort_by: Не бойынша реттеу
-      title: '%{count} асхана табылды'
+    edit:
+      title: Асхананы өндеу
+    form:
+      button: Ақпаратты еңгізу
     delivery_time: "шамамен %{minutes} минут"
     cuisines: Асы
     show:
       no_reviews: Ешкім әле пікір қалдырмады.
+    operate:
+      stats_24_hours: Соңғы 24 сағат статистикасы
+      stats_details: Толығырақ...
+    stats:
+      conversions_legend: Күнделікті конверсия
+      revenues_legend: Күнделікті табыс
+      start: "Басы:"
+      finish: "Соңы:"
+      update: Жаңарту
+    new:
+      title: Жаңа асхана қосу
 
+
+  addresses:
+    address:
+      buyer: Тапсырыс беруші
+      receiver: Тапсырыс алушы
 
   reviews:
     ago: "%{time} бұрын"
@@ -85,13 +110,17 @@ kk:
     menu:
       add_dish: Тағам қосу
       control_dishes: Тағамдарды басқару
+    index:
+      new: Жаңа мәзір бөлімін қосу
 
   dishes:
     dish:
       add_to_cart: "Қосу"
+    index:
 
   static_pages:
     home:
+      title: тамаққа тапсырыс беру қызметі
       headline: Енді ешқашан аш қалмайсыз!
       subheadline: grub.kz - тамаққа тапсырыс беру қызметі
       your_city: Қалаңыз
@@ -102,6 +131,25 @@ kk:
       feature_2_desription: Қалаған асхананың суретті мәзірінен, сүйікті тамағыңызды таңдаңыз.
       feature_3: 3. Ас болсын!
       feature_3_desription: Тапсырысты жіберіп, тамағыңыздан ләззат алуға дайындаңыз.
+
+  layouts:
+    footer:
+      about: Партнерлерге
+      contact: Байланыс
+      news: Жаңалықтар
+      help: Көмек
+    header:
+      orders: Тапсырыстарым
+      favorites: Таңдаулыларым
+      restaurateur: Ресторатор
+      account: Тіркелгім
+      restaurants: Асханалар
+      users: Пайдаланушылар
+      settings: Параметрлер
+      profile: Профайл
+      signout: Шығу
+      signin: Кіру
+      
 
   carts:
     headline: "Тапсырысыңыз"
@@ -121,30 +169,19 @@ kk:
   users:
     restaurateur:
       operate: Тапсырыстар
+      stats: Статистика
+      new: Асхана қосу
+      title: Ресторатор кабинеті
 
   navigation:
     home: Басты бет
-    help: Көмек
     admin: Админ
-    account: Тіркелгім
-    restaurants: Асханалар
-    users: Пайдаланушылар
-    settings: Параметрлер
-    profile: Профайл
-    signout: Шығу
-    signin: Кіру
     signin_long: Бұрында тіркелдіңіз бе? Онда осы жерден жүйеге кіріңіз!
     signup: Тіркелу
-    about: Біз туралы
-    contact: Байланыс
-    news: Жаңалықтар
     menu: Мәзір
     main_title: Ас болсын!
     search: Іздеу
     city: Қала
-    orders: Тапсырыстарым
-    favorites: Таңдаулыларым
-    restaurateur: Ресторатор
     rating: Рейтингі
     rating_1: 'Өте нашар'
     rating_2: 'Нашар'
@@ -236,14 +273,22 @@ kk:
         logo: Логотип
         title: Түрі
         rating: Рейтинг
-        details: Детәлдер
+        settings: Параметрлер
+        views: Қараулар
+        new_orders: Жаңа тапсырыстар
+        orders: Тапсырыстар
+        revenues: Табыс
+        cuisines: Ас түрлері
+        status: Статус
+        enabled: Қосулы
+        disabled: Сөндірулі
 
       deliverability:
         fee: Бағасы
         <<: *default_attributes
       menu:
-        name: Аты
         <<: *default_attributes
+        position: Позиция
 
       business_hour:
         <<: *default_attributes
@@ -264,6 +309,9 @@ kk:
         password: Кұпия сөз
         password_confirmation: Кұпия сөз құптауы
         remember_me: Мені осы компьютерде сақта
+        current_password: Қазіргі құпия сөз
+        addresses: Мекен-жайлар
+        my_addresses: Мекен-жайларым
 
       address:
         house: Үй
@@ -277,6 +325,7 @@ kk:
         street: Көше
         korpus: Корпус
         <<: *default_attributes
+        name: Мекен-жай аты
 
       order:
         delivery_time: Әкелу уақыты
@@ -287,16 +336,20 @@ kk:
         status: Статус
         address_id: Сақталған мекенжайлар
         deliver_now: Бірден әкелу
+        waiting_time: Күту уақыты
+        history: Тарихы
 
       review:
         content: Толығырақ
         title: Қысқаша
 
       dish:
-        name: Аты
+        <<: *default_attributes
         description: Сипаттамасы
         price: Бағасы
         picture: Суреті
+        position: Позиция
+
     errors:
       <<: *errors
       
@@ -329,11 +382,23 @@ kk:
     registrations:
       user:
         signed_up: Жүйеге сәтті тіркелдіңіз!
+      new:
+        title: Тіркелу
+        restaurateur_title: Ресторатор ретінде тіркелу
+      edit:
+        title: Профайлды өндеу
+        password_hint: "өзгертуіңіз келмесе, бос қалдырыңыз"
+        current_password_hint: "өзгертулерді еңгізу үшін, қазіргі құпия сөзіңізді еңгізіңіз"
+        button: Жаңарту
     sessions:
       user:
         signed_out: Жүйеден сәтті шықтыңыз!
         signed_in: Жүйеге сәтті кірдіңіз!
+      new:
+        title: Жүйеге кіру
+        button: Кіру
     failure:
+      already_authenticated: Әуелі жүйеден шығуыңыз керек!
       user:
         unauthenticated: Алдын ала жүйеге кіруіңізді өтінеміз!
         invalid: Ақпаратты қате тердіңіз!
@@ -343,14 +408,15 @@ kk:
 
   date:
     abbr_day_names:
-    - Жек
-    - Дүй
+    - Же
+    - Дү
     - Сей
-    - Сәр
-    - Бей
+    - Сә
+    - Бе
     - Жұ
     - Сен
     abbr_month_names:
+    - ~
     - қаң.
     - ақп.
     - нау.
@@ -376,6 +442,7 @@ kk:
       long: ! '%d %B %Y'
       short: ! '%d %b'
     month_names:
+    - ~
     - қаңтар
     - ақпан
     - науырыз

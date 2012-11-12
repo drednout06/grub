@@ -1,6 +1,6 @@
 class DistrictsController < ApplicationController
-  # GET /districts
-  # GET /districts.json
+  load_and_authorize_resource
+  
   def index
     @city = City.find(params[:city_id])
     @districts = @city.districts

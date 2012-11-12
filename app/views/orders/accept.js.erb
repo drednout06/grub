@@ -1,1 +1,1 @@
-$("#<%= dom_id(@order) %>").attr("class", "accepted");
+$("#<%= dom_id(@order) %>").replaceWith("<%=j render @order %>");

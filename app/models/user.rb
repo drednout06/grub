@@ -64,4 +64,8 @@ class User < ActiveRecord::Base
   def favorited?(restaurant)
     user_favorites.where(restaurant_id: restaurant.id).exists?
   end
+  
+  def restaurant_orders_count(restaurant_id)
+    orders.where(restaurant_id: restaurant_id).count
+  end
 end

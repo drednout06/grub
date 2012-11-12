@@ -1,2 +1,75 @@
-<h1>StaticPages#about</h1>
-<p>Find me in app/views/static_pages/about.html.erb</p>
+<div class="hero-unit" style="padding-bottom: 0px;">
+  <h1 style="font-size: 50px; margin-bottom: 20px;"><%= t(".headline") %></h1>
+  <p>
+  	<%= t(".subheadline") %>
+  </p>
+  <p class="center">
+    <%= link_to new_user_registration_path(restaurateur: 1), class: "btn btn-primary btn-large" do %>
+      <%= t(".button") %>
+    <% end %>
+  </p>
+</div>
+<div class="container" id="partners">
+  <div class="row">
+    <div class="span5 offset1">
+      <h3>
+      	<%= t(".feature_1") %>
+      </h3>
+       <p><%= t(".feature_1_desription") %></p>
+    </div>
+
+    <div class="span5">
+      <h3>
+        <%= t(".feature_2") %>
+      </h3>
+      <p><%= t(".feature_2_desription") %></p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="span5 offset1">
+      <h3>
+      	<%= t(".feature_3") %>
+      </h3>
+       <p><%= t(".feature_3_desription") %></p>
+    </div>
+
+    <div class="span5">
+      <h3>
+        <%= t(".feature_4") %>
+      </h3>
+      <p><%= t(".feature_4_desription") %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span5 offset1">
+      <h3>
+      	<%= t(".feature_5") %>
+      </h3>
+       <p><%= t(".feature_5_desription") %></p>
+    </div>
+
+    <div class="span5">
+      <h3>
+        <%= t(".feature_6") %>
+      </h3>
+      <p><%= t(".feature_6_desription") %></p>
+    </div>
+  </div>
+  
+</div>
+
+  <div class="row">
+    <div class="span12">
+      <div class="hero-unit" style="padding-top: 0;">
+			  <h1 style="font-size: 50px; margin-bottom: 20px;"><%= t(".feature_7") %></h1>
+			  <p><%= t(".feature_7_desription") %></p>
+			  <p>
+			    <%= link_to new_user_registration_path(restaurateur: 1), class: "btn btn-primary btn-large" do %>
+            <%= t(".button") %>
+          <% end %>
+			  </p>
+			</div>
+    </div>
+  </div>

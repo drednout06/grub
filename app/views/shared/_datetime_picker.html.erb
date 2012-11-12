@@ -1,11 +1,12 @@
 <script type="text/javascript" charset="utf-8">
+$(function() {
 	$.datepicker.regional["<%= I18n.locale.to_s %>"] = {
 		closeText: "<%= t 'datepicker.closeText' %>",
 		prevText: "<%=raw t 'datepicker.prevText' %>",
 		nextText: "<%=raw t 'datepicker.nextText' %>",
 		currentText: "<%= t 'datepicker.currentText' %>",
 		monthNames: [<%=raw t('date.month_names_nominative').map(&:inspect).join(", ") %>],
-		monthNamesShort: [<%=raw t('date.abbr_month_names').map(&:inspect).join(", ") %>],
+		monthNamesShort: [<%=raw t('date.abbr_month_names')[1..12].map(&:inspect).join(", ") %>],
 		dayNames: [<%=raw t('date.day_names').map(&:inspect).join(", ") %>],
 		dayNamesShort: [<%=raw t('date.abbr_day_names').map(&:inspect).join(", ") %>],
 		dayNamesMin: [<%=raw t('date.abbr_day_names').map(&:inspect).join(", ") %>],
@@ -36,4 +37,6 @@
 		isRTL: false
 	};
 	$.timepicker.setDefaults($.timepicker.regional["<%= I18n.locale.to_s %>"]);
+
+});
 </script>

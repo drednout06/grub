@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
-  # GET /addresses
-  # GET /addresses.json
+  load_and_authorize_resource
+  
   def index
     @user = User.find(params[:user_id])
     @addresses = @user.addresses
@@ -74,10 +74,11 @@ class AddressesController < ApplicationController
   # DELETE /addresses/1.json
   def destroy
     @address = Address.find(params[:id])
+    @user = @address.user
     @address.destroy
 
     respond_to do |format|
-      format.html { redirect_to addresses_url }
+      format.html { redirect_to user_addresses_path(@user) }
       format.json { head :no_content }
     end
   end

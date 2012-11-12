@@ -17,7 +17,7 @@
 class Order < ActiveRecord::Base
   attr_accessible :address_id, :change_from, :delivery_time, :address,
                   :address_type, :address_attributes, :comment, :status, :restaurant_id,
-                  :total, :deliver_now
+                  :total, :deliver_now, :user_id
 
   belongs_to :user
   belongs_to :restaurant
@@ -31,6 +31,7 @@ class Order < ActiveRecord::Base
   validates :restaurant_id, presence: true
   validates :delivery_time, presence: true, if: :preorder?
   validate :delivery_time_valid, if: :preorder?
+  validate :restaurant_enabled
 
   STATUSES = {pending: 'pending', accepted: 'accepted', rejected: 'rejected'}
 
@@ -44,7 +45,7 @@ class Order < ActiveRecord::Base
   scope :rejected, where(status: STATUSES[:rejected])
 
   default_scope :order => 'created_at DESC'
-  before_save :set_deliver_time
+  before_save :set_delivery_time
   
 
   def add_data_from_cart(cart)
@@ -81,8 +82,12 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def restaurant_enabled
+    errors.add(:deliver_now, "the restaurant is disabled at the moment")
+  end
+
   def set_delivery_time
-    self.delivery_time ||= Time.now.to_i
+    self.delivery_time ||= Time.now
   end
 
 end

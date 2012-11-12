@@ -1,7 +1,8 @@
+<legend><%= t '.buyer' %></legend>
 <dl class="dl-horizontal">
   <p>
-  <h4>Заказчик:</h4>
-  <dt><strong><%= Address.human_attribute_name(:user) %>:</strong></dt>
+  
+  <dt><strong><%= Address.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= address.user.name %></dd>
 
   <dt><strong><%= Address.human_attribute_name(:phone_number) %>:</strong></dt>
@@ -9,7 +10,7 @@
   </p>
 
   <p>
-    <h4>Получатель:</h4>
+  <legend><%= t '.receiver' %></legend>
   <dt><strong><%= Address.human_attribute_name(:first_name) %>:</strong></dt>
   <dd><%= "#{address.first_name} #{address.last_name}" %></dd>
 

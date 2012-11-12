@@ -1,5 +1,6 @@
 class CuisinesController < InheritedResources::Base
-
+	load_and_authorize_resource
+	
 	def index
 		@cuisines = Cuisine.all
 		index!

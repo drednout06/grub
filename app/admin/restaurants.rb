@@ -3,12 +3,9 @@ ActiveAdmin.register Restaurant do
   index do
     column :title
     column :name
-    column :address
     column :minimum_order
-    column :delivery_fee
-    column :average_delivery_time
-    column :description
     column :created_at
+    column :enabled
     default_actions
   end
 
@@ -26,6 +23,7 @@ ActiveAdmin.register Restaurant do
   form do |f|
 	  f.inputs "Details" do
 	    f.input :name
+      f.input :enabled
 	  end
 
 	  f.inputs "Deliverabilities" do

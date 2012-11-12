@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: [:index, :destroy]
 
+  load_and_authorize_resource
+
   def index
     @users = User.paginate(page: params[:page])
   end
@@ -49,7 +51,11 @@ class UsersController < ApplicationController
   end
 
   def restaurateur
-    @restaurants = current_user.restaurants
+    if current_user.admin?
+      @restaurants = Restaurant.all
+    else
+      @restaurants = current_user.restaurants
+    end
   end
 
   private

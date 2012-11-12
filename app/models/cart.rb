@@ -19,7 +19,7 @@ class Cart < ActiveRecord::Base
 	end
 
 	def total_price_to(district_id)
-		restaurant.delivery_fee(district_id) +
+		restaurant.delivery_fee(district_id).to_i +
 		line_items.to_a.sum {|item| item.total_price }
 	end
 

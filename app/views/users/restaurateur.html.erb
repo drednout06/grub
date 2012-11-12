@@ -1,14 +1,15 @@
 <%- model_class = Restaurant -%>
 <div class="page-header">
-  <h1><%=t 'navigation.restaurateur' %></h1>
+  <h1><%=t '.title' %></h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%= model_class.human_attribute_name(:details) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:orders) %></th>
+      <th><%= model_class.human_attribute_name(:settings) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -17,7 +18,13 @@
       <tr>
         <td><%= restaurant.id %></td>
         <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
-        <td><%= restaurant.created_at.to_s(:short) %></td>
+        <td><%= restaurant.enabled? ? model_class.human_attribute_name(:enabled) : model_class.human_attribute_name(:disabled) %></td>
+        <td>
+          <%= link_to t('.operate'),
+                      operate_restaurant_path(restaurant), :class => 'btn btn-mini btn-primary' %>
+          <%= link_to t('.stats'),
+                      stats_restaurant_path(restaurant), :class => 'btn btn-mini btn-success' %>
+        </td>
         <td>
           <%= link_to model_class.human_attribute_name(:menus),
                       restaurant_menus_path(restaurant), :class => 'btn btn-mini' %>
@@ -28,9 +35,6 @@
         </td>
 
         <td>
-          <%= link_to t('.operate'),
-                      operate_restaurant_path(restaurant), :class => 'btn btn-mini btn-primary' %>
-
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_restaurant_path(restaurant), :class => 'btn btn-mini' %>
 
