@@ -40,6 +40,8 @@ Grub::Application.configure do
 
   config.assets.compile = true
 
+  config.assets.prefix = "/dev-assets"
+
   config.serve_static_assets = true
 
   # Paperclip - ImageMagick
