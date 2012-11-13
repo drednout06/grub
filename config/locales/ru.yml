@@ -111,6 +111,8 @@ ru:
       control_dishes: Управление блюдами
     index:
       new: Добавить раздел меню
+    new:
+      title: Добавить раздел меню
 
   dishes:
     index:

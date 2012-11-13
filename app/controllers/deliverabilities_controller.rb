@@ -64,7 +64,7 @@ class DeliverabilitiesController < ApplicationController
     respond_to do |format|
       if @deliverability.update_attributes(params[:deliverability])
         format.html { redirect_to restaurant_deliverabilities_path(@deliverability.restaurant),
-           notice: notice: t('flash.updated', model: Deliverability.model_name.human)
+           notice: t('flash.updated', model: Deliverability.model_name.human)}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

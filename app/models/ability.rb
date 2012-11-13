@@ -24,10 +24,16 @@ class Ability
       can :create, Menu
 
       can :manage, Deliverability do |deliverability|
-        deliverability.try(:restaurant) == user.restaurant
+        deliverability.try(:restaurant).try(:owner) == user
       end
 
       can :create, Deliverability
+
+      can :manage, BusinessHour do |business_hour|
+        business_hour.try(:restaurant).try(:owner) == user
+      end
+
+      can :create, BusinessHour
 
       can [:update, :operate, :get_orders, :stats], Restaurant do |restaurant|
         restaurant.try(:owner) == user
