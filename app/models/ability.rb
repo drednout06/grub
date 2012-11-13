@@ -15,13 +15,19 @@ class Ability
         dish.try(:owner) == user
       end
 
+      can :create, Dish
+
       can :manage, Menu do |menu|
         menu.try(:owner) == user
       end
 
+      can :create, Menu
+
       can :manage, Deliverability do |deliverability|
         deliverability.try(:restaurant) == user.restaurant
       end
+
+      can :create, Deliverability
 
       can [:update, :operate, :get_orders, :stats], Restaurant do |restaurant|
         restaurant.try(:owner) == user

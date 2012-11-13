@@ -86,7 +86,7 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        format.html { redirect_to user_orders_path(@user), notice: 'Order was successfully created.' }
+        format.html { redirect_to user_orders_path(@user), notice: t('flash.created', model: Order.model_name.human) }
         format.json { render json: @order, status: :created, location: @order }
       else
         format.html { render action: "new", flash: {notice: 'Save failed!'} }
@@ -102,7 +102,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.update_attributes(params[:order])
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.html { redirect_to @order, notice: t('flash.updated', model: Order.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

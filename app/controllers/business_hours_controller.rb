@@ -29,7 +29,7 @@ class BusinessHoursController < InheritedResources::Base
 
 		respond_to do |format|
       if @business_hour.save
-        format.html { redirect_to(restaurant_business_hours_path(@restaurant), :notice => 'business_hour was successfully created.') }
+        format.html { redirect_to(restaurant_business_hours_path(@restaurant), :notice => t('flash.created', model: BusinessHour.model_name.human)) }
         format.xml  { render :xml => @business_hour, :status => :created, :location => @business_hour }
       else
         @weekdays = weekdays_for_select.keys

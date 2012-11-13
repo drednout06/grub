@@ -289,6 +289,7 @@ kk:
       menu:
         <<: *default_attributes
         position: Позиция
+        dishes: Тағамдар
 
       business_hour:
         <<: *default_attributes
@@ -664,3 +665,7 @@ kk:
     timezoneText: 'Уақыт белдеуі'
     currentText: 'Қазір'
     closeText: 'Жабу'
+  flash:
+    created: '%{model} сәтті құрылды'
+    updated: '%{model} сәтті жаңартылды'
+    destroyed: '%{model} сәтті өшірілді'

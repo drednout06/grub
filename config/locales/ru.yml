@@ -113,6 +113,8 @@ ru:
       new: Добавить раздел меню
 
   dishes:
+    index:
+      new: Добавить блюдо
     dish:
       add_to_cart: Добавить
 
@@ -300,6 +302,7 @@ ru:
       menu:
         <<: *default_attributes
         position: Позиция
+        dishes: Блюда
 
       business_hour:
         <<: *default_attributes
@@ -672,3 +675,9 @@ ru:
     timezoneText: 'Часовой пояс'
     currentText: 'Сейчас'
     closeText: 'Закрыть'
+  flash:
+    created: '%{model} успешно добавлен(о)'
+    updated: '%{model} успешно обновлен(о)'
+    destroyed: '%{model} успешно удален(о)'
+
+

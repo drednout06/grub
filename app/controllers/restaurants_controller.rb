@@ -55,7 +55,7 @@ class RestaurantsController < ApplicationController
     #@restaurant = Restaurant.new(params[:restaurant])
     respond_to do |format|
       if @restaurant.save
-        flash[:notice] = 'Restaurant was successfully created.'
+        flash[:notice] = t('flash.created', model: Restaurant.model_name.human)
         format.html do
           if params[:restaurant][:logo].blank?
             redirect_to @restaurant
@@ -78,7 +78,7 @@ class RestaurantsController < ApplicationController
 
     respond_to do |format|
       if @restaurant.update_attributes(params[:restaurant])
-        flash[:notice] = 'Restaurant was successfully updated.'
+        flash[:notice] = t('flash.updated', model: Restaurant.model_name.human)
         format.html do
           if params[:restaurant][:logo].blank?
             redirect_to @restaurant

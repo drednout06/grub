@@ -47,7 +47,7 @@ class DishesController < ApplicationController
 
     respond_to do |format|
       if @dish.save
-        flash[:notice] = 'Dish was successfully created.'
+        flash[:notice] = t('flash.created', model: Dish.model_name.human)
         format.html do
           if params[:dish][:picture].blank?
             redirect_to menu_dishes_path(@menu)
@@ -71,7 +71,7 @@ class DishesController < ApplicationController
 
     respond_to do |format|
       if @dish.update_attributes(params[:dish])
-        flash[:notice] = 'Dish was successfully updated.'
+        flash[:notice] = t('flash.updated', model: Dish.model_name.human)
         format.html do
           if params[:dish][:picture].blank?
             redirect_to menu_dishes_path(@menu)
@@ -93,7 +93,7 @@ class DishesController < ApplicationController
     @dish = Dish.find(params[:id])
     @menu = @dish.menu
     @dish.destroy
-    flash[:notice] = 'Dish was successfully deleted.'
+    flash[:notice] = t('flash.destroyed', model: Dish.model_name.human)
     respond_to do |format|
       format.html { redirect_to @menu }
       format.json { head :no_content }

@@ -1,8 +1,8 @@
 <%- model_class = Dish -%>
 <div class="page-header">
   <h2>
-  <%= link_to @menu.restaurant.name, restaurant_path(@menu.restaurant) %>:
-  <%= @menu.name %></h2>
+  <%= link_to @menu.restaurant.name, restaurant_path(@menu.restaurant) %> >
+  <%= "#{@menu.name} > #{model_class.model_name.human(count: 2)}" %></h2>
 </div>
 <table class="table table-striped">
   <thead>
@@ -19,7 +19,7 @@
         <td><span class="handle"><i class="icon-move"></i>
           [<%= t 'helpers.links.drag' %>]</span></td>
         <td><%= link_to dish.name, dish_path(dish) %></td>
-        <td><%=l dish.created_at %></td>
+        <td><%=l dish.created_at, format: :short %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_dish_path(dish), :class => 'btn btn-mini' %>

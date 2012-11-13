@@ -47,7 +47,7 @@ class MenusController < ApplicationController
 
     respond_to do |format|
       if @menu.save
-        format.html { redirect_to @menu, notice: 'Menu was successfully created.' }
+        format.html { redirect_to @menu, notice: t('flash.created', model: Menu.model_name.human) }
         format.json { render json: @menu, status: :created, location: @menu }
       else
         format.html { render action: "new" }
@@ -64,7 +64,7 @@ class MenusController < ApplicationController
 
     respond_to do |format|
       if @menu.update_attributes(params[:menu])
-        format.html { redirect_to @menu, notice: 'Menu was successfully updated.' }
+        format.html { redirect_to @menu, notice: t('flash.updated', model: Menu.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

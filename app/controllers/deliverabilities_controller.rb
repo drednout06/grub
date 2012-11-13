@@ -47,7 +47,7 @@ class DeliverabilitiesController < ApplicationController
 
     respond_to do |format|
       if @deliverability.save
-        format.html { redirect_to restaurant_deliverabilities_path(@restaurant), notice: 'Deliverability was successfully created.' }
+        format.html { redirect_to restaurant_deliverabilities_path(@restaurant), notice: t('flash.created', model: Deliverability.model_name.human) }
         format.json { render json: @deliverability, status: :created, location: @deliverability }
       else
         format.html { render action: "new" }
@@ -64,7 +64,7 @@ class DeliverabilitiesController < ApplicationController
     respond_to do |format|
       if @deliverability.update_attributes(params[:deliverability])
         format.html { redirect_to restaurant_deliverabilities_path(@deliverability.restaurant),
-           notice: 'Deliverability was successfully updated.' }
+           notice: notice: t('flash.updated', model: Deliverability.model_name.human)
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
