@@ -64,6 +64,9 @@ kk:
       pending: Күтілуде
       accepted: Қабылданды
       rejected: Болдырылмады
+    index:
+      title: Тапсырыстарым
+
       
   restaurants:
     restaurants:

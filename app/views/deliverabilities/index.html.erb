@@ -21,7 +21,7 @@
         <td><%= link_to deliverability.id, deliverability_path(deliverability) %></td>
         <td><%= deliverability.district.name %></td>
         <td><%= deliverability.fee %></td>
-        <td><%=l deliverability.created_at %></td>
+        <td><%= l deliverability.created_at, format: :short %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_deliverability_path(deliverability), :class => 'btn btn-mini' %>

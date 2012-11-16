@@ -64,6 +64,8 @@ ru:
       pending: В ожидании
       accepted: Принят
       rejected: Отменен
+    index:
+      title: Мои заказы
 
   restaurants:
     restaurants:
@@ -112,13 +114,15 @@ ru:
     index:
       new: Добавить раздел меню
     new:
-      title: Добавить раздел меню
+      title: Новый раздел меню
 
   dishes:
     index:
       new: Добавить блюдо
     dish:
       add_to_cart: Добавить
+    new:
+      title: Новое блюдо
 
   static_pages:
     home:
@@ -220,57 +224,57 @@ ru:
   activerecord:
     models:
       restaurant:
-        zero: Заведения не найдены
-        one: Заведение
-        other: Заведения
+        zero: заведения не найдены
+        one: заведение
+        other: заведения
       menu:
-        zero: Меню не найдены
-        one: Меню
-        other: Меню
+        zero: меню не найдены
+        one: меню
+        other: меню
       user:
-        zero: Пользаватели не найдены 
-        one: Пользаватель
-        other: Пользаватели
+        zero: пользаватели не найдены 
+        one: пользаватель
+        other: пользаватели
       order:
-        zero: Заказы не найдены 
-        one: Заказ
-        other: Заказы
+        zero: заказы не найдены 
+        one: заказ
+        other: заказы
       address:
-        zero: Адреса не найдены
-        one: Адрес
-        other: Адреса
+        zero: адреса не найдены
+        one: адрес
+        other: адреса
       cart:
-        zero: Корзины не найдены
-        one: Корзина
-        other: Корзины
+        zero: корзины не найдены
+        one: корзина
+        other: корзины
       city:
-        zero: Города не найдены
-        one: Город
-        other: Города
+        zero: города не найдены
+        one: город
+        other: города
       district:
-        zero: Районы не найдены
-        one: Район
-        other: Районы
+        zero: районы не найдены
+        one: район
+        other: районы
       deliverability:
-        zero: Доставки не найдены
-        one: Доставка
-        other: Доставки
+        zero: доставки не найдены
+        one: доставка
+        other: доставки
       cuisine:
-        zero: Кухни не найдены
-        one: Кухня
-        other: Кухни
+        zero: кухни не найдены
+        one: кухня
+        other: кухни
       review:
-        zero: Отзывы не найдены
-        one: Отзыв
-        other: Отзывы
+        zero: отзывы не найдены
+        one: отзыв
+        other: отзывы
       dish:
-        zero: Блюда не найдены
-        one: Блюдо
-        other: Блюда
+        zero: блюда не найдены
+        one: блюдо
+        other: блюда
       business_hour:
-        zero: Часы работы не найдены
-        one: Часы работы
-        other: Часы работы
+        zero: часы работы не найдены
+        one: часы работы
+        other: часы работы
 
     attributes:
       restaurant:
@@ -555,7 +559,7 @@ ru:
     select:
       prompt: ! 'Таңдаңыз: '
     submit:
-      create: 'Создать %{model}'
+      create: 'Добавить %{model}'
       submit: 'Сохранить %{model}'
       update: 'Обновить %{model}'
     actions: Управление
@@ -678,8 +682,8 @@ ru:
     currentText: 'Сейчас'
     closeText: 'Закрыть'
   flash:
-    created: '%{model} успешно добавлен(о)'
-    updated: '%{model} успешно обновлен(о)'
-    destroyed: '%{model} успешно удален(о)'
+    created: '%{model} успешно добавлено'
+    updated: '%{model} успешно обновлено'
+    destroyed: '%{model} успешно удалено'
 
 

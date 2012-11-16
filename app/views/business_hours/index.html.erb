@@ -21,7 +21,7 @@
         <td><%= link_to business_hour.id, business_hour_path(business_hour) %></td>
         <td><%= @weekdays.invert[business_hour.day] %></td>
         <td><%= business_hour.to_s %></td>
-        <td><%= business_hour.created_at.to_s(:short) %></td>
+        <td><%= l business_hour.created_at, format: :short %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_business_hour_path(business_hour), :class => 'btn btn-mini' %>

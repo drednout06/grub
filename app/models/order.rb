@@ -83,7 +83,9 @@ class Order < ActiveRecord::Base
   end
 
   def restaurant_enabled
-    errors.add(:deliver_now, "the restaurant is disabled at the moment")
+    unless restaurant.enabled?
+      errors.add(:deliver_now, "the restaurant is disabled at the moment")
+    end
   end
 
   def set_delivery_time
