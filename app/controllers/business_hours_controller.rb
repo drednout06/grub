@@ -1,9 +1,16 @@
 class BusinessHoursController < InheritedResources::Base
 	belongs_to :restaurant, optional: true
 	load_and_authorize_resource
+	add_breadcrumb I18n.t('layouts.header.home'), :root_path
 
 	def edit
 		@weekdays = weekdays_for_select
+		@business_hour = BusinessHour.find(params[:id])
+
+    add_breadcrumb @business_hour.restaurant.name, restaurant_path(@business_hour.restaurant)
+    add_breadcrumb I18n.t('layouts.header.restaurateur'), restaurateur_user_path(current_user)
+    add_breadcrumb BusinessHour.model_name.human(count: 2).mb_chars.capitalize, restaurant_business_hours_path(@business_hour.restaurant)
+
 		edit!
 	end
 
@@ -15,6 +22,12 @@ class BusinessHoursController < InheritedResources::Base
 
 	def new
 		@weekdays = weekdays_for_select
+		@restaurant = Restaurant.find(params[:restaurant_id])
+
+		add_breadcrumb @restaurant.name, restaurant_path(@restaurant)
+    add_breadcrumb I18n.t('layouts.header.restaurateur'), restaurateur_user_path(current_user)
+    add_breadcrumb BusinessHour.model_name.human(count: 2).mb_chars.capitalize, restaurant_business_hours_path(@restaurant)
+
 		new!
 	end
 
@@ -69,6 +82,10 @@ class BusinessHoursController < InheritedResources::Base
 
   def index
   	@weekdays = weekdays_for_select
+  	@restaurant = Restaurant.find(params[:restaurant_id])
+  	add_breadcrumb @restaurant.name, restaurant_path(@restaurant)
+    add_breadcrumb I18n.t('layouts.header.restaurateur'), restaurateur_user_path(current_user)
+
   	index!
   end
 

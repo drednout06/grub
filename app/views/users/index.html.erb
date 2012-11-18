@@ -10,6 +10,7 @@
       <th><%= model_class.human_attribute_name(:last_name) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
       <th><%= model_class.human_attribute_name(:admin) %></th>
+      <th><%= model_class.human_attribute_name(:restaurateur) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -22,7 +23,8 @@
         <td><%= user.last_name %></td>
         <td><%= user.email %></td>
         <td><%= user.admin %></td>
-        <td><%=l user.created_at %></td>
+        <td><%= user.restaurateur %></td>
+        <td><%=l user.created_at, format: :short %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_user_path(user), :class => 'btn btn-mini' %>

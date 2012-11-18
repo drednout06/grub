@@ -65,6 +65,10 @@
 						<span class="label label-important tooltiped" rel="tooltip" data-placement="top"
 						data-original-title="<%= t('.closed_tooltip') %>" data-trigger="hover"
 						><%= t('.closed')%></span>
+					<% else %>
+						<span class="label label-success tooltiped" rel="tooltip" data-placement="top"
+						data-original-title="<%= t('.open_tooltip') %>" data-trigger="hover"
+						><%= t('.open')%></span>
 					<% end %>
 					<%= restaurant.today_hours.map {|hour| hour.to_s}.join(' / ') %>
 				</small>

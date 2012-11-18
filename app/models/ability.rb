@@ -35,7 +35,7 @@ class Ability
 
       can :create, BusinessHour
 
-      can [:update, :operate, :get_orders, :stats], Restaurant do |restaurant|
+      can :manage, Restaurant do |restaurant|
         restaurant.try(:owner) == user
       end
 
@@ -52,11 +52,15 @@ class Ability
 
     can :create, Order
 
-    can :create, Address   
+    can :create, Address
 
     can :update, User do |some_user|
       user == some_user
     end
+
+    can :partner, User
+
+    can :search, Restaurant
 
     can :rate, Restaurant do |restaurant|
       true # if the user has ever ordered from the restaurant

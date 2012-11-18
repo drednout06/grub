@@ -9,6 +9,9 @@
       <%= f.input :average_delivery_time, placeholder: '60' %>
       <%= f.input :description, input_html: {rows: 4} %>
       <%= f.input :logo %>
+      <% if current_user.admin? %>
+        <%= f.input :enabled %>
+      <% end %>
     </div>
     <div class="span6">
       <%= f.association :cuisines, as: :check_boxes %>

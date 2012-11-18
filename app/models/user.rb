@@ -45,8 +45,8 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :phone_number, presence: true
 
-  def authorized?(dish)
-    admin? or dish.restaurant.user_id = id
+  def admin?
+    self.admin == true
   end
 
   def name

@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:edit, :update, :destroy, :index]
-  before_filter :correct_user,   only: [:edit, :update]
-  before_filter :admin_user,     only: [:index, :destroy]
 
   load_and_authorize_resource
 
@@ -47,6 +44,15 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'edit'
+    end
+  end
+
+  def partner
+    if user_signed_in?
+      current_user.toggle!(:restaurateur)
+      redirect_to restaurateur_user_path(current_user)
+    else
+      redirect_to new_user_registration_path(restaurateur: 1)
     end
   end
 

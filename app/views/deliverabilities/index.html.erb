@@ -1,8 +1,7 @@
 <%- model_class = Deliverability -%>
 <div class="page-header">
-  <h2>
-  <%= link_to @restaurant.name, restaurant_path(@restaurant) %>:
-  <%=t '.title', :default => District.model_name.human(count: 2) %></h2>
+  <h1>
+  <%=t '.title', :default => District.model_name.human(count: 2).mb_chars.capitalize %></h1>
 </div>
 
 <table class="table table-striped">

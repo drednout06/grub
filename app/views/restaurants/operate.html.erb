@@ -1,24 +1,9 @@
 <%- model_class = Order -%>
 <div class="page-header">
-  <h1><%= @restaurant.name %></h1>
+  <h1><%= "#{@restaurant.name} - #{Restaurant.human_attribute_name(:orders)}" %></h1>
 </div>
+<%= will_paginate @orders %>
 
-<dl class="dl-horizontal">
-  <p>
-  <legend><%= t('.stats_24_hours') %></legend>
-  <dt><strong><%= Restaurant.human_attribute_name(:new_orders) %>:</strong></dt>
-  <dd><%= @orders.pending.count %></dd>
-  
-  <dt><strong><%= Restaurant.human_attribute_name(:views) %>:</strong></dt>
-  <dd><%= @restaurant.impressionist_count(filter: :session_hash) %></dd>
-
-  <dt><strong><%= Restaurant.human_attribute_name(:orders) %>:</strong></dt>
-  <dd><%= @restaurant.impressionist_count(filter: :session_hash) %></dd>
-  
-  </p>
-</dl>
-
-<legend><%= Restaurant.human_attribute_name(:orders) %></legend>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -34,8 +19,26 @@
     </tr>
   </thead>
   <tbody id="orders" data-time="<%= @most_recent.try(:created_at).to_i %>">
+
     <%= render @orders %>
   </tbody>
 </table>
+
+<%= will_paginate @orders %>
+
+<dl class="dl-horizontal">
+  <p>
+  <legend><%= t('.stats_24_hours') %></legend>
+  <dt><strong><%= Restaurant.human_attribute_name(:new_orders) %>:</strong></dt>
+  <dd><%= @orders.pending.count %></dd>
+  
+  <dt><strong><%= Restaurant.human_attribute_name(:views) %>:</strong></dt>
+  <dd><%= @restaurant.impressionist_count(filter: :session_hash) %></dd>
+
+  <dt><strong><%= Restaurant.human_attribute_name(:orders) %>:</strong></dt>
+  <dd><%= @restaurant.impressionist_count(filter: :session_hash) %></dd>
+  
+  </p>
+</dl>
 
 <%= render partial: 'soundmanager' %>

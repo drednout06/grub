@@ -9,13 +9,14 @@ class RestaurantsController < ApplicationController
     @q = Restaurant.enabled.ransack(params[:q])
     @restaurants = @q.result(:distinct => true)
     @q.build_sort if @q.sorts.empty?
+
     save_district params[:q].try(:[], :deliverabilities_district_id_in)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @restaurants }
-      format.js
-    end
+  end
+
+  def search
+    index
+    render :index
   end
 
   # GET /restaurants/1
@@ -35,6 +36,9 @@ class RestaurantsController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @restaurant = Restaurant.new
+
+    add_breadcrumb I18n.t('layouts.header.home'), :root_path
+    add_breadcrumb I18n.t('layouts.header.restaurateur'), restaurateur_user_path(current_user)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -110,7 +114,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     @q = @restaurant.orders.ransack(params[:q])
 
-    @orders = @q.result(distinct: true)
+    @orders = @q.result(distinct: true).page(params[:page]).per_page(10)
     @most_recent = @orders.first
   end
 

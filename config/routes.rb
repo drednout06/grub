@@ -41,6 +41,8 @@ Grub::Application.routes.draw do
     resources :dishes, only: [:index]
 
     resources :users do
+      collection { get :partner }
+
       resources :restaurants, shallow: true
       resources :addresses, shallow: true
       resources :orders, shallow: true
@@ -53,11 +55,9 @@ Grub::Application.routes.draw do
 
     resources :user_favorites, only: [:index, :create, :destroy]
 
-    match 'restaurants/search' => 'restaurants#index', :via => [:post, :get]
-
     resources :restaurants do
       collection do
-        post :search, to: 'restaurants#index'
+        match 'search' => 'restaurants#search', :via => [:post, :get], :as => :search
       end
 
       member do
@@ -87,6 +87,7 @@ Grub::Application.routes.draw do
 
     match '/help',    to: 'static_pages#help'
     match '/about',   to: 'static_pages#about'
+    match '/partners',to: 'static_pages#partners'
     match '/contact', to: 'static_pages#contact'
   end
 

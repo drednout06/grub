@@ -1,9 +1,13 @@
 class DeliverabilitiesController < ApplicationController
   load_and_authorize_resource
+  add_breadcrumb I18n.t('layouts.header.home'), :root_path
   
   def index
     @restaurant = Restaurant.find(params[:restaurant_id])
     @deliverabilities = @restaurant.deliverabilities
+
+    add_breadcrumb @restaurant.name, restaurant_path(@restaurant)
+    add_breadcrumb I18n.t('layouts.header.restaurateur'), restaurateur_user_path(current_user)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,6 +32,10 @@ class DeliverabilitiesController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
     @deliverability = Deliverability.new
 
+    add_breadcrumb @restaurant.name, restaurant_path(@restaurant)
+    add_breadcrumb I18n.t('layouts.header.restaurateur'), restaurateur_user_path(current_user)
+    add_breadcrumb Deliverability.model_name.human(count: 2).mb_chars.capitalize, restaurant_deliverabilities_path(@restaurant)
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @deliverability }
@@ -37,6 +45,10 @@ class DeliverabilitiesController < ApplicationController
   # GET /deliverabilities/1/edit
   def edit
     @deliverability = Deliverability.find(params[:id])
+
+    add_breadcrumb @deliverability.restaurant.name, restaurant_path(@deliverability.restaurant)
+    add_breadcrumb I18n.t('layouts.header.restaurateur'), restaurateur_user_path(current_user)
+    add_breadcrumb Deliverability.model_name.human(count: 2).mb_chars.capitalize, restaurant_deliverabilities_path(@deliverability.restaurant)
   end
 
   # POST /deliverabilities

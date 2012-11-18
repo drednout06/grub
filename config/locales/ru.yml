@@ -73,6 +73,8 @@ ru:
     restaurant:
       closed: Закрыто
       closed_tooltip: На данный момент заведение закрыто, но возможен предзаказ
+      open: Онлайн
+      open_tooltip: Заведение прямо сейчас принимает заказы
       control_menus: Управление меню
       to_favorite: Добавить в избранное
       to_unfavorite: Удалить из избранных
@@ -113,12 +115,14 @@ ru:
       control_dishes: Управление блюдами
     index:
       new: Добавить раздел меню
+      title: Меню
     new:
       title: Новый раздел меню
 
   dishes:
     index:
       new: Добавить блюдо
+      title: Управление блюдами
     dish:
       add_to_cart: Добавить
     new:
@@ -158,7 +162,8 @@ ru:
 
   layouts:
     footer:
-      about: Партнерам
+      about: О нас
+      partners: Партнерам
       contact: Связь
       news: Новости
       help: Помощь
@@ -173,6 +178,7 @@ ru:
       orders: Мои заказы
       favorites: Мои избранные
       restaurateur: Ресторатор
+      home: Главная
 
 
   carts:
@@ -196,6 +202,9 @@ ru:
       stats: Статистика
       new: Добавить заведение
       title: Кабинет ресторатора
+  business_hours:
+    new:
+      title: Добавить часы работы
 
   navigation:
     signin_long: Уже регистрировались? Тогда войдите в систему здесь!
@@ -220,6 +229,8 @@ ru:
     crop: Вырезать
     crop_picture: Отредактировать изображение
     preview: Предварительный просмотр
+
+
 
   activerecord:
     models:
@@ -256,9 +267,9 @@ ru:
         one: район
         other: районы
       deliverability:
-        zero: доставки не найдены
-        one: доставка
-        other: доставки
+        zero: районы не найдены
+        one: район
+        other: районы
       cuisine:
         zero: кухни не найдены
         one: кухня
@@ -374,7 +385,7 @@ ru:
   active_admin:
     dashboard: Главная
     logout: Выйти
-    edit: Редактировать
+    edit: Отредактировать
     delete: Удалить
     view: Просмотреть
     new_model: Добавить
@@ -404,7 +415,7 @@ ru:
         title: Регистрация
         restaurateur_title: Регистрация ресторатора
       edit:
-        title: Редактировать профайл
+        title: Отредактировать профайл
         password_hint: "оставьте пустым если не желаете изменять пароль"
         current_password_hint: "чтобы подтвердить изменения, необходим Ваш текущий пароль"
         button: Обновить
@@ -565,7 +576,7 @@ ru:
     actions: Управление
     links:
       view: Просмотреть
-      edit: Редактировать
+      edit: Отредактировать
       destroy: Удалить
       back: Назад
       new: Добавить
@@ -575,7 +586,7 @@ ru:
       drag: Переместить
     titles:
       new: 'Новый %{model}'
-      edit: 'Редактировать %{model}'
+      edit: 'Отредактировать %{model}'
     label:
       user:
         remember_me: Сохранить меня на этом компьютере
@@ -685,5 +696,6 @@ ru:
     created: '%{model} успешно добавлено'
     updated: '%{model} успешно обновлено'
     destroyed: '%{model} успешно удалено'
-
-
+  will_paginate:
+    next_label: Назад
+    previous_label: Вперед

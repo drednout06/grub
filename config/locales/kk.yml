@@ -74,6 +74,8 @@ kk:
     restaurant:
       closed: Жабық
       closed_tooltip: Асхана әзірше жабық бірақ алдынала тапсырыс берсеңіз болады.
+      open: Онлайн
+      open_tooltip: Асхана дәл қазір тапсырыстарды қабылдап отыр
       control_menus: Мәзірлерді басқару
       to_favorite: Таңдаулыларыма қосу
       to_unfavorite: Таңдаулыларымнан өшіру
@@ -117,9 +119,13 @@ kk:
       new: Жаңа мәзір бөлімін қосу
 
   dishes:
-    dish:
-      add_to_cart: "Қосу"
     index:
+      new: Тағам қосу
+      title: Тағамдарды басқару
+    dish:
+      add_to_cart: Қосу
+    new:
+      title: Жаңа тағам
 
   static_pages:
     home:
@@ -137,7 +143,8 @@ kk:
 
   layouts:
     footer:
-      about: Партнерлерге
+      partners: Партнерлерге
+      about: Біз туралы
       contact: Байланыс
       news: Жаңалықтар
       help: Көмек
@@ -152,6 +159,7 @@ kk:
       profile: Профайл
       signout: Шығу
       signin: Кіру
+      home: Басты бет
       
 
   carts:
@@ -207,57 +215,57 @@ kk:
   activerecord:
     models:
       restaurant:
-        zero: Асхана табылмады 
-        one: Асхана
-        other: Асханалар
+        zero: асхана табылмады 
+        one: асхана
+        other: асханалар
       menu:
-        zero: Мәзір табылмады 
-        one: Мәзір
-        other: Мәзірлер
+        zero: мәзір табылмады 
+        one: мәзір
+        other: мәзірлер
       user:
-        zero: Пайдаланушы табылмады 
-        one: Пайдаланушы
-        other: Пайдаланушылар
+        zero: пайдаланушы табылмады 
+        one: пайдаланушы
+        other: пайдаланушылар
       order:
-        zero: Тапсырыс табылмады 
-        one: Тапсырыс
-        other: Тапсырыстар
+        zero: тапсырыс табылмады 
+        one: тапсырыс
+        other: тапсырыстар
       address:
-        zero: Мекенжай табылмады 
-        one: Мекенжай
-        other: Мекенжайлар
+        zero: мекенжай табылмады 
+        one: мекенжай
+        other: мекенжайлар
       cart:
-        zero: Себет табылмады 
-        one: Себет
-        other: Себеттер
+        zero: себет табылмады 
+        one: себет
+        other: себеттер
       city:
-        zero: Қала табылмады
-        one: Қала
-        other: Қалалар
+        zero: қала табылмады
+        one: қала
+        other: қалалар
       district:
-        zero: Аудан табылмады
-        one: Аудан
-        other: Аудандар
+        zero: аудан табылмады
+        one: аудан
+        other: аудандар
       deliverability:
-        zero: Жеткізу табылмады
-        one: Жеткізу
-        other: Жеткізулер
+        zero: аудан табылмады
+        one: аудан
+        other: аудандар
       cuisine:
-        zero: Тамақ түрі табылмады
-        one: Тамақ түрі
-        other: Тамақ түрлері
+        zero: тамақ түрі табылмады
+        one: тамақ түрі
+        other: тамақ түрлері
       review:
-        zero: Пікір табылмады
-        one: Пікір
-        other: Пікірлер
+        zero: пікір табылмады
+        one: пікір
+        other: пікірлер
       dish:
-        zero: Тағам табылмады
-        one: Тағам
-        other: Тағамдар
+        zero: тағам табылмады
+        one: тағам
+        other: тағамдар
       business_hour:
-        zero: Жұмыс уақыты табылмады
-        one: Жұмыс уақыты
-        other: Жұмыс уақыттары
+        zero: жұмыс уақыты табылмады
+        one: жұмыс уақыты
+        other: жұмыс уақыттары
         
 
     attributes:
@@ -672,3 +680,6 @@ kk:
     created: '%{model} сәтті құрылды'
     updated: '%{model} сәтті жаңартылды'
     destroyed: '%{model} сәтті өшірілді'
+  will_paginate:
+    next_label: Алға
+    previous_label: Артқа

@@ -1,8 +1,7 @@
 <%- model_class = Dish -%>
 <div class="page-header">
   <h2>
-  <%= link_to @menu.restaurant.name, restaurant_path(@menu.restaurant) %> >
-  <%= "#{@menu.name} > #{model_class.model_name.human(count: 2)}" %></h2>
+  <%= "#{@menu.name} - #{t '.title'}" %></h2>
 </div>
 <table class="table table-striped">
   <thead>
