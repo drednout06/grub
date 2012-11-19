@@ -190,7 +190,7 @@ ru:
     subtotal: Сумма заказа
     empty: Очистить
     checkout: Заказать
-    empty_confirm: Хотить начать заново?
+    empty_confirm: Хотите начать заново?
 
   notice:
     sum_insufficient: Необходимо пополнить заказ еще на %{value} тенге.
@@ -309,8 +309,13 @@ ru:
         revenues: Доход
         cuisines: Кухни
         status: Статус
+        op_enabled: Принимать интернет платежи
+        fem_enabled: Включена
+        fem_disabled: Отключена
+        op_status: Интернет оплата
         enabled: Включен
         disabled: Отключен
+
 
 
       deliverability:

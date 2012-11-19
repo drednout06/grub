@@ -8,6 +8,7 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:op_status) %></th>
       <th><%= model_class.human_attribute_name(:orders) %></th>
       <th><%= model_class.human_attribute_name(:settings) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -19,6 +20,7 @@
         <td><%= restaurant.id %></td>
         <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
         <td><%= restaurant.enabled? ? model_class.human_attribute_name(:enabled) : model_class.human_attribute_name(:disabled) %></td>
+        <td><%= restaurant.op_enabled? ? model_class.human_attribute_name(:fem_enabled) : model_class.human_attribute_name(:fem_disabled) %></td>
         <td>
           <%= link_to t('.operate'),
                       operate_restaurant_path(restaurant), :class => 'btn btn-mini btn-primary' %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112161434) do
+ActiveRecord::Schema.define(:version => 20121119064021) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -243,6 +243,7 @@ ActiveRecord::Schema.define(:version => 20121112161434) do
     t.integer  "city_id"
     t.decimal  "rating"
     t.boolean  "enabled",               :default => false
+    t.boolean  "op_enabled",            :default => true
   end
 
   create_table "reviews", :force => true do |t|
