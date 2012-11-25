@@ -1,9 +1,9 @@
 <%= content_tag_for :section, menu do %>
   <h3><%= menu.name %>
   	<% if can? :manage, menu %>
-	  	<small>
-	  		<%= link_to t("helpers.links.edit"), edit_menu_path(menu), class: "admin-links" %> |
-				<%= link_to t(".control_dishes"), menu_dishes_path(menu), class: "admin-links" %>
+	  	<small class="admin-links">
+	  		<%= link_to t("helpers.links.edit"), edit_menu_path(menu) %> |
+				<%= link_to t(".control_dishes"), menu_dishes_path(menu) %>
 	  	</small>
   	<% end %>
   </h3>

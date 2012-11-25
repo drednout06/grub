@@ -18,11 +18,11 @@
   	</div>
   </div>
   <p>
-	  <% if can? :update, dish %>
+	  <% if can? :destroy, dish %>
+	  	<span class="admin-links">
 			<%= link_to t("helpers.links.edit"), edit_dish_path(dish), class: "admin-links" %> |
-		<% end %>
-		<% if can? :destroy, dish %>
 	 		<%= link_to t("helpers.links.destroy"), dish, method: :delete, data: { confirm: 'Are you sure?' }, class: "admin-links" %>
+	 		</span>
 		<% end %>
 	</p>
 </li>

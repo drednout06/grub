@@ -2,9 +2,12 @@
 	<div class="span2 restaurant-logo">
 		<%= image_tag restaurant.logo.url(:thumb), width: 170, class: "img-rounded" %>
 		<% if can? :update, restaurant %>
-		<%= link_to t("helpers.links.edit"), edit_restaurant_path(restaurant), class: "admin-links" %> |
-		<%= link_to t(".control_menus"), restaurant_menus_path(restaurant), class: "admin-links" %>
+		<span class="admin-links">
+		<%= link_to t("helpers.links.edit"), edit_restaurant_path(restaurant) %> |
+		<%= link_to t(".control_menus"), restaurant_menus_path(restaurant) %>
+		</span>
 		<% end %>
+
 	</div>
 	<div class="span7">
 		<div class="row">
