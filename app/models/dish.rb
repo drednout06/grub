@@ -11,7 +11,8 @@ class Dish < ActiveRecord::Base
             processors: [:cropper]}, medium: {geometry: "450x300>", :processors => [:cropper]}},
             path: "/dishes/:attachment/:id/:style.:extension",  
             storage: :s3,
-            s3_credentials: "#{Rails.root}/config/s3.yml"
+            s3_credentials: "#{Rails.root}/config/s3.yml",
+            default_url: '/dishes/missing.jpg'
 
   validates_attachment :picture, #:presence => true,
 	  content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] },
