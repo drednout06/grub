@@ -1,6 +1,7 @@
 <tr class="<%= order_status_to_class my_order.status %> <%= my_order.status %> order" id="<%= dom_id(my_order) %>">
   <td><%= my_order.id %></td>
-  <td><%= t "orders.order.#{my_order.status}" %></td>
+  <td><%= t ".#{my_order.status}" %></td>
+  <td><%= link_to my_order.restaurant.name, my_order.restaurant %></td>
   <td><%= my_order.total_price %></td>
   <td><%= my_order.try(:address).try(:district).try(:name) %></td>
   <td><%= l my_order.created_at, format: :short %></td>
@@ -8,9 +9,5 @@
   <td>
     <%= link_to t('.view', :default => t("helpers.links.view")),
                 order_path(my_order), :class => 'btn btn-mini' %>
-    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                order_path(my_order), :class => 'btn btn-mini btn-danger',
-                :method => :delete, remote: true,
-                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %>
   </td>
 </tr>

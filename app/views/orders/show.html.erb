@@ -23,7 +23,7 @@
 
   <div class="span3">
     <p>
-    <legend><%= Order.model_name.human %></legend>
+    <legend><%= Order.model_name.human.mb_chars.capitalize %></legend>
     <%= render @order.line_items %>
     <div class="row">
     <strong>
@@ -53,10 +53,10 @@
                 operate_restaurant_path(@order.restaurant), :class => 'btn'  %>
     <%= link_to t('.accept', :default => t("helpers.links.accept")),
                   accept_order_path(@order), :class => 'btn btn-success',
-                  method: :post, remote: true %>
+                  method: :post %>
     <%= link_to t('.reject', :default => t("helpers.links.reject")),
                 reject_order_path(@order), :class => 'btn btn-danger',
-                :method => :post, remote: true %>
+                :method => :post %>
   <% else %>
     <%= link_to t('.back', :default => t("helpers.links.back")),
                 user_orders_path(current_user), :class => 'btn'  %>

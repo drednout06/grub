@@ -1,6 +1,6 @@
 class Dish < ActiveRecord::Base
   attr_accessible :description, :name, :price, :picture, :city_id, :crop_x, :crop_y, :crop_w, :crop_h,
-                  :position
+                  :position, :menu_id
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   belongs_to :menu
   has_one :restaurant, through: :menu

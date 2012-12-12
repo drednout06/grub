@@ -62,7 +62,6 @@ class BusinessHoursController < InheritedResources::Base
 			c_minutes = params[:closing][/\d+$/].to_i
 			duration = (c_hours * 60 + c_minutes) - (o_hours * 60 + o_minutes)
 			if duration < 0 then duration += 24*60 end
-			print "reached this point"
 		else
 			return
 		end

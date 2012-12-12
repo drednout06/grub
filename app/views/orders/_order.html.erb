@@ -9,7 +9,7 @@
   <td><%= l order.delivery_time, format: :short %></td>
   <td>
     <%= link_to t('.view', :default => t("helpers.links.view")),
-                order_path(order), :class => 'btn btn-mini' %>
+                order_path(order), :class => 'btn btn-mini', target: '_blank' %>
     <%= link_to t('.accept', :default => t("helpers.links.accept")),
                 accept_order_path(order), :class => 'btn btn-mini btn-success',
                 method: :post, remote: true %>

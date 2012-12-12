@@ -2,7 +2,7 @@
 <dl class="dl-horizontal">
   <p>
   
-  <dt><strong><%= Address.human_attribute_name(:name) %>:</strong></dt>
+  <dt><strong><%= User.human_attribute_name(:first_name) %>:</strong></dt>
   <dd><%= address.user.name %></dd>
 
   <dt><strong><%= Address.human_attribute_name(:phone_number) %>:</strong></dt>
@@ -15,7 +15,9 @@
   <dd><%= "#{address.first_name} #{address.last_name}" %></dd>
 
   <dt><strong><%= Address.human_attribute_name(:street) %>:</strong></dt>
-  <dd><%= "#{address.street} #{address.house}" %></dd>
+  <dd><%= "#{address.street} #{address.house}" %>
+  <%= link_to t('.see_map'), yandex_link(address.city.name, address.street, address.house), target: "_blank" %>
+  </dd>
 
   <% if address.korpus.present? %>
   <dt><strong><%= Address.human_attribute_name(:korpus) %>:</strong></dt>

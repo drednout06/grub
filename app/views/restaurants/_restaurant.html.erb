@@ -78,9 +78,9 @@
 			</div>
 			<div class="span5">
 				<% if restaurant.cuisines.any? %>
-					<small>
+					<strong>
 						<%= "#{t("restaurants.cuisines")}: #{ restaurant.cuisines.limit(5).map {|c| c.name}.join(' / ')}" %>
-					</small>
+					</strong>
 				<% end %>
 			</div>
 		</div>

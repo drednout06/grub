@@ -66,11 +66,15 @@ kk:
       rejected: Болдырылмады
     index:
       title: Тапсырыстарым
+    my_order:
+      pending: Қабылданды. Жеткізуді күтіңіз.
+      accepted: Іске асырылды
+      rejected: Болдырылмады
 
       
   restaurants:
     restaurants:
-      title: '%{count} табылған асханалардан біреуін таңдаңыз'
+      title: '%{count} табылған асханадан біреуін таңдаңыз'
     restaurant:
       closed: Жабық
       closed_tooltip: Асхана әзірше жабық бірақ алдынала тапсырыс берсеңіз болады.
@@ -107,6 +111,7 @@ kk:
     address:
       buyer: Тапсырыс беруші
       receiver: Тапсырыс алушы
+      see_map: (Картада көру)
 
   reviews:
     ago: "%{time} бұрын"
@@ -361,6 +366,7 @@ kk:
         price: Бағасы
         picture: Суреті
         position: Позиция
+        menu: Мәзір
 
     errors:
       <<: *errors
@@ -395,8 +401,12 @@ kk:
       user:
         signed_up: Жүйеге сәтті тіркелдіңіз!
       new:
-        title: Тіркелу
         restaurateur_title: Ресторатор ретінде тіркелу
+        title: 1. Тапсырыс беруші туралы ақпарат
+        phone_hint: (байланыс үшін қажет)
+        email_hint: (спам таратпаймыз, сөз)
+        button: Жалғастыру
+        restaurateur_button: Тіркелу
       edit:
         title: Профайлды өндеу
         password_hint: "өзгертуіңіз келмесе, бос қалдырыңыз"
@@ -677,6 +687,7 @@ kk:
     currentText: 'Қазір'
     closeText: 'Жабу'
   flash:
+    order_created: 'Тапсырысыңыз қабылданды! Рақмет және ас болсын! :)'
     created: '%{model} сәтті құрылды'
     updated: '%{model} сәтті жаңартылды'
     destroyed: '%{model} сәтті өшірілді'

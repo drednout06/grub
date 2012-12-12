@@ -1,1 +1,26 @@
 $("#<%= dom_id(@order) %>").replaceWith("<%=j render @order %>");
+
+
+
+// Google Analytics Conversion removal
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-35707186-1']);
+_gaq.push(['_trackPageview']);
+_gaq.push(['_addTrans',
+  '<%= @order.id %>',           // order ID - required
+  '<%= @order.restaurant.name %>',  // affiliation or store name
+  '-<%= @order.total_price %>',          // total - required
+  '',           // tax
+  '',              // shipping
+  '<%= @order.try(:address).try(:district).try(:name) %>',       // city
+  '<%= @order.try(:address).try(:city).try(:name) %>',     // state or province
+  'Kazakhstan'             // country
+]);
+
+_gaq.push(['_trackTrans']); //submits transaction to the Analytics servers
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();

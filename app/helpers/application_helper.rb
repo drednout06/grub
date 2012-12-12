@@ -70,5 +70,9 @@ module ApplicationHelper
   def container_id
     homepage? ? 'landing-container' : 'main-container'
   end
+
+  def yandex_link(city, street, house)
+    "http://maps.yandex.ru/?text=Казахстан, #{URI::escape(city)}, улица #{URI::escape(street)}, #{URI::escape(house)}"
+  end
   
 end

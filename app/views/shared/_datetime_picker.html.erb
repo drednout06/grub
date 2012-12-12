@@ -1,5 +1,5 @@
 <script type="text/javascript" charset="utf-8">
-$(function() {
+
 	$.datepicker.regional["<%= I18n.locale.to_s %>"] = {
 		closeText: "<%= t 'datepicker.closeText' %>",
 		prevText: "<%=raw t 'datepicker.prevText' %>",
@@ -38,5 +38,5 @@ $(function() {
 	};
 	$.timepicker.setDefaults($.timepicker.regional["<%= I18n.locale.to_s %>"]);
 
-});
+
 </script>

@@ -65,7 +65,7 @@ class MenusController < ApplicationController
 
     respond_to do |format|
       if @menu.save
-        format.html { redirect_to @menu, notice: t('flash.created', model: Menu.model_name.human) }
+        format.html { redirect_to restaurant_menus_path(@restaurant), notice: t('flash.created', model: Menu.model_name.human) }
         format.json { render json: @menu, status: :created, location: @menu }
       else
         format.html { render action: "new" }

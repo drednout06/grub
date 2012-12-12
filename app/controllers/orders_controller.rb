@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     @user = current_user
     @q = @user.orders.ransack(params[:q])
     @orders = @q.result(distinct: true)
-
+    @order = 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @orders }
@@ -86,7 +86,8 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        format.html { redirect_to user_orders_path(@user), notice: t('flash.created', model: Order.model_name.human) }
+        format.html { redirect_to user_orders_path(@user),
+            notice: t('flash.order_created') }
         format.json { render json: @order, status: :created, location: @order }
       else
         format.html { render action: "new", flash: {notice: 'Save failed!'} }
@@ -136,6 +137,7 @@ class OrdersController < ApplicationController
     @order.update_attributes(status: Order::STATUSES[:accepted])
     respond_to do |format|
       format.js
+      format.html { redirect_to operate_restaurant_path(@order.restaurant) }
     end
   end
 
@@ -144,10 +146,14 @@ class OrdersController < ApplicationController
     @order.update_attributes(status: Order::STATUSES[:rejected])
     respond_to do |format|
       format.js
+      format.html { redirect_to operate_restaurant_path(@order.restaurant) }
     end
   end
 
   def auth_user
-    redirect_to new_user_registration_path unless user_signed_in?
+    unless user_signed_in?
+      session[:user_return_to] = request.path
+      redirect_to new_user_registration_path
+    end
   end
 end
