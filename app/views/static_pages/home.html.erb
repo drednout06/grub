@@ -1,6 +1,7 @@
 <%- model_class = Restaurant -%>
 <% provide(:title, t(".title")) %>
 <div class="container" id="landing">
+
   <div class="center hero-unit">
     <h1> <%= t(".headline") %> </h1>
 
@@ -58,4 +59,7 @@
       <p><%= t(".feature_3_desription") %></p>
     </div>
   </div>
+</div>
+<div class="offset4" style="margin-top: 40px;">
+  <%= render 'shared/addthis' %>
 </div>
