@@ -88,7 +88,7 @@ class Restaurant < ActiveRecord::Base
   end
 
   def open?
-    business_hours.any? { |hour| hour.schedule.occurring_at?(Time.now) }
+    business_hours.any? { |hour| hour.schedule.occurring_at?(Time.zone.now) }
   end
 
   def open_at?(time)
@@ -96,11 +96,11 @@ class Restaurant < ActiveRecord::Base
   end
 
   def business_hour
-    business_hours.detect { |hour| hour.schedule.occurring_at?(Time.now) }
+    business_hours.detect { |hour| hour.schedule.occurring_at?(Time.zone.now) }
   end
 
   def today_hours
-    business_hours.find_all { |hour| hour.day == Date::DAYNAMES[Time.now.wday].downcase }
+    business_hours.find_all { |hour| hour.day == Date::DAYNAMES[Time.zone.now.wday].downcase }
   end
 
   def delivery_fee(district_id)

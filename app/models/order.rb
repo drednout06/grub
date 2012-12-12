@@ -77,7 +77,7 @@ class Order < ActiveRecord::Base
     # unless restaurant.open_at?(delivery_time)
     #   errors.add(:delivery_time, "restaurant is closed at this time") 
     # end
-    unless (delivery_time > Time.now and delivery_time <= Time.now.tomorrow)
+    unless (delivery_time > Time.zone.now and delivery_time <= Time.zone.now.tomorrow)
       errors.add(:delivery_time, "you can only order for the next 24 hours")
     end
   end
@@ -89,7 +89,7 @@ class Order < ActiveRecord::Base
   end
 
   def set_delivery_time
-    self.delivery_time ||= Time.now
+    self.delivery_time ||= Time.zone.now
   end
 
 end
