@@ -75,7 +75,7 @@ ru:
     restaurants:
       title: 'Выберите одно из %{count} найденных заведений'
     restaurant:
-      closed: "Предзаказ на:"
+      closed: "Предзаказ:"
       closed_tooltip: На данный момент заведение закрыто, но возможен предзаказ
       open: Онлайн
       open_tooltip: Заведение прямо сейчас принимает заказы
@@ -89,7 +89,7 @@ ru:
     index:
       sort_by: 'Сортировать по:'
     delivery_time: "около %{minutes} минут"
-    cuisines: Кухня
+    cuisines: Кухни
     edit:
       title: Редактирование заведения
     form:

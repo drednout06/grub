@@ -61,7 +61,7 @@
 		</div>
 
 		<div class="row">
-			<div class="span2">
+			<div class="span3">
 				<small>
 					<i class="icon-time"></i>
 					<% unless restaurant.open? %>
@@ -76,10 +76,10 @@
 					<%= restaurant.today_hours.map {|hour| hour.to_s}.join(' / ') %>
 				</small>
 			</div>
-			<div class="span5">
+			<div class="span4">
 				<% if restaurant.cuisines.any? %>
 					<strong>
-						<%= "#{t("restaurants.cuisines")}: #{ restaurant.cuisines.limit(5).map {|c| c.name}.join(' / ')}" %>
+						<%= "#{t("restaurants.cuisines")}: #{ restaurant.cuisines.limit(3).map {|c| c.name}.join(' / ')}" %>
 					</strong>
 				<% end %>
 			</div>
