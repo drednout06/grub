@@ -19,6 +19,10 @@ Grub::Application.routes.draw do
       resources :districts, shallow: true
     end
 
+    resources :districts, only: [:select] do
+      collection { post :select }
+    end
+
     resources :carts
     
     resources :cuisines do
@@ -89,6 +93,9 @@ Grub::Application.routes.draw do
     match '/about',   to: 'static_pages#about'
     match '/partners',to: 'static_pages#partners'
     match '/contact', to: 'static_pages#contact'
+    match '/sushi', to: 'static_pages#sushi'
+    match '/pizza', to: 'static_pages#pizza'
+    match '/chinese', to: 'static_pages#chinese'
   end
 
   match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }

@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.order("created_at desc").page(params[:page]).per_page(10)
+
   end
   
   def new

@@ -10,7 +10,7 @@
     </p>
 
     <div class="row">
-  	  <%= search_form_for @q, class: 'form-inline', url: search_restaurants_path, method: :post do |f| %>
+  	  <%= search_form_for @q, class: 'form-inline' do |f| %>
 
   		  <div class="span3 offset1">
   			  <%= f.label :city_id_in, t(".your_city"), class: 'lead' %>

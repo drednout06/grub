@@ -11,7 +11,6 @@ class RestaurantsController < ApplicationController
     @q.build_sort if @q.sorts.empty?
 
     save_district params[:q].try(:[], :deliverabilities_district_id_in)
-
   end
 
   def search

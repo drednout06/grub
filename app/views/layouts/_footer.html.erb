@@ -4,14 +4,31 @@
       <a href="http://grub.kz/">grub.kz</a>
       by <a href="http://amanatlabs.com/">Amanat Labs</a>
     </small>
+    <nav>
+      <ul class="center">
+        <li><%= link_to t(".pizza_delivery"), pizza_path %></li>
+        <li class="muted">·</li>
+        <li><%= link_to t(".sushi_delivery"), sushi_path %></li>
+        <li class="muted">·</li>
+        <li><%= link_to t(".food_delivery"), restaurants_path %></li>
+      </ul>
+    </nav>
+  </div>
 
+  <div class="container">
+
+    
     <nav>
       <ul>
-        <li><%= link_to t(".partners"), partners_path %></li>
         <li><%= link_to t(".about"), '#' %></li>
+        <li class="muted">·</li>
+        <li><%= link_to t(".partners"), partners_path %></li>
+        <li class="muted">·</li>
         <li><%= link_to t(".contact"), '#' %></li>
+        <li class="muted">·</li>
         <li><%= link_to t(".help"), '#' %></li>
-        <li><%= link_to t(".news"), '#' %></li>
+        <li class="muted">·</li>
+        <li><%= link_to t(".blog"), 'http://blog.grub.kz/' %></li>
       </ul>
     </nav>
   </div>

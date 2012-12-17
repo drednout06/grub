@@ -84,4 +84,13 @@ class DistrictsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def select
+    @district = params[:district][:id]
+    save_district @district
+
+    respond_to do |format|
+      format.js {}
+    end
+  end
 end

@@ -32,6 +32,7 @@ class Order < ActiveRecord::Base
   validates :delivery_time, presence: true, if: :preorder?
   validate :delivery_time_valid, if: :preorder?
   validate :restaurant_enabled
+  validate :deliverable
 
   STATUSES = {pending: 'pending', accepted: 'accepted', rejected: 'rejected'}
 
@@ -85,6 +86,12 @@ class Order < ActiveRecord::Base
   def restaurant_enabled
     unless restaurant.enabled?
       errors.add(:deliver_now, "the restaurant is disabled at the moment")
+    end
+  end
+
+  def deliverable
+    unless restaurant.deliverabilities.where(district_id: address.district_id).exists?
+      errors.add(:address_id, "the restaurant doesn't deliver to the selected district")
     end
   end
 

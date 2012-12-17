@@ -23,12 +23,6 @@
               </li>
             <% end %>
 
-            <li><%= link_to restaurants_path do %>
-              <i class="icon-heart"></i>
-              <%= t(".favorites") %>
-              <% end %>
-            </li>
-
             <li><%= link_to user_orders_path(current_user) do %>
               <i class="icon-list"></i>
               <%= t(".orders") %>
@@ -57,6 +51,11 @@
               </ul>
             </li>
           <% else %>
+            <li><%= link_to restaurants_path do %>
+              <i class="icon-chevron-right"></i>
+              <%= t(".restaurants") %>
+              <% end %>
+            </li>
             <li><%= link_to new_user_session_path do %>
                 <i class="icon-signin"></i>
                 <%= t(".signin") %>

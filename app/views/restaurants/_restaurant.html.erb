@@ -52,7 +52,7 @@
 
 				<span class="tooltiped" rel="tooltip" data-placement="top"
 						data-original-title="<%= t('navigation.reviews') %>" data-trigger="hover" style="margin-left: 20px;">
-					<a class="favorite" href="<%= restaurant_path(restaurant) %>#reviews">
+					<a class="favorite insider" href="<%= restaurant_path(restaurant) %>#reviews">
 						<i class="icon-comments-alt icon-large"></i>
 					</a>
 					<%= restaurant.reviews.count %>
@@ -100,7 +100,19 @@
 							<%= number_to_currency (restaurant.minimum_order) %>
 						</td>
 						<td class="value">
-							<%= number_to_currency(restaurant.delivery_fee(current_district)) %>
+							<% if current_district.blank? %>
+								<small>
+							 		<%= link_to t(".select_district"), "#districtModal_#{dom_id(restaurant)}", :role => "button",
+							 					:'data-toggle' => "modal", class: "dark-link insider" %>
+							 	</small>
+							<% else %>
+								<%= delivery_fee(restaurant, current_district) %>
+								<small class="tooltiped" rel="tooltip" data-placement="top"
+  							data-original-title="<%= t '.select_district' %>" data-trigger="hover">
+								<%= link_to current_district_name, "#districtModal_#{dom_id(restaurant)}", :role => "button", :'data-toggle' => "modal",
+									 		class: "dark-link insider" %>
+								</small>
+							<% end %>
 						</td>
 						<td class="value">
 							<%= t('restaurants.delivery_time', minutes: restaurant.average_delivery_time) %>
@@ -113,4 +125,33 @@
 				</tbody>
 			</table>
 	</div>
+</div>
+
+<!-- Modal -->
+<div id="districtModal_<%= dom_id(restaurant) %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="districtModalLabel_<%= dom_id(restaurant) %>" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="districtModalLabel_<%= dom_id(restaurant) %>"><%= t(".select_district") %></h3>
+  </div>
+  <div class="modal-body">
+    <%= form_tag select_districts_path, remote: true, class: "form-horizontal", style: "margin-bottom: 0;" do %>
+    	<div class="control-group">
+	    	<%= label_tag '', t("static_pages.home.your_city"), class: 'control-label' %>
+	    	<div class="controls">
+	    		<span class="lead"><%= restaurant.city.name %></span>
+	    	</div>
+    	</div>
+    	<div class="control-group">
+	    	<%= label_tag '', t("static_pages.home.your_district"), class: 'control-label' %>
+			  <div class="controls">
+			  	<%= collection_select :district, :id, restaurant.districts, :id, :name,
+			  			include_blank: false, class: 'input-small' %>
+  			</div>
+  		</div>
+  		<div class="form-actions" style="margin-bottom: 0;">
+  			<%= submit_tag t('.save'), class: "btn btn-primary" %>
+		    <button class="btn" data-dismiss="modal" aria-hidden="true"><%= t '.close' %></button>
+		  </div>
+    <% end %>
+  </div>
 </div>

@@ -1,5 +1,7 @@
 $ ->
 	$('#restaurants .restaurant-row').click ->
-		window.location = $(this).find('a').attr('href')
+		unless $(event.target).is("a") or $(event.target).is("input")
+			window.location = $(this).find('a').attr('href')
+
 
   $('.datepicker').datepicker()

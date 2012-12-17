@@ -60,6 +60,8 @@ class Ability
 
     can :partner, User
 
+    can :select, District
+
     can :search, Restaurant
 
     can :rate, Restaurant do |restaurant|
