@@ -33,7 +33,7 @@
   <dd><%= @orders.pending.count %></dd>
   
   <dt><strong><%= Restaurant.human_attribute_name(:views) %>:</strong></dt>
-  <dd><%= @restaurant.impressionist_count(filter: :session_hash) %></dd>
+  <dd><%= @restaurant.views_count(24.hours.ago, Time.zone.now) %></dd>
 
   <dt><strong><%= Restaurant.human_attribute_name(:orders) %>:</strong></dt>
   <dd><%= @orders.where(created_at: 24.hours.ago..Time.zone.now).count %></dd>

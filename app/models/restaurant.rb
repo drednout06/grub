@@ -117,7 +117,7 @@ class Restaurant < ActiveRecord::Base
   end
 
   def orders_count_by_day(start, finish = Time.zone.now)
-    orders = self.orders.where(created_at: start.beginning_of_day..finish.end_of_day)
+    orders = self.orders.accepted.where(created_at: start.beginning_of_day..finish.end_of_day)
     orders = orders.group("date(created_at)")
     orders = orders.select("date(created_at) as created_at, count(*) as count")
     orders.each_with_object({}) do |order, counts|
@@ -126,12 +126,16 @@ class Restaurant < ActiveRecord::Base
   end
 
   def revenues_by_day(start, finish = Time.zone.now)
-    revenues = orders.where(created_at: start.beginning_of_day..finish.end_of_day)
+    revenues = orders.accepted.where(created_at: start.beginning_of_day..finish.end_of_day)
     revenues = revenues.group("date(created_at)")
     revenues = revenues.select("date(created_at) as created_at, sum(total) as total_sum")
     revenues.each_with_object({}) do |revenue, sums|
       sums[revenue.created_at.to_date] = revenue.total_sum
     end
+  end
+
+  def views_count(start, finish = Time.zone.now)
+    impressions.where(created_at: start..finish).count
   end
 
 end
