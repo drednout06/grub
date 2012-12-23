@@ -5,8 +5,10 @@
     <%= render 'address_form', address: @address %>
   </div>
   <legend><%= t '.preferences_legend' %></legend>
-  <%= form.input :deliver_now, input_html: {checked: true} %>
-  <%= form.input :delivery_time, as: :custom_time, disabled: true, input_html: {class: "datetimepicker"}%>
+  <%= form.input :deliver_now, input_html: {checked: !@preorder}, disabled: @preorder,
+   hint: "#{@preorder ? t('activemodel.errors.models.order.attributes.delivery_time.restaurant_closed') : ''}" %>
+  <%= form.input :delivery_time, as: :custom_time, disabled: !@preorder, input_html: {class: "datetimepicker"},
+        hint: "#{BusinessHour.model_name.human(count: 2).mb_chars.capitalize}: #{@cart.restaurant.today_hours.map {|hour| hour.to_s}.join(' / ')}"%>
   <%= form.input :change_from %>
 
   <div class="form-actions">

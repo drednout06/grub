@@ -42,6 +42,15 @@ ru:
         many: ! '%{model}: сохранение не удалось из-за %{count} ошибок'
         one: ! '%{model}: сохранение не удалось из-за %{count} ошибки'
         other: ! '%{model}: сохранение не удалось из-за %{count} ошибки'
+    models:
+        order:
+          attributes:
+            delivery_time:
+              no_delivery: Это заведение не доставляет в указанный район
+              restaurant_disabled: Заведение отключено
+              too_far_in_future: Предзаказ возможен максимум за 24 часа до времени доставки
+              invalid_delivery_time: Время доставки указано в неверном формате
+              restaurant_closed: Заведение на данный момент закрыто. Возможен лишь предзаказ.
 
   default_attributes: &default_attributes
     id: Номер
@@ -75,7 +84,7 @@ ru:
     restaurants:
       title: 'Выберите одно из %{count} найденных заведений'
     restaurant:
-      closed: "Предзаказ:"
+      closed: "Закрыто. Предзаказ:"
       closed_tooltip: На данный момент заведение закрыто, но возможен предзаказ
       open: Онлайн
       open_tooltip: Заведение прямо сейчас принимает заказы
@@ -176,6 +185,8 @@ ru:
       feature_1: Наш сервис бесплатен
       feature_3: Мы экономим ваше время
       advantages: "Некоторые преимущества заказа на grub.kz:"
+    help:
+      faq: Часто задаваемые вопросы
 
   layouts:
     footer:
@@ -184,7 +195,7 @@ ru:
       contact: Связь
       news: Новости
       blog: Блог
-      help: Помощь
+      help: Вопросы и ответы
       pizza_delivery: Доставка пиццы
       sushi_delivery: Доставка суши
       food_delivery: Доставка еды
@@ -409,6 +420,7 @@ ru:
         <<: *default_attributes
     errors:
       <<: *errors
+      
 
   active_admin:
     dashboard: Главная
@@ -616,6 +628,7 @@ ru:
       accept: Принять
       reject: Отменить
       drag: Переместить
+      rename: Переименовать
     titles:
       new: 'Новый %{model}'
       edit: 'Отредактировать %{model}'

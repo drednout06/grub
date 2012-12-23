@@ -33,6 +33,7 @@ class OrdersController < ApplicationController
       redirect_to :back, flash: {error: t('notice.sum_insufficient', value: @cart.remainder)}
       return
     end
+    @preorder = !@cart.restaurant.open?
 
     @user = current_user || User.new
     @address = @user.addresses.last
@@ -57,6 +58,7 @@ class OrdersController < ApplicationController
   def create
     @user = current_user
     @cart = current_cart
+    @preorder = !@cart.restaurant.open?
     unless @cart.enough?
       redirect_to @cart.restaurant, flash: {error: t('notice.sum_insufficient', value: @cart.remainder)}
       return
@@ -67,7 +69,7 @@ class OrdersController < ApplicationController
     address_params[:name] =
       "#{address_params[:first_name]} | #{address_params[:street]} #{address_params[:house]}"
 
-    
+
     @order = @user.orders.new(params[:order])
 
     # Address form handling

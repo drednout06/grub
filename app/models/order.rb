@@ -46,7 +46,7 @@ class Order < ActiveRecord::Base
   scope :rejected, where(status: STATUSES[:rejected])
 
   default_scope :order => 'created_at DESC'
-  before_save :set_delivery_time
+  before_validation :set_delivery_time
   
 
   def add_data_from_cart(cart)
@@ -72,31 +72,31 @@ class Order < ActiveRecord::Base
 
   def delivery_time_valid
     unless delivery_time
-      errors.add(:delivery_time, "time is invalid")
+      errors.add(:delivery_time, :invalid_delivery_time)
       return
     end
-    # unless restaurant.open_at?(delivery_time)
-    #   errors.add(:delivery_time, "restaurant is closed at this time") 
-    # end
+    unless restaurant.open_at?(delivery_time)
+      errors.add(:delivery_time, :restaurant_closed)
+    end
     unless (delivery_time > Time.zone.now and delivery_time <= Time.zone.now.tomorrow)
-      errors.add(:delivery_time, "you can only order for the next 24 hours")
+      errors.add(:delivery_time, :too_far_in_future)
     end
   end
 
   def restaurant_enabled
     unless restaurant.enabled?
-      errors.add(:deliver_now, "the restaurant is disabled at the moment")
+      errors.add(:deliver_now, :restaurant_disabled)
     end
   end
 
   def deliverable
     unless restaurant.deliverabilities.where(district_id: address.district_id).exists?
-      errors.add(:address_id, "the restaurant doesn't deliver to the selected district")
+      errors.add(:address_id, :no_delivery)
     end
   end
 
   def set_delivery_time
-    self.delivery_time ||= Time.zone.now
+    self.delivery_time = Time.zone.now if deliver_now? or delivery_time.blank?
   end
 
 end

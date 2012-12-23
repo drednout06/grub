@@ -18,11 +18,13 @@
       <%= content_tag_for :tr, menu do %>
         <td><span class="handle"><i class="icon-move"></i>
           [<%= t 'helpers.links.drag' %>]</span></td>
-        <td><%= link_to menu.name, menu_path(menu) %></td>
+        <td><%= link_to menu.name, menu_dishes_path(menu) %></td>
         <td><%=l menu.created_at, format: :short %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to t('.rename', :default => t("helpers.links.rename")),
                       edit_menu_path(menu), :class => 'btn btn-mini' %>
+          <%= link_to t('.view', :default => t("helpers.links.view")),
+                      menu_path(menu), :class => 'btn btn-mini' %>
           <%= link_to model_class.human_attribute_name(:dishes),
                       menu_dishes_path(menu), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

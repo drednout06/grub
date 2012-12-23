@@ -25,6 +25,7 @@ class MenusController < ApplicationController
     add_breadcrumb @restaurant.name, restaurant_path(@restaurant)
     add_breadcrumb I18n.t('layouts.header.restaurateur'), restaurateur_user_path(current_user)
     add_breadcrumb Menu.model_name.human.mb_chars.capitalize, restaurant_menus_path(@restaurant)
+    add_breadcrumb @menu.name, menu_dishes_path(@menu)
 
     respond_to do |format|
       format.html # show.html.erb

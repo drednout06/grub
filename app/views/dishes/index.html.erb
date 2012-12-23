@@ -8,6 +8,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:position) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -18,6 +19,7 @@
         <td><span class="handle"><i class="icon-move"></i>
           [<%= t 'helpers.links.drag' %>]</span></td>
         <td><%= link_to dish.name, dish_path(dish) %></td>
+        <td><%= number_to_currency dish.price %></td>
         <td><%=l dish.created_at, format: :short %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

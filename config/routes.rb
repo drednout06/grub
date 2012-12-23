@@ -89,7 +89,7 @@ Grub::Application.routes.draw do
       resources :deliverabilities, shallow: true
     end
 
-    match '/help',    to: 'static_pages#help'
+    match '/faq',    to: 'static_pages#help'
     match '/about',   to: 'static_pages#about'
     match '/partners',to: 'static_pages#partners'
     match '/contact', to: 'static_pages#contact'
