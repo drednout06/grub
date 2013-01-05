@@ -387,7 +387,7 @@ kk:
         sum: Сома
         status: Статус
         address_id: Сақталған мекенжайлар
-        deliver_now: Бірден әкелу
+        deliver_now: Бірден жеткізу
         waiting_time: Күту уақыты
         history: Тарихы
 

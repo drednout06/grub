@@ -25,6 +25,7 @@ gem 'sqlite3'
 gem 'taps'
 gem 'impressionist'
 gem "breadcrumbs_on_rails"
+gem 'metamagic'
 
 group :development, :test do
   gem 'rspec-rails', '2.10.0'

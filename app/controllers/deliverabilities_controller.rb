@@ -1,5 +1,6 @@
 class DeliverabilitiesController < ApplicationController
   load_and_authorize_resource
+  before_filter :authenticate_user!
   add_breadcrumb I18n.t('layouts.header.home'), :root_path
   
   def index

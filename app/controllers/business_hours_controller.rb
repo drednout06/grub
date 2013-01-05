@@ -1,5 +1,6 @@
 class BusinessHoursController < InheritedResources::Base
 	belongs_to :restaurant, optional: true
+	before_filter :authenticate_user!
 	load_and_authorize_resource
 	add_breadcrumb I18n.t('layouts.header.home'), :root_path
 
