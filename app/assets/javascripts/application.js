@@ -15,6 +15,8 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require_tree .
+//= require jquery.timeago
+//= require jquery.timeago.ru.js
 //= require jquery.Jcrop
 //= require jquery.rating.pack
 //= require jquery.MetaData

@@ -54,6 +54,7 @@ Grub::Application.routes.draw do
 
       member do
         get :restaurateur
+        get :report
       end
     end
 

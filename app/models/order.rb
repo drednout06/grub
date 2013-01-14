@@ -30,9 +30,9 @@ class Order < ActiveRecord::Base
   validates :address_id, presence: true
   validates :restaurant_id, presence: true
   validates :delivery_time, presence: true, if: :preorder?
-  validate :delivery_time_valid, if: :preorder?
-  validate :restaurant_enabled
-  validate :deliverable
+  validate :delivery_time_valid, if: :preorder?, on: :create
+  validate :restaurant_enabled, on: :create
+  validate :deliverable, on: :create
 
   STATUSES = {pending: 'pending', accepted: 'accepted', rejected: 'rejected'}
 

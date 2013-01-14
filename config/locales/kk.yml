@@ -389,6 +389,7 @@ kk:
         address_id: Сақталған мекенжайлар
         deliver_now: Бірден жеткізу
         waiting_time: Күту уақыты
+        preorder: Претапсырыс
         history: Тарихы
 
       review:

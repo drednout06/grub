@@ -65,6 +65,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def report
+    if current_user.admin?
+      @restaurants = Restaurant.all
+    else
+      @restaurants = current_user.restaurants
+    end
+    
+  end
+
   private
 
     def signed_in_user
