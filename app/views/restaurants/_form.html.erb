@@ -8,6 +8,8 @@
       <%= f.input :minimum_order, placeholder: '1000' %>
       <%= f.input :average_delivery_time, placeholder: '60' %>
       <%= f.input :description, input_html: {rows: 4} %>
+      <%= f.input :sms_phone %>
+      <%= f.input :support_phone %>
       <%= f.input :logo %>
       <%= f.input :op_enabled %>
       <% if current_user.admin? %>

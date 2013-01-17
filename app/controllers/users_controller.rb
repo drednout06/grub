@@ -68,10 +68,14 @@ class UsersController < ApplicationController
   def report
     if current_user.admin?
       @restaurants = Restaurant.all
+      @orders = Order.accepted
     else
       @restaurants = current_user.restaurants
+      @orders = current_user.transactions
     end
-    
+    @start = params[:start].blank? ? 1.year.ago : Time.parse(params[:start]) 
+    @finish = params[:finish].blank? ? Time.zone.now : Time.parse(params[:finish])
+
   end
 
   private

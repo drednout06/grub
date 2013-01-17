@@ -80,7 +80,7 @@ ru:
     index:
       title: Мои заказы
     my_order:
-      pending: Принят. Ожидайте доставку.
+      pending: Принят
       accepted: Реализован
       rejected: Отменен
 
@@ -245,6 +245,19 @@ ru:
       stats: Статистика
       new: Добавить заведение
       title: Кабинет ресторатора
+      report: Отчет
+    report:
+      title: Финансовый отчет
+      start: "От:"
+      finish: "До:"
+      update: Обновить
+      summary: Итог
+      sum_of_accepted: Сумма принятых заказов
+      compensation: Сумма вознограждения grub.kz
+      total: Всего
+      accepted: Принято
+      rejected: Отменено
+
   business_hours:
     new:
       title: Добавить часы работы
@@ -332,6 +345,9 @@ ru:
     attributes:
       restaurant:
         address: Адрес
+        sms_phone: Тел. номер для СМС уведомлений
+        support_phone: Тел. номер поддержки
+        support_phone_client: Телефон
         user_id: Пользаватель
         minimum_order: Минимальный заказ
         minimum_rating: Минимальный рейтинг
@@ -410,6 +426,7 @@ ru:
         change_from: Сдача с
         created_at: Создан
         sum: Сумма
+        total: К оплате
         status: Статус
         address_id: Сохраненные адреса
         waiting_time: Отправлен

@@ -1,0 +1,54 @@
+<%- model_class = Restaurant -%>
+<% provide(:title, t(".title")) %>
+<div class="page-header">
+  <h1><%=t '.title' %></h1>
+</div>
+
+  
+<%= form_tag report_user_path(current_user), method: :get, class: "form-inline" do %>
+  <%= label_tag(:start, t('.start')) %>
+  <%= text_field_tag :start, nil, class: "input-small datepicker" %>
+  <%= label_tag(:finish, t('.finish')) %>
+  <%= text_field_tag :finish, nil, class: "input-small datepicker" %>
+  <%= submit_tag t('.update'), class: "btn btn-primary" %>
+<% end %>
+
+
+<% @restaurants.each do |restaurant| %>
+
+<table class="table">
+  <h2 style="margin: 30px 0 5px 0;"><%= restaurant.name %></h2>
+  <thead>
+    <tr>
+      <th><%= t '.accepted' %></th>
+      <th><%= t '.rejected' %></th>
+      <th><%= t '.total' %></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= restaurant.orders.where(created_at: @start..@finish).accepted.count %></td>
+        <td><%= restaurant.orders.where(created_at: @start..@finish).rejected.count %></td>
+        <td><%= restaurant.orders.where(created_at: @start..@finish).count %></td>
+      </tr>
+      <tr>
+        <td><%= number_to_currency restaurant.orders.where(created_at: @start..@finish).accepted.sum{|o| o.total || 0} %></td>
+        <td><%= number_to_currency restaurant.orders.where(created_at: @start..@finish).rejected.sum{|o| o.total || 0} %></td>
+        <td><%= number_to_currency restaurant.orders.where(created_at: @start..@finish).sum{|o| o.total || 0} %></td>
+      </tr>
+  </tbody>
+</table>
+<% end %>
+
+<dl>
+  <p>
+  <h2 style="margin: 30px 0 5px 0;"><%= t('.summary') %></h2>
+  <dt><strong><%= t '.sum_of_accepted' %>:</strong></dt>
+  <dd><h1><%= number_to_currency @orders.where(created_at: @start..@finish).sum{|o| o.total || 0} %></h1></dd>
+  
+  <dt><strong><%= t '.compensation' %>:</strong></dt>
+  <dd><h1><%= number_to_currency @orders.where(created_at: @start..@finish).sum{|o| o.total || 0} * 0.1 %></h1></dd>
+  </p>
+</dl>
+
+<%= render partial: 'shared/datetime_picker' %>

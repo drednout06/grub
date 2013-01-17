@@ -47,6 +47,8 @@ class Ability
 
       can :restaurateur, User
 
+      can :report, User
+
     # user
     end
 

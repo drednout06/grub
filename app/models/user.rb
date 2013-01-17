@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
   has_many :evaluations, class_name: "RSEvaluation", as: :source
   has_many :restaurants, dependent: :destroy
+  has_many :transactions, through: :restaurants, source: :orders
   has_many :user_favorites, dependent: :destroy
   has_many :favorites, through: :user_favorites, source: :restaurant
 

@@ -2,7 +2,7 @@
   <td><%= order.id %></td>
   <td><%= t ".#{order.status}" %></td>
   <td><%= order.user.try(:restaurant_orders_count, order.restaurant_id) %></td>
-  <td><%= order.total_price %></td>
+  <td><%= number_to_currency order.total %></td>
   <td><%= order.try(:address).try(:district).try(:name) %></td>
   <td class="timeago" title="<%= order.created_at.to_time.iso8601 %>"><%= time_ago_in_words (order.created_at) %></td>
   <td><%= l order.created_at, format: :short %></td>

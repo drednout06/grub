@@ -25,7 +25,7 @@ class Restaurant < ActiveRecord::Base
   attr_accessible :address, :minimum_order, :name, :logo, :title,
                   :average_delivery_time, :description, :user_id, :op_enabled,
                   :deliverabilities_attributes, :cuisines, :cuisine_ids, :rating, :enabled,
-
+                  :sms_phone, :support_phone,
                   :city_id, :crop_x, :crop_y, :crop_w, :crop_h
 
 

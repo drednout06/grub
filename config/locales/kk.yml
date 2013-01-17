@@ -222,6 +222,7 @@ kk:
       stats: Статистика
       new: Асхана қосу
       title: Ресторатор кабинеті
+      report: Есептеме
 
   navigation:
     home: Басты бет
@@ -311,6 +312,9 @@ kk:
       restaurant:
         <<: *default_attributes
         address: Мекен-жайы
+        sms_phone: СМС ескертулер тел. номері
+        support_phone: Қолдау тел. номері
+        support_phone_client: Телефон
         user_id: Пайдаланушы
         minimum_order: Минималды тапсырыс
         minimum_rating: Минималды рейтинг
@@ -385,6 +389,7 @@ kk:
         id: Нөмері
         created_at: Құрылған кезі
         sum: Сома
+        total: Барлығы
         status: Статус
         address_id: Сақталған мекенжайлар
         deliver_now: Бірден жеткізу
