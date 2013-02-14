@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117125713) do
+ActiveRecord::Schema.define(:version => 20130119173543) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -193,6 +193,16 @@ ActiveRecord::Schema.define(:version => 20130117125713) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], :name => "poly_request_index"
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
   add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
+
+  create_table "invoices", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "comment"
+    t.decimal  "sum"
+    t.datetime "paid_at"
+    t.string   "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "line_items", :force => true do |t|
     t.integer  "dish_id"

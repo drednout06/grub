@@ -51,4 +51,8 @@
   </p>
 </dl>
 
+<%= link_to t('.invoices'),
+            user_invoices_path(current_user), 
+            :class => 'btn btn-success' %>
+
 <%= render partial: 'shared/datetime_picker' %>

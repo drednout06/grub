@@ -3,7 +3,11 @@ class StaticPagesController < ApplicationController
   
   def home
   	@q = Restaurant.ransack(params[:q])
-  	@default_city = City.find_by_name("Алматы")
+
+    respond_to do |format|
+      format.html {}
+      format.json { City.all.to_json }
+    end
   end
 
   def pizza

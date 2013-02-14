@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   
   has_many :addresses, dependent: :destroy
   has_many :orders
+  has_many :invoices
   has_many :reviews, dependent: :destroy
   has_many :evaluations, class_name: "RSEvaluation", as: :source
   has_many :restaurants, dependent: :destroy

@@ -15,7 +15,7 @@
   		  <div class="span3 offset1">
   			  <%= f.label :city_id_in, t(".your_city"), class: 'lead' %>
   			  <%= f.collection_select :city_id_in, City.order(:name), :id, :name,
-  			  			include_blank: false, selected: @default_city.id, class: 'input-small' %>
+  			  			include_blank: false, class: 'input-small' %>
   			</div>
 
   			<div class="span3">

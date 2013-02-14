@@ -83,6 +83,7 @@ ru:
       pending: Принят
       accepted: Реализован
       rejected: Отменен
+      review: Оставить отзыв
 
   restaurants:
     restaurants:
@@ -153,13 +154,13 @@ ru:
 
   static_pages:
     home:
-      title: Заказ и доставка пиццы, суши, обедов, еды на дом и в офис по Алматы и Казахстану
+      title: Доставка пиццы, суши, еды по Алматы
       subheadline: Пицца, суши и другие блюда в двух кликах от Вас
       headline: grub.kz - лучший способ заказа еды
       your_city: Ваш город
       your_district: Ваш район
       feature_1: 1. Укажите район
-      feature_1_desription: Укажите свое местонахождение чтобы определить заведения доставлюящие еду в Ваш район.
+      feature_1_desription: Укажите свое местонахождение чтобы определить заведения доставляющие еду в Ваш район.
       feature_2: 2. Выберите блюда
       feature_2_desription: Выберите любимые блюда из меню выбранного Вами заведения.
       feature_3: 3. Кушать подано!
@@ -341,6 +342,10 @@ ru:
         zero: часы работы не найдены
         one: часы работы
         other: часы работы
+      invoice:
+        zero: счета не найдены
+        one: счет
+        other: счета
 
     attributes:
       restaurant:
@@ -435,6 +440,13 @@ ru:
         preorder: Предзаказ на
         <<: *default_attributes
         created_at: Отправлен в
+
+      invoice:
+        status: Статус
+        comment: Комментарий
+        sum: К оплате
+        paid_at: Дата оплаты
+        <<: *default_attributes
 
 
       review:

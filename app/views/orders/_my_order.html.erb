@@ -7,6 +7,8 @@
   <td><%= l my_order.created_at, format: :short %></td>
   <td><%= l my_order.delivery_time, format: :short %></td>
   <td>
+    <%= link_to t('.review'),
+                restaurant_reviews_path(my_order.restaurant), :class => 'btn btn-mini btn-success' %>
     <%= link_to t('.view', :default => t("helpers.links.view")),
                 order_path(my_order), :class => 'btn btn-mini' %>
   </td>

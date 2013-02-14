@@ -50,6 +50,7 @@ Grub::Application.routes.draw do
       resources :restaurants, shallow: true
       resources :addresses, shallow: true
       resources :orders, shallow: true
+      resources :invoices
       # resources :user_favorites, only: [:index, :create, :destroy], shallow: true
 
       member do
