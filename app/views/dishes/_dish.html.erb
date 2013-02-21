@@ -1,6 +1,6 @@
 <li class="span3">
   <div class="thumbnail dish">
-    	<%= image_tag dish.picture.url(:thumb) %>
+    	<%= image_tag dish.picture.url(:thumb), alt: "#{dish.name.strip} рисунок" %>
     <div class="caption popovered"  rel="popover" data-content="<%= dish.description %>"
   		data-original-title="<%= dish.name %>" data-trigger="hover">
     	<div class="dish_text">

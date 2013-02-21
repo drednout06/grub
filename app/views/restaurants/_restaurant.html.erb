@@ -1,6 +1,7 @@
 <div id="<%= dom_id(restaurant) %>">
 	<div class="span2 restaurant-logo">
-		<%= image_tag restaurant.logo.url(:thumb), width: 170, class: "img-rounded" %>
+		<%= image_tag restaurant.logo.url(:thumb), width: 170, class: "img-rounded",
+			alt: "#{restaurant.meta_title} логотип" %>
 		<% if can? :update, restaurant %>
 		<span class="admin-links">
 		<%= link_to t("helpers.links.edit"), edit_restaurant_path(restaurant) %> |

@@ -1,4 +1,6 @@
-<% provide(:title, "#{@restaurant.title} #{@restaurant.name} - #{ @restaurant.cuisines.map {|c| c.name}.join(' / ')}") %>
+<% provide(:title, @restaurant.meta_title) %>
+<% provide(:description, "#{@restaurant.description} #{@restaurant.meta_title}") %>
+
 <%= render partial: 'restaurants/rating' %>
 <div class="row">
 

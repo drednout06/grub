@@ -1,3 +1,4 @@
+# encoding: utf-8
 # == Schema Information
 #
 # Table name: restaurants
@@ -136,6 +137,10 @@ class Restaurant < ActiveRecord::Base
 
   def views_count(start, finish = Time.zone.now)
     impressions.where(created_at: start..finish).count
+  end
+
+  def meta_title
+    "#{title} #{name} - доставка #{cuisines.map {|c| c.name}.join(' / ')} еда"
   end
 
 end

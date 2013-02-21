@@ -5,19 +5,6 @@
       by <a href="http://amanatlabs.com/">Amanat Labs</a>
     </small>
     <nav>
-      <ul class="center">
-        <li><%= link_to t(".pizza_delivery"), pizza_path %></li>
-        <li class="muted">·</li>
-        <li><%= link_to t(".sushi_delivery"), sushi_path %></li>
-        <li class="muted">·</li>
-        <li><%= link_to t(".food_delivery"), restaurants_path %></li>
-      </ul>
-    </nav>
-  </div>
-
-  <div class="container">
-
-    <nav>
       <ul>
         <li><%= link_to t(".about"), about_path %></li>
         <li class="muted">·</li>
@@ -28,6 +15,18 @@
         <li><%= link_to t(".contact"), contact_path %></li>
         <li class="muted">·</li>
         <li><%= link_to t(".blog"), 'http://blog.grub.kz/' %></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container">
+    <nav>
+      <ul class="center">
+        <li><%= link_to t(".pizza_delivery"), pizza_path %></li>
+        <li class="muted">·</li>
+        <li><%= link_to t(".sushi_delivery"), sushi_path %></li>
+        <li class="muted">·</li>
+        <li><%= link_to t(".food_delivery"), restaurants_path %></li>
       </ul>
     </nav>
   </div>
