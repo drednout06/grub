@@ -74,6 +74,8 @@ class Ability
 
     can :manage, Cart # Potential security problem
 
+    can :create, Review # Potential security problem
+
     can :manage, Address do |address|
       address.try(:user) == user
     end

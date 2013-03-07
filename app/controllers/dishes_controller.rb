@@ -39,7 +39,7 @@ class DishesController < ApplicationController
   # GET /dishes/new.json
   def new
     @menu = Menu.find(params[:menu_id])
-    @dish = Dish.new
+    @dish = @menu.dishes.build
 
     @restaurant = @menu.restaurant
 

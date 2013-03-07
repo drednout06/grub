@@ -5,5 +5,6 @@ jQuery ->
 
 	$('td.timeago').timeago()
 	$('.datepicker').datepicker()
+	$('img.lazy').lazyload( effect : "fadeIn" )
 
   

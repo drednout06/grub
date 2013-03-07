@@ -25,5 +25,6 @@
 //= require jquery-ui-timepicker-addon
 //= require raphael
 //= require morris
+//= require jquery.lazyload
 
 var grub = grub || {};
