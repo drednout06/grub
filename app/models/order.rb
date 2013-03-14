@@ -112,15 +112,18 @@ class Order < ActiveRecord::Base
     body = to_s
     part_length = 140.0
     parts_count = (body.length / part_length).ceil
-    parts_count.times do |i|
-      part = "(#{(i+1)}/#{parts_count}) Zakaz #{id}:\n"
-      part += body[i * part_length..((i+1) * part_length - 1)]
-      part += ".." if i < parts_count - 1
-      @twilio_client.account.sms.messages.create(
-        :from => "+1#{twilio_phone_number}",
-        :to => number_to_send_to,
-        :body => part
-      )
+    begin
+      parts_count.times do |i|
+        part = "(#{(i+1)}/#{parts_count}) Zakaz #{id}:\n"
+        part += body[i * part_length..((i+1) * part_length - 1)]
+        part += ".." if i < parts_count - 1
+        @twilio_client.account.sms.messages.create(
+          :from => "+1#{twilio_phone_number}",
+          :to => number_to_send_to,
+          :body => part
+        )
+      end
+    rescue Exception
     end
   end
 
