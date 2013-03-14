@@ -17,6 +17,18 @@ class Address < ActiveRecord::Base
   validates :house, presence: true
   validates :phone_number, presence: true
   validates :street, presence: true
+
+  def to_s
+    "#{first_name}\n" +
+    "#{phone_number}\n" +
+    "#{street} #{house}\n" +
+    "#{district.name}\n" +
+    (korpus.empty? ? "" : "Korpus: #{korpus}\n") +
+    (porch.empty? ? "" : "Podezd: #{porch}\n") +
+    (floor.empty? ? "" : "Etaj: #{floor}\n") +
+    (doorphone.empty? ? "" : "Domofon: #{doorphone}\n") +
+    (comment.empty? ? "" : "Komment: #{comment}\n")
+  end
 end
 # == Schema Information
 #

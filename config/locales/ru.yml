@@ -215,7 +215,7 @@ ru:
       food_delivery: Доставка еды
     header:
       account: Мой профайл
-      restaurants: Рестораны
+      restaurants: Все рестораны
       users: Пользаватели
       settings: Параметры
       profile: Профайл
@@ -248,7 +248,7 @@ ru:
       stats: Статистика
       new: Добавить заведение
       title: Кабинет ресторатора
-      report: Отчет
+      report: Отчёт
     report:
       title: Финансовый отчет
       start: "От:"
@@ -789,3 +789,4 @@ ru:
   will_paginate:
     next_label: Назад
     previous_label: Вперед
+    page_gap: "..."

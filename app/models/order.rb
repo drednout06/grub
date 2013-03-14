@@ -47,6 +47,7 @@ class Order < ActiveRecord::Base
 
   default_scope :order => 'created_at DESC'
   before_validation :set_delivery_time
+  after_save :send_text_message
   
 
   def add_data_from_cart(cart)
@@ -97,6 +98,48 @@ class Order < ActiveRecord::Base
 
   def set_delivery_time
     self.delivery_time = Time.zone.now if deliver_now? or delivery_time.blank?
+  end
+
+  def send_text_message
+    number_to_send_to = restaurant.sms_phone
+ 
+    twilio_sid = "ACf68a562909aca13dece78e60eba4eb3f"
+    twilio_token = "7630418bcdf034cc1d5bf2cd07a0dfe3"
+    twilio_phone_number = "4157499797"
+ 
+    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+    
+    body = to_s
+    part_length = 140.0
+    parts_count = (body.length / part_length).ceil
+    parts_count.times do |i|
+      part = "(#{(i+1)}/#{parts_count}) Zakaz #{id}:\n"
+      part += body[i * part_length..((i+1) * part_length - 1)]
+      part += ".." if i < parts_count - 1
+      @twilio_client.account.sms.messages.create(
+        :from => "+1#{twilio_phone_number}",
+        :to => number_to_send_to,
+        :body => part
+      )
+    end
+  end
+
+  def to_s
+    text = line_items.map {|li| "#{li.dish.name.strip}=#{li.quantity}" }.join("\n")
+    text += "\nDostavka= #{restaurant.try(:delivery_fee, address.district_id)}\n"
+    text += "Vsego: #{total}\n"
+
+    text += address.to_s
+
+    text += "Predzakaz: #{I18n.l(delivery_time, format: :short)}\n" unless deliver_now
+    text += (change_from.nil? or change_from.zero?) ? "" : "Sdacha s: #{change_from}."
+
+    # refactor
+    locale = I18n.locale
+    I18n.locale = :all
+    text = I18n.transliterate text
+    I18n.locale = locale
+    text
   end
 
 end

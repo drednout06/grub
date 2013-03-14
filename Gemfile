@@ -6,7 +6,7 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'annotate', '~> 2.4.1.beta', group: :development
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
-gem 'bootstrap-will_paginate', '0.0.6'
+gem 'bootstrap-will_paginate'
 gem "paperclip", "~> 3.0"
 
 gem 'pg'
@@ -25,7 +25,7 @@ gem 'sqlite3'
 gem 'taps'
 gem 'impressionist'
 gem "breadcrumbs_on_rails"
-gem 'metamagic'
+gem 'twilio-ruby'
 
 group :development, :test do
   gem 'rspec-rails', '2.10.0'
