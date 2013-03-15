@@ -135,8 +135,8 @@ class Restaurant < ActiveRecord::Base
     end
   end
 
-  def views_count(start, finish = Time.zone.now)
-    impressions.where(created_at: start..finish).count
+  def views_count(start = Time.zone.now, finish = Time.zone.now)
+    impressions.where(created_at: start.beginning_of_day..finish).count
   end
 
   def meta_title

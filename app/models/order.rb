@@ -123,7 +123,10 @@ class Order < ActiveRecord::Base
           :body => part
         )
       end
-    rescue Exception
+    rescue => e
+      Rails.logger.debug "Twilio error"
+      Rails.logger.debug e.message
+      Rails.logger.debug e.backtrace
     end
   end
 

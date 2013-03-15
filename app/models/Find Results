@@ -1,0 +1,30 @@
+tSearching 905 files for "views_count"
+
+/Users/argnur/Projects/grub/app/helpers/orders_helper.rb:
+    4      finish ||= Time.zone.now
+    5  		orders_by_day = restaurant.orders_count_by_day(start, finish)
+    6: 		views_by_day = restaurant.views_count_by_day(start, finish)
+    7  		(start.to_date..finish.to_date).map do |date|
+    8        {
+
+/Users/argnur/Projects/grub/app/models/restaurant.rb:
+  109    end
+  110  
+  111:   def views_count_by_day(start, finish = Time.zone.now)
+  112      views = impressions.where(created_at: start.beginning_of_day..finish.end_of_day)
+  113      views = views.group("date(created_at)")
+  ...
+  136    end
+  137  
+  138:   def views_count(start, finish = Time.zone.now)
+  139      impressions.where(created_at: start..finish).count
+  140    end
+
+/Users/argnur/Projects/grub/app/views/restaurants/operate.html.erb:
+   35    
+   36    <dt><strong><%= Restaurant.human_attribute_name(:views) %>:</strong></dt>
+   37:   <dd><%= @restaurant.views_count %></dd>
+   38  
+   39    <dt><strong><%= Restaurant.human_attribute_name(:orders) %>:</strong></dt>
+
+4 matches across 3 files

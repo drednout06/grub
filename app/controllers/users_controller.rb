@@ -65,20 +65,20 @@ class UsersController < ApplicationController
     end
   end
 
-  def report
+  # def report
 
-    if current_user.admin?
-      @restaurants = Restaurant.all
-      @orders = Order.accepted
-    else
-      @restaurants = current_user.restaurants
-      @orders = current_user.transactions
-    end
-    @user = User.find(params[:id])
-    @start = params[:start].blank? ? 1.year.ago : Time.parse(params[:start]) 
-    @finish = params[:finish].blank? ? Time.zone.now : Time.parse(params[:finish])
+  #   if current_user.admin?
+  #     @restaurants = Restaurant.all
+  #     @orders = Order.accepted
+  #   else
+  #     @restaurants = current_user.restaurants
+  #     @orders = current_user.transactions
+  #   end
+  #   @user = User.find(params[:id])
+  #   @start = params[:start].blank? ? 1.year.ago : Time.parse(params[:start]) 
+  #   @finish = params[:finish].blank? ? Time.zone.now : Time.parse(params[:finish])
 
-  end
+  # end
 
   def report
     if current_user.admin?

@@ -114,8 +114,9 @@ ru:
       no_reviews: Нет отзывов.
     operate:
       title: Заказы
-      stats_24_hours: Статистика за 24 часа
+      stats_24_hours: Статистика за сегодня
       stats_details: Подробнее...
+      all_orders: Все заказы
     stats:
       conversions_legend: Ежедневная конверсия
       revenues_legend: Ежедневный доход

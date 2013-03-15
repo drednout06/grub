@@ -107,8 +107,9 @@ kk:
     show:
       no_reviews: Ешкім әле пікір қалдырмады.
     operate:
-      stats_24_hours: Соңғы 24 сағат статистикасы
+      stats_24_hours: Бүгінгі статистика
       stats_details: Толығырақ...
+      all_orders: Тапсырыстардың барлығы
     stats:
       conversions_legend: Күнделікті конверсия
       revenues_legend: Күнделікті табыс

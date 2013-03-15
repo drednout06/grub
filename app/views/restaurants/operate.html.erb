@@ -34,10 +34,10 @@
   <dd><%= @orders.pending.count %></dd>
   
   <dt><strong><%= Restaurant.human_attribute_name(:views) %>:</strong></dt>
-  <dd><%= @restaurant.views_count(24.hours.ago, Time.zone.now) %></dd>
+  <dd><%= @restaurant.views_count %></dd>
 
-  <dt><strong><%= Restaurant.human_attribute_name(:orders) %>:</strong></dt>
-  <dd><%= @orders.where(created_at: 24.hours.ago..Time.zone.now).count %></dd>
+  <dt><strong><%= t('.all_orders') %>:</strong></dt>
+  <dd><%= @orders.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now).count %></dd>
   
   </p>
 </dl>
