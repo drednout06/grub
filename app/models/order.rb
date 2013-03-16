@@ -47,7 +47,7 @@ class Order < ActiveRecord::Base
 
   default_scope :order => 'created_at DESC'
   before_validation :set_delivery_time
-  after_save :send_text_message
+  after_create :send_text_message
   
 
   def add_data_from_cart(cart)
