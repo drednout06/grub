@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119173543) do
+ActiveRecord::Schema.define(:version => 20130324193006) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -249,7 +249,6 @@ ActiveRecord::Schema.define(:version => 20130119173543) do
     t.string   "title"
     t.integer  "average_delivery_time"
     t.text     "description"
-    t.integer  "delivery_fee"
     t.integer  "city_id"
     t.decimal  "rating"
     t.boolean  "enabled",               :default => false
@@ -336,8 +335,10 @@ ActiveRecord::Schema.define(:version => 20130119173543) do
     t.string   "phone_number"
     t.boolean  "admin",                  :default => false, :null => false
     t.boolean  "restaurateur",           :default => false
+    t.string   "authentication_token"
   end
 
+  add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 

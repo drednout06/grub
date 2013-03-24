@@ -91,6 +91,12 @@ Grub::Application.routes.draw do
       resources :deliverabilities, shallow: true
     end
 
+    namespace :api, defaults: {format: 'json'} do
+      namespace :v1 do
+        resources :cities, :restaurants, :menus, :dishes, :districts
+      end
+    end
+
     match '/faq',    to: 'static_pages#help'
     match '/about',   to: 'static_pages#about'
     match '/partners',to: 'static_pages#partners'

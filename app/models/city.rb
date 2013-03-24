@@ -19,4 +19,8 @@ class City < ActiveRecord::Base
   accepts_nested_attributes_for :translations
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
+
+  def as_json(options={})
+    super(only: [:id, :name], include: [districts: {only: [:id, :name]} ])
+  end
 end

@@ -17,7 +17,6 @@
 #  title                 :string(255)
 #  average_delivery_time :integer
 #  description           :text
-#  delivery_fee          :integer
 #  city_id               :integer
 #  rating                :decimal(, )
 #
@@ -141,6 +140,15 @@ class Restaurant < ActiveRecord::Base
 
   def meta_title
     "#{title} #{name} - доставка #{cuisines.map {|c| c.name}.join(' / ')} еда"
+  end
+
+  def logo_url
+    logo.url(:thumb)
+  end
+
+  def as_json(options={})
+    super(methods: [:logo_url], include: [cuisines: {only: [:id, :name]} ],
+        except: [:logo_content_type, :logo_file_name, :logo_file_size, :logo_updated_at])
   end
 
 end
