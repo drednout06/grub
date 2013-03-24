@@ -47,6 +47,7 @@ group :assets do
 	gem 'twitter-bootstrap-rails'
 	gem 'less'
   gem 'uglifier', '>= 1.2.3'
+  # gem "introjs-rails"
 end
 
 gem 'simple_form'

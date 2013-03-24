@@ -27,3 +27,5 @@ jQuery ->
       #$('#q_deliverabilities_district_id_in').parent().hide()
 
   $('#q_deliverabilities_district_id_in').val(4)
+
+  introJs().start()

@@ -15,6 +15,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require_tree .
+//= require intro
 //= require jquery.timeago
 //= require jquery.timeago.ru.js
 //= require jquery.Jcrop
