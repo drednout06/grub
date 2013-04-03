@@ -251,6 +251,7 @@ kk:
     crop_picture: Суретті қырқу
     preview: Алдын ала қарап алу
     no_delivery: "Жеткізу жоқ"
+    free_delivery: "Тегін жеткізу!"
 
 
   activerecord:
@@ -346,6 +347,9 @@ kk:
         <<: *default_attributes
         position: Позиция
         dishes: Тағамдар
+        pictureless: Суретсіз
+        type: Түр
+        standard: Стандартты
 
       business_hour:
         <<: *default_attributes

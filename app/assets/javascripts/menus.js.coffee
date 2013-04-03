@@ -7,3 +7,7 @@ jQuery ->
     handle: '.handle'
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
+
+jQuery ->
+	$('tr.dish').click ->
+		$.post($(this).data("link"), null, null, "script")

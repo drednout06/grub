@@ -10,8 +10,12 @@
 	
 	
 	<div>
-	  <ul class="thumbnails">
-	  	<%= render menu.dishes %>
-	  </ul>
+		<% if menu.pictureless? %>
+  		<%= render 'menus/pictureless_menu', dishes: menu.dishes %>
+		<% else %>
+			<ul class="thumbnails">
+  			<%= render menu.dishes %>
+	  	</ul>
+		<% end %>
 	</div>
 <% end %>

@@ -8,7 +8,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:day) %></th>
       <th><%= model_class.human_attribute_name(:schedule) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -18,7 +17,6 @@
   <tbody>
     <% @business_hours.each do |business_hour| %>
       <tr>
-        <td><%= link_to business_hour.id, business_hour_path(business_hour) %></td>
         <td><%= @weekdays.invert[business_hour.day] %></td>
         <td><%= business_hour.to_s %></td>
         <td><%= l business_hour.created_at, format: :short %></td>

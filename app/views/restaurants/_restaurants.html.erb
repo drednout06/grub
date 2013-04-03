@@ -8,8 +8,7 @@
 <div class="row">
   <% if @restaurants.any? %>
   <% @restaurants.each do |restaurant| %>
-    <div class="restaurant-row">
-      <%= link_to "", restaurant %>
+    <div class="restaurant-row" data-link="<%= restaurant_path restaurant %>">
       <%= render restaurant %>
     </div>
   <% end %>

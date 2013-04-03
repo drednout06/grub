@@ -290,6 +290,7 @@ ru:
     crop_picture: Отредактировать изображение
     preview: Предварительный просмотр
     no_delivery: "Нет доставки"
+    free_delivery: "Бесплатная доставка!"
 
   activerecord:
     models:
@@ -392,6 +393,9 @@ ru:
         <<: *default_attributes
         position: Позиция
         dishes: Блюда
+        pictureless: Без изображений
+        type: Тип
+        standard: Стандартное
 
       business_hour:
         <<: *default_attributes

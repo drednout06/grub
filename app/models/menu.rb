@@ -1,7 +1,7 @@
 class Menu < ActiveRecord::Base
 	before_save :set_position
 
-  attr_accessible :name, :position, :restaurant_id
+  attr_accessible :name, :position, :restaurant_id, :pictureless
   belongs_to :restaurant
   has_many :dishes, dependent: :destroy
   delegate :owner, to: :restaurant, allow_nil: true

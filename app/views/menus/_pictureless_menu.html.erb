@@ -1,0 +1,11 @@
+<table class="table table-hover dishes-list">
+  <tbody>
+    <% dishes.each do |dish| %>
+      <%= content_tag_for :tr, dish, data: {link: line_items_url(dish_id: dish)} do %>
+        <td style="width: 25%"><em><%= dish.name %></em></td>
+        <td style="width: 65%"><%= dish.description %></span></td>
+        <td style="width: 15%"><%= number_to_currency dish.price %></td>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

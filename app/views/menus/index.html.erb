@@ -9,6 +9,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:position) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:type) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -19,9 +20,10 @@
         <td><span class="handle"><i class="icon-move"></i>
           [<%= t 'helpers.links.drag' %>]</span></td>
         <td><%= link_to menu.name, menu_dishes_path(menu) %></td>
+        <td><%= menu.pictureless ? model_class.human_attribute_name(:pictureless) : model_class.human_attribute_name(:standard) %></td>
         <td><%=l menu.created_at, format: :short %></td>
         <td>
-          <%= link_to t('.rename', :default => t("helpers.links.rename")),
+          <%= link_to t('.rename', :default => t("helpers.links.edit")),
                       edit_menu_path(menu), :class => 'btn btn-mini' %>
           <%= link_to t('.view', :default => t("helpers.links.view")),
                       menu_path(menu), :class => 'btn btn-mini' %>
