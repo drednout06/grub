@@ -151,7 +151,7 @@ kk:
       headline: Енді ешқашан аш қалмайсыз!
       subheadline: grub.kz - тамаққа тапсырыс беру қызметі
       your_city: Қалаңыз
-      your_district: Ауданыңыз
+      your_district: Алматыдағы ауданыңыз
       feature_1: 1. Ауданыңызды белгілеңіз
       feature_1_desription: Ауданыңызға тамақ жеткізетін асханаларды көру үшін ауданыңызды белгілеңіз.
       feature_2: 2. Тамағыңызды таңдаңыз
@@ -232,7 +232,7 @@ kk:
     signup: Тіркелу
     menu: Мәзір
     main_title: Ас болсын!
-    search: Іздеу
+    search: Ізде
     city: Қала
     rating: Рейтингі
     rating_1: 'Өте нашар'

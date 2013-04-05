@@ -7,7 +7,7 @@
     
     <h1> <%= t(".headline") %> </h1>
 
-    <h1 class="lead">
+    <h1 class="lead hidden-phone hidden-tablet">
       <%= t(".subheadline") %>
     </h1>
 
@@ -15,16 +15,23 @@
     <div class="row introjs-inverse">
   	  <%= search_form_for @q, class: 'form-inline' do |f| %>
 
-  		  <div class="span3 offset1">
+  		  <!-- <div class="span3 offset1">
   			  <%= f.label :city_id_in, t(".your_city"), class: 'lead' %>
   			  <%= f.collection_select :city_id_in, City.order(:name), :id, :name,
   			  			include_blank: false, class: 'input-small' %>
-  			</div>
-
+  			</div> -->
+<!-- 
   			<div class="span3">
   			  <%= f.label :deliverabilities_district_id_in, t('.your_district'), class: 'lead' %>
   			  <%= f.grouped_collection_select :deliverabilities_district_id_in, City.order(:name), :districts, :name, :id, :name, include_blank: false, class: 'input-small' %>
-  			</div>
+  			</div> -->
+
+        <div class="span4 offset2">
+          <%= f.label :deliverabilities_district_id_in, t(".your_district"), class: 'lead' %>
+          <%= f.collection_select :deliverabilities_district_id_in, @districts, :id, :name,
+                include_blank: false, class: 'input-small' %>
+        </div>
+
   			<div class="span2">
           <button type="submit" class="btn btn-success btn-large">
             <i class="icon-search"></i>

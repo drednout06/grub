@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
   
   def home
   	@q = Restaurant.ransack(params[:q])
+    @districts = City.find(1).districts.order(:name)
 
     respond_to do |format|
       format.html {}
