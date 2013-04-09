@@ -14,11 +14,11 @@ module DistrictsHelper
 
 	def delivery_fee(restaurant, district_id)
     fee = restaurant.delivery_fee(district_id)
-    if fee.zero?
-    	t("navigation.free_delivery")
-    elsif fee.nil?
+    if fee.nil?
 	    t("navigation.no_delivery")
-	  else
+	  elsif fee.zero?
+    	t("navigation.free_delivery")
+    else
 	  	number_to_currency(fee)
 	  end
   end

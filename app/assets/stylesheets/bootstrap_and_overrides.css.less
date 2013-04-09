@@ -18,6 +18,8 @@
 //@import "custom";
 // Font Awesome
 @import "fontawesome";
+@import "font-awesome.less";
+@FontAwesomePath:   "../font";
 
 // Your custom LESS stylesheets goes here
 //
@@ -356,8 +358,8 @@ header {
     font-size: 12px;
   }
   .value {
-    font-weight: bold;
-    font-size: 16px;
+    // font-weight: bold;
+    font-size: 14px;
     text-align: center;
   }
   .description {
@@ -387,7 +389,7 @@ header {
   -webkit-box-shadow: 0px 1px 1px 0px #c5ccd1;
   -moz-box-shadow: 0px 1px 1px 0px #c5ccd1;
   box-shadow: 0px 1px 1px 0px #c5ccd1;
-  padding: 20px 15px 0px 0;
+  padding: 10px 10px 0px 0;
   margin-top:10px;
   z-index:100;
   float: left;
@@ -640,4 +642,8 @@ hr.soften {
   :hover {
     cursor: pointer;
   }
+}
+
+#search-form label {
+  font-size: 12px;
 }

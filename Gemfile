@@ -43,11 +43,13 @@ end
 group :assets do
  	gem 'sass-rails',   '3.2.4'
   gem 'coffee-rails', '3.2.2'
-  # gem 'bootstrap-sass', '~> 2.0.4.0'
-	gem 'twitter-bootstrap-rails'
+	gem 'twitter-bootstrap-rails', '2.2.5'
 	gem 'less'
   gem 'uglifier', '>= 1.2.3'
+  gem 'therubyracer', :platforms => :ruby
+  gem "less-rails"
   # gem "introjs-rails"
+  # gem 'bootstrap-sass', '~> 2.0.4.0'
 end
 
 gem 'simple_form'

@@ -6,7 +6,7 @@
 <%= render partial: 'restaurants/rating' %>
 
 <div class="row">
-<div class="span3">
+<div class="span3 hidden-phone hidden-tablet" id="search-form">
   <%= search_form_for @q do |f| %>
 
     <%= f.label :name_cont, t("navigation.search") %>

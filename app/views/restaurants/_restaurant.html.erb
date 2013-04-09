@@ -14,12 +14,12 @@
 		<div class="row">
 			<div class="restaurant-name span4">
 				<%= link_to restaurant, class: "dark-link" do %>
-				<h2>
+				<h3>
 					<%= restaurant.name %>
 					<small>
 						<%= restaurant.title %>		
 					</small>
-				</h2>
+				</h3>
 				<% end %>
 			</div>
 				
@@ -35,22 +35,22 @@
 					
 				</span>
 
-				<span style="margin-left: 20px;">
-					<%= link_to user_favorites_path(restaurant_id: restaurant.id),
+				<!-- <span style="margin-left: 20px;">
+					<%#= link_to user_favorites_path(restaurant_id: restaurant.id),
 						method: :post, remote: true, class: "favorite" do %>
-						<% if current_user.try(:favorited?, restaurant) %>
+						<%# if current_user.try(:favorited?, restaurant) %>
 							<i class="icon-heart icon-large tooltiped heart" rel="tooltip" data-placement="top"
-								data-original-title="<%= t '.to_unfavorite' %>" data-trigger="hover"></i>
-						<% else %>
+								data-original-title="<%#= t '.to_unfavorite' %>" data-trigger="hover"></i>
+						<%# else %>
 							<i class="icon-heart-empty icon-large tooltiped heart" rel="tooltip" data-placement="top"
-								data-original-title="<%= t '.to_favorite' %>" data-trigger="hover"></i>
-						<% end %>
-					<% end %>
+								data-original-title="<%#= t '.to_favorite' %>" data-trigger="hover"></i>
+						<%# end %>
+					<%# end %>
 
 					<span class="tooltiped fans-number" rel="tooltip" data-placement="top"
-						data-original-title="<%= t '.favorited_by', value: restaurant.fans.count %>" data-trigger="hover"> <%= restaurant.fans.count %>
+						data-original-title="<%#= t '.favorited_by', value: restaurant.fans.count %>" data-trigger="hover"> <%= restaurant.fans.count %>
 					</span>
-				</span>
+				</span> -->
 
 				<span class="tooltiped" rel="tooltip" data-placement="top"
 						data-original-title="<%= t('navigation.reviews') %>" data-trigger="hover" style="margin-left: 20px;">
