@@ -70,7 +70,7 @@ class Restaurant < ActiveRecord::Base
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :reprocess_logo, :if => :cropping?
 
-  default_scope :order => 'rating DESC'
+  scope :ranked, :order => 'rating DESC'
   scope :enabled, where(enabled: true)
 
   def cropping?

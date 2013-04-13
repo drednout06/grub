@@ -1,5 +1,6 @@
 class MenusController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :restaurant
+  load_and_authorize_resource :menu, through: :restaurant, shallow: true
   add_breadcrumb I18n.t('layouts.header.home'), :root_path
   
   def index

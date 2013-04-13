@@ -27,6 +27,10 @@ class Cart < ActiveRecord::Base
 		restaurant.minimum_order <= total_price
 	end
 
+	def empty?
+		line_items.blank?
+	end
+
 	def remainder
 		restaurant.minimum_order - total_price
 	end

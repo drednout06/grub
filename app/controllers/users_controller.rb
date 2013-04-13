@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
+    # redirect_to root_path unless current_user.admin?
     @users = User.order("created_at desc").page(params[:page]).per_page(10)
-
   end
   
   def new
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
 
   def restaurateur
     if current_user.admin?
-      @restaurants = Restaurant.all
+      @restaurants = Restaurant.all.sort_by{|r| [r.enabled? ? 0 : 1, r.created_at] }
     else
       @restaurants = current_user.restaurants
     end

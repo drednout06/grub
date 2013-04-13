@@ -14,6 +14,7 @@ class Deliverability < ActiveRecord::Base
   attr_accessible :district_id, :fee, :restaurant_id
   belongs_to :district
   belongs_to :restaurant
+  delegate :owner, to: :restaurant, allow_nil: true
 
   accepts_nested_attributes_for :district, :restaurant
 end

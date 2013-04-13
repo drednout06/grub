@@ -1,5 +1,6 @@
 class AddressesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :user
+  load_and_authorize_resource :address, through: :user, shallow: true
   before_filter :authenticate_user!
   
   def index

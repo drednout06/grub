@@ -18,6 +18,7 @@ class BusinessHour < ActiveRecord::Base
   attr_accessible :restaurant_id, :schedule, :day, :opening, :closing  
   serialize :schedule, Hash
   belongs_to :restaurant
+  delegate :owner, to: :restaurant, allow_nil: true
 
   validates :restaurant_id, presence: true
   validates :schedule, presence: true

@@ -242,6 +242,7 @@ ru:
   notice:
     sum_insufficient: Необходимо пополнить заказ еще на %{value} тенге.
     order_created: Заказ был успешно принят.
+    empty_cart: Необходимо заказать хотя бы одно блюдо.
 
   users:
     restaurateur:

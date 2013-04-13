@@ -1,9 +1,10 @@
 class OrdersController < ApplicationController
-  before_filter :auth_user
-  load_and_authorize_resource
+  before_filter :authenticate_user!, except: :new
+  load_and_authorize_resource :user
+  load_and_authorize_resource :order, through: :user, shallow: true
 
   def index
-    @user = current_user
+    @user = User.find(params[:user_id])
     @q = @user.orders.ransack(params[:q])
     @orders = @q.result(distinct: true)
     @order = 
@@ -33,6 +34,16 @@ class OrdersController < ApplicationController
       redirect_to :back, flash: {error: t('notice.sum_insufficient', value: @cart.remainder)}
       return
     end
+    if @cart.empty?
+      redirect_to :back, flash: {error: t('notice.empty_cart')}
+      return
+    end
+    unless user_signed_in?
+      session[:user_return_to] = request.path
+      redirect_to new_user_registration_path
+      return
+    end
+
     @preorder = !@cart.restaurant.open?
 
     @user = current_user || User.new
@@ -152,10 +163,4 @@ class OrdersController < ApplicationController
     end
   end
 
-  def auth_user
-    unless user_signed_in?
-      session[:user_return_to] = request.path
-      redirect_to new_user_registration_path
-    end
-  end
 end

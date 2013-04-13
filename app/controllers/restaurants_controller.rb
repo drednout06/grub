@@ -1,13 +1,14 @@
 class RestaurantsController < ApplicationController
   after_filter :update_rating, only: :rate
   impressionist actions: [:show], unique: [:impressionable_type, :impressionable_id, :session_hash]
-  load_and_authorize_resource
+  load_and_authorize_resource :user
+  load_and_authorize_resource :restaurant, through: :user, shallow: true
 
   # GET /restaurants
   # GET /restaurants.json
   def index
     @q = Restaurant.enabled.ransack(params[:q])
-    @restaurants = @q.result(:distinct => true)
+    @restaurants = @q.result(:distinct => true).sort_by{|r| [r.open? ? 0 : 1, r.rating * -1] } # refactor!
     @q.build_sort if @q.sorts.empty?
 
     save_district params[:q].try(:[], :deliverabilities_district_id_in)

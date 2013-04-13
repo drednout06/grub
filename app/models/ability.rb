@@ -3,7 +3,8 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
-    can :read, :all
+    can :read, [Restaurant, Review]
+
     # admin
     if user.admin?
       can :manage, :all
@@ -15,31 +16,21 @@ class Ability
         dish.try(:owner) == user
       end
 
-      can :create, Dish
-
       can :manage, Menu do |menu|
         menu.try(:owner) == user
       end
 
-      can :create, Menu
-
       can :manage, Deliverability do |deliverability|
-        deliverability.try(:restaurant).try(:owner) == user
+        deliverability.try(:owner) == user
       end
-
-      can :create, Deliverability
 
       can :manage, BusinessHour do |business_hour|
-        business_hour.try(:restaurant).try(:owner) == user
+        business_hour.try(:owner) == user
       end
-
-      can :create, BusinessHour
 
       can :manage, Restaurant do |restaurant|
         restaurant.try(:owner) == user
       end
-
-      can :create, Restaurant
 
       can [:accept, :reject], Order do |order|
         order.try(:restaurant).try(:owner) == user
@@ -48,15 +39,24 @@ class Ability
       can :restaurateur, User
 
       can :report, User
-
-    # user
     end
 
-    can :create, Order
+    can :manage, LineItem # Is this ok?
+    can :manage, Cart # Potential security problem
 
+    can :read, Order, user_id: user.id
+    can :read, Address, user_id: user.id
+
+    # any user
+    can :create, Order
     can :create, Address
+    can :create, Review # Potential security problem
 
     can :update, User do |some_user|
+      user == some_user
+    end
+
+    can :show, User do |some_user|
       user == some_user
     end
 
@@ -66,18 +66,7 @@ class Ability
 
     can :search, Restaurant
 
-    can :rate, Restaurant do |restaurant|
-      true # if the user has ever ordered from the restaurant
-    end
+    can :rate, Restaurant
 
-    can :manage, LineItem # Is this ok?
-
-    can :manage, Cart # Potential security problem
-
-    can :create, Review # Potential security problem
-
-    can :manage, Address do |address|
-      address.try(:user) == user
-    end
   end
 end

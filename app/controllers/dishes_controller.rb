@@ -1,5 +1,6 @@
 class DishesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :menu
+  load_and_authorize_resource :dish, through: :menu, shallow: true
   add_breadcrumb I18n.t('layouts.header.home'), :root_path
   
   def index

@@ -1,5 +1,6 @@
 class DeliverabilitiesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :restaurant
+  load_and_authorize_resource :deliverability, through: :restaurant, shallow: true
   before_filter :authenticate_user!
   add_breadcrumb I18n.t('layouts.header.home'), :root_path
   
@@ -93,7 +94,7 @@ class DeliverabilitiesController < ApplicationController
     @deliverability.destroy
 
     respond_to do |format|
-      format.html { redirect_to deliverabilities_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
