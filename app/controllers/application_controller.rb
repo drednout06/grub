@@ -15,6 +15,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    # render file: "#{Rails.root}/public/403", formats: [:html], status: 403, layout: false
+    redirect_to root_url, :alert => exception.message
+  end
+
   private
 
 		def set_locale
