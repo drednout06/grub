@@ -61,7 +61,7 @@ module Grub
 
     config.assets.initialize_on_precompile = false
 
-    config.i18n.fallbacks = [:ru, :kk]
+    config.i18n.fallbacks = [:ru, :kk, :"ru-KG", :ky]
 
     config.middleware.use 'Apartment::Elevators::Generic', Proc.new { |request|
         return nil if request.host.blank?
