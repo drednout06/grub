@@ -26,6 +26,8 @@ gem 'taps'
 gem 'impressionist'
 gem "breadcrumbs_on_rails"
 gem 'twilio-ruby'
+gem 'apartment'
+gem 'i18n'
 
 group :development, :test do
   gem 'rspec-rails', '2.10.0'

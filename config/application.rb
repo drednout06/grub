@@ -61,7 +61,12 @@ module Grub
 
     config.assets.initialize_on_precompile = false
 
-    config.i18n.fallbacks = [:kk, :ru]
+    config.i18n.fallbacks = [:ru, :kk]
 
+    config.middleware.use 'Apartment::Elevators::Generic', Proc.new { |request|
+        return nil if request.host.blank?
+        schema = request.host.match(/(www.)?(?<sld>[^.]*)/)["sld"]
+        (schema == "grub") ? nil : schema
+      }
   end
 end

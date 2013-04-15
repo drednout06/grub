@@ -23,11 +23,16 @@ class ApplicationController < ActionController::Base
   private
 
 		def set_locale
-		  I18n.locale = params[:locale] || cookies[:locale] || I18n.default_locale
+		  I18n.locale = params[:locale] || cookies[:locale] || extract_locale_from_tld || I18n.default_locale
 		  cookies.permanent[:locale] = I18n.locale
 		end
 
 		def default_url_options(options = {})
 		  {locale: I18n.locale}
 		end
+
+    def extract_locale_from_tld
+      parsed_locale = request.host.split('.').last
+      (parsed_locale == "kg") ? :"ru-KG" : nil
+    end
 end

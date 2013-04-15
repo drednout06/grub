@@ -1,4 +1,4 @@
-kk:
+ky:
   errors: &errors
     format: ! '%{attribute} %{message}'
     messages:
@@ -201,7 +201,7 @@ kk:
       signin: Кіру
       home: Басты бет
       toggle_lang: Русский
-      toggle_locale: ru
+      toggle_locale: ru-KG
       
 
   carts:

@@ -12,11 +12,7 @@
       
       <div class="nav-collapse">
         <ul class="nav pull-right" id="nav">
-          <% if I18n.locale == :ru %>
-            <li><%= link_to "Қазақша", locale: "kk" %></li>
-          <% elsif I18n.locale == :kk %>
-            <li><%= link_to "Русский", locale: "ru" %></li>
-          <% end %>
+          <li><%= link_to t(".toggle_lang"), locale: t(".toggle_locale").to_sym %></li>
           <li class="divider-vertical"></li>
 
           <% if user_signed_in? %>

@@ -1,4 +1,4 @@
-ru:
+ru-KG:
   meta:
     title: 'Доставка пиццы, суши, еды - Алматы'
     description: 'grub.kz - лучший, бесплатный способ заказа еды. Пицца, суши, донеры и другие блюда всего в двух кликах от Вас. Огромный выбор заведений с доставкой.'
@@ -226,8 +226,8 @@ ru:
       favorites: Мои избранные
       restaurateur: Ресторатор
       home: Главная
-      toggle_lang: Қазақша
-      toggle_locale: kk
+      toggle_lang: Кыргызча
+      toggle_locale: ky
 
 
   carts:
@@ -242,7 +242,7 @@ ru:
     empty_confirm: Хотите начать заново?
 
   notice:
-    sum_insufficient: Необходимо пополнить заказ еще на %{value} тенге.
+    sum_insufficient: Необходимо пополнить заказ еще на %{value} сом.
     order_created: Заказ был успешно принят.
     empty_cart: Необходимо заказать хотя бы одно блюдо.
 

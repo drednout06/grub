@@ -1,7 +1,7 @@
 Grub::Application.routes.draw do
 
 
-  scope :path => "(:locale)", :shallow_path => "(:locale)", locale: /en|kk|ru/ do
+  scope :path => "(:locale)", :shallow_path => "(:locale)", locale: /en|kk|ru|ky|ru-KG/ do
     root to: 'static_pages#home'
     
     devise_for :users
