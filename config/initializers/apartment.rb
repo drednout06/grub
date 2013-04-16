@@ -1,3 +1,3 @@
 Apartment.configure do |config|
-  config.excluded_models = ["Cuisine"]
+  config.excluded_models = ["Cuisine", "CuisineTranslation"]
 end
